@@ -41,11 +41,11 @@
         <form action={{ route('settings.update') }} method="POST">
             @csrf
             <div class="inputLabel">
-                <input type="text" id="l" class="input-field @if ($errors->has('new_name')) errorInput @endif" name="new_name" onchange="handleCheck('l', 'm')" value="{{ old('new_name') }}">
+                <input type="text" id="l" class="input-field @if ($errors->has('new_name')) errorInput @endif" name="new_name" onchange="handleCheck('l', 'm')" value="{{ old('new_name') }}" autocomplete="off">
                 <label for="" class="input-label" id="m"><span>*  </span>الإسم الكامل الجديد</label>
             </div>
             <div class="inputLabel">
-                <input type="text" id="t" class="input-field @if ($errors->has('new_email')) errorInput @endif" name="new_email" onchange="handleCheck('t', 'y')" value="{{ old('new_email') }}">
+                <input type="text" id="t" class="input-field @if ($errors->has('new_email')) errorInput @endif" name="new_email" onchange="handleCheck('t', 'y')" value="{{ old('new_email') }}" autocomplete="off">
                 <label for="" class="input-label" id="y"><span>*  </span>البريد الإلكتروني الجديد</label>
             </div>
             <div class="inputLabel">

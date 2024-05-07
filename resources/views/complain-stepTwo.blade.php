@@ -7,6 +7,7 @@
     <title>نافذة الحق</title>
     <link rel="stylesheet" href="/css/main.css">
     <link rel="icon" href="/img/icon.ico">
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
@@ -151,12 +152,12 @@
     
     
             <div class="stepTwoInfosOneThree">
-                <div class="stepTwoInfosOneThreeOne"><input type="text" class="" name="lastNamec"><label for="" class="">الإسم العائلي</label></div>
+                <div class="stepTwoInfosOneThreeOne"><input type="text" class="" name="lastNamec" autocomplete="off"><label for="" class="">الإسم العائلي</label></div>
             </div>
             
     
             <div class="stepTwoInfosOneThree">
-                <div class="stepTwoInfosOneThreeOne"><input type="text" class="" name="firstNamec"><label for="" class="">الإسم الشخصي</label></div>
+                <div class="stepTwoInfosOneThreeOne"><input type="text" class="" name="firstNamec" autocomplete="off"><label for="" class="">الإسم الشخصي</label></div>
             </div>
     
                 <div class="stepTwoInfosOneTwoFour">: المعني بالشكاية</div>
@@ -176,7 +177,7 @@
             <div class="stepTwoInfosThree">
                 <div class="stepTwoInfosOneTwoFour">: ملاحظات</div>
                 <div class="stepTwoInfosThreeTwo">
-                    <textarea name="sujet" id="" cols="" rows=""></textarea>
+                    <textarea name="sujet" id="desc-textarea" cols="" rows=""></textarea>
                 </div>
             </div>
     
@@ -188,6 +189,14 @@
     </div>
 </form>
 <x-foo_ter/>
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#desc-textarea' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
+
 </body>
 </html>
 

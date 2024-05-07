@@ -859,6 +859,17 @@ align-self: center;
   padding-right: 12px;
   position: relative;
 }
+.allMessagesDivOneOne::after{
+  content: "";
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #fff;
+  position: absolute;
+  bottom: 6px;
+  right: 11px;
+  z-index: 90;
+}
 .allMessagesDivOneOne::before{
   content: "";
   width: 10px;
@@ -930,7 +941,6 @@ align-self: center;
   display: grid;
   grid-template-columns: 1fr;
 }
-
 .allMessagesDivMainOne::-webkit-scrollbar {
   display: none;
 }
@@ -987,8 +997,6 @@ align-self: center;
   display: grid;
   grid-template-columns: 1fr 5fr;
   padding: 25px 0;
-  border-top: 1px solid #f4f2ee;
-  border-bottom: 1px solid #f4f2ee;
 }
 .messInfosDivOne{
   display: flex;
@@ -1016,3 +1024,49 @@ align-self: center;
   color: #000000e6;
   font-size: 15px;
 }
+
+.messInfosDivNot{
+  display: grid;
+  grid-template-columns: 5fr 1fr;
+  padding: 25px 0;
+}
+.messInfosDivNotOne{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.messInfosDivNotOne img{
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+}
+.messInfosDivNotTwo{
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+.messInfosDivNotTwoOne{
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  justify-content: end;
+}
+
+.messInfosDivNotTwoTwo{
+  color: #000000e6;
+  font-size: 15px;
+  justify-self: end;
+}
+.name{
+  transition: .4s;
+  color: #00000099;
+  cursor: pointer;
+}
+.name:hover{
+  color: #1e9fdb;
+  text-decoration: underline #53bded;
+}
+
+
+

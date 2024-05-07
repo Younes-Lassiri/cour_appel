@@ -15,9 +15,6 @@ class LicenceDemandeController extends Controller
     public function licenceSend(Request $request){
         $request->validate([
             "license_duree" => 'required',
-            "license_on_day" => 'required',
-            "license_on_month" => 'required',
-            "license_on_year" => 'required',
         ]);
         $newDemande = [
             "employe_name" => Auth()->user()->admin_name,

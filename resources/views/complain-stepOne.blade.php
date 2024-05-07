@@ -144,10 +144,9 @@
 
             <div class="stepInfosTwo">
                 <div class="stepInfosOneThree">: المعني بالطلب</div>
-                
                 <input type="hidden" id="chikayaNacio" name="selectedNacio">
                 <input type="hidden" id="chikayaDocument" name="selectedDocument" value="{{ old('selectedDocument') }}">
-                <input type="hidden" name="chikayaGender" id="chikayaGender">
+                <input type="hidden" name="chikayaGender" id="chikayaGender" value="{{ old('chikayaGender') }}">
                 <div class="stepInfosTwoTwo">
 
                     <div  class="stepInfosTwoTwoOne">
@@ -170,27 +169,20 @@
 
 
                     <div class="stepInfosTwoTwoThree">
-                            <div class="stepInfosTwoTwoThreeTwo"><input type="text" class="@error('lastName') errorInput @enderror" name="lastName" value="{{ old('lastName') }}"><label for="" class=""><span>*  </span>الإسم العائلي</label></div>
+                            <div class="stepInfosTwoTwoThreeTwo"><input type="text" class="@error('lastName') errorInput @enderror" name="lastName" value="{{ old('lastName') }}" autocomplete="off"><label for="" class=""><span>*  </span>الإسم العائلي</label></div>
                     </div>
                     
 
                     <div class="stepInfosTwoTwoFour">
-                        <div class="stepInfosTwoTwoThreeTwo"><input type="text" class="@error('firstName') errorInput @enderror"name="firstName" value="{{ old('firstName') }}"><label for="" class=""><span>*  </span>الإسم الشخصي</label></div>
+                        <div class="stepInfosTwoTwoThreeTwo"><input type="text" class="@error('firstName') errorInput @enderror"name="firstName" value="{{ old('firstName') }}" autocomplete="off"><label for="" class=""><span>*  </span>الإسم الشخصي</label></div>
                     </div>
 
 
                 </div>
-
-
-
-
                 <div class="stepInfosTwoOne">
-
                     <div class="stepInfosTwoOneOne">
-                        <div class="stepInfosTwoOneOneOne"><input type="text" class="@error('documentNum') errorInput @enderror" name="documentNum" value="{{ old('documentNum') }}"><label for="" class=""><span>*  </span>رقم وثيقة التعريف</label></div>
+                        <div class="stepInfosTwoOneOneOne"><input type="text" class="@error('documentNum') errorInput @enderror" name="documentNum" value="{{ old('documentNum') }}" autocomplete="off"><label for="" class=""><span>*  </span>رقم وثيقة التعريف</label></div>
                 </div>
-
-                
                     <div class="stepInfosTwoOneTwo">
                         <div class="dropdown stepInfosTwoOneTwoOne theDropdown @if ($errors->has('selectedDocument')) errorInput @endif">
                             <div class="dropdown-btn notChoosed">اختر وثيقة التعريف</div>
@@ -208,13 +200,13 @@
                 <div class="stepInfosTwoOneLast">
 
 <div class="stepInfosTwoOneLastOne">
-    <div class="stepInfosTwoOneLastOneOne"><input type="email" class="@error('email') errorInput @enderror" name="email" value="{{ old('email') }}"><label for="" class=""><span>*  </span>البريد الالكتروني</label></div>
+    <div class="stepInfosTwoOneLastOneOne"><input type="email" class="@error('email') errorInput @enderror" name="email" value="{{ old('email') }}" autocomplete="off"><label for="" class=""><span>*  </span>البريد الالكتروني</label></div>
 </div>
 
 
 
 <div class="stepInfosTwoOneLastOne">
-    <div class="stepInfosTwoOneLastOneOne"><input type="tel" class="@error('telephone') errorInput @enderror" name="telephone" placeholder="(+212) 06-66-66-66-66" value="{{ old('telephone') }}"><label for="" class=""><span>*  </span>الهاتف</label></div>
+    <div class="stepInfosTwoOneLastOneOne"><input type="tel" class="@error('telephone') errorInput @enderror" name="telephone" placeholder="(+212) 06-66-66-66-66" value="{{ old('telephone') }}" autocomplete="off"><label for="" class=""><span>*  </span>الهاتف</label></div>
 </div>
 
 
@@ -233,36 +225,43 @@
     </div>
 
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const dropdownBtn = document.querySelector(".stepInfosGender .dropdown-btn");
-            const dropdownList = document.querySelector(".stepInfosGender .dropdown-list");
-            const inpGender = document.querySelector('#chikayaGender');
-    
-            const savedGender = localStorage.getItem("inpGender");
-            if (savedGender) {
-                dropdownBtn.textContent = savedGender;
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const dropdownBtn = document.querySelector(".stepInfosGender .dropdown-btn");
+        const dropdownList = document.querySelector(".stepInfosGender .dropdown-list");
+        let inpGender = document.querySelector('#chikayaGender');
+
+        function updateDropdownText() {
+            if (inpGender.value.trim() !== '') {
+                dropdownBtn.textContent = inpGender.value;
                 dropdownBtn.classList.remove('notChoosed');
                 dropdownBtn.classList.add('choosed');
-                inpGender.value = savedGender;
+            }else{
+                dropdownBtn.classList.remove('choosed');
+                dropdownBtn.classList.add('notChoosed');
             }
-    
-            dropdownBtn.addEventListener("click", function() {
-                dropdownList.style.display = dropdownList.style.display === "block" ? "none" : "block";
-            });
-    
-            dropdownList.addEventListener("click", function(e) {
-                if (e.target.tagName === "LI") {
-                    dropdownBtn.textContent = e.target.textContent;
-                    dropdownBtn.classList.remove('notChoosed');
-                    dropdownBtn.classList.add('choosed');
-                    dropdownList.style.display = "none";
-                    inpGender.value = e.target.textContent;
-                    localStorage.setItem("inpGender", e.target.textContent);
-                }
-            });
+        }
+
+        updateDropdownText();
+
+        inpGender.addEventListener("input", updateDropdownText);
+
+        dropdownBtn.addEventListener("click", function() {
+            dropdownList.style.display = dropdownList.style.display === "block" ? "none" : "block";
         });
-    </script>
+
+        dropdownList.addEventListener("click", function(e) {
+            if (e.target.tagName === "LI") {
+                dropdownBtn.textContent = e.target.textContent;
+                dropdownBtn.classList.remove('notChoosed');
+                dropdownBtn.classList.add('choosed');
+                dropdownList.style.display = "none";
+                inpGender.value = e.target.textContent;
+            }
+        });
+    });
+</script>
     
 </div>
 
@@ -336,20 +335,26 @@
 
 
 
-
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const dropdownBtn = document.querySelector(".dropdown-btn");
         const dropdownList = document.querySelector(".dropdown-list");
-        const inpDocument = document.querySelector('#chikayaDocument');
-        
-        const savedDocument = localStorage.getItem("inpDocument");
-        if (savedDocument) {
-            dropdownBtn.textContent = savedDocument;
-            dropdownBtn.classList.remove('notChoosed');
-            dropdownBtn.classList.add('choosed');
-            inpDocument.value = savedDocument;
+        let inpGender = document.querySelector('#chikayaDocument');
+
+        function updateDropdownText() {
+            if (inpGender.value.trim() !== '') {
+                dropdownBtn.textContent = inpGender.value;
+                dropdownBtn.classList.remove('notChoosed');
+                dropdownBtn.classList.add('choosed');
+            }else{
+                dropdownBtn.classList.remove('choosed');
+                dropdownBtn.classList.add('notChoosed');
+            }
         }
+
+        updateDropdownText();
+
+        inpGender.addEventListener("input", updateDropdownText);
 
         dropdownBtn.addEventListener("click", function() {
             dropdownList.style.display = dropdownList.style.display === "block" ? "none" : "block";
@@ -361,8 +366,7 @@
                 dropdownBtn.classList.remove('notChoosed');
                 dropdownBtn.classList.add('choosed');
                 dropdownList.style.display = "none";
-                inpDocument.value = e.target.textContent;
-                localStorage.setItem("inpDocument", e.target.textContent);
+                inpGender.value = e.target.textContent;
             }
         });
     });

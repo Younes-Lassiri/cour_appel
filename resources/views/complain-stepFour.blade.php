@@ -247,10 +247,10 @@
         
                     <div class="stepTwoInfosOneTwoFour">: المعني بالشكاية</div>
                 </div>
-                
-    
                 <div class="stepTwoInfosTwo">
-                    <div></div>
+                    <div class="attachment" onclick="showAttach()">
+                        <div class="attachmentOne"><label for="" class="">المرفقات</label></div>
+                    </div>
                     <div class="stepTwoInfosOneThree">
                         <div class="stepTwoInfosOneThreeOne"><input type="time" class="" name="time" style="letter-spacing: 2px" value="{{ $requestData["time"] }}"><label for="" class="">التوقيت التقريبي</label></div>
                     </div>
@@ -270,6 +270,27 @@
     </div>
     
 </form>
+
+<div class="attachmentImages">
+    <div class="attachmentImagesOne">
+        <img src="{{ asset('storage/'. $imagePath) }}" alt="">
+    </div>
+    <div class="attachmentImagesTwo">
+        <img src="{{ asset('storage/'. $imagePatha) }}" alt="">
+    </div>
+</div>
+
+
+<script>
+    function showAttach(){
+        let attach = document.querySelector('.attachmentImages');
+    if (attach.style.display === 'none') {
+        attach.style.display = 'grid';
+    }else{
+        attach.style.display = 'none';
+    }
+    }
+</script>
 <x-foo_ter/>
 </body>
 </html>

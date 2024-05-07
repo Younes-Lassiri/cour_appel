@@ -23,11 +23,9 @@ class NoticeController extends Controller
     
         $message = Notice::create($newMessage);
     }
-
-
     public function deleteMessage(Request $request){
         $message = Notice::findOrFail($request->id);
-    
+
         if ($message->content === 'تم حذف الرسالة') {
             $deletedM = $message->delete();
         } else {

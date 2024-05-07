@@ -51,6 +51,7 @@
         <div class="navbarDivTwo">
           <ul class="navbar-ull">
             <li><a href="{{ route('settings.show') }}"><i class='bx bx-cog' style='color:#ffffff'  ></i> الإعدادات</a></li>
+            <li><a href="{{ route('add-post-blade') }}"><i class='bx bx-pencil' style='color:#ffffff'></i>إضافة منشور</a></li>
             @if (auth()->user()->role === 'admin')
             
             <li><a href="{{ route('new-amploye') }}"><i class='bx bxs-user-plus' style='color:#ffffff'  ></i>إظافة موظف</a></li>

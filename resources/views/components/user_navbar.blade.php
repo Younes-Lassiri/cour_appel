@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="/css/main.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </head>
 <body>
       <div class="navbarDiv">
@@ -29,8 +31,17 @@
             @endguest
             <li><a href="#" style="text-decoration: none">نصوص قانونية</a></li>
             <li><a href="#" style="text-decoration: none">نصوص قانونية</a></li>
-            <div style="display: flex; align-items: center"><li onclick="showDropdown()"><a id="dropdonToggle" href="#">المؤسسة</a></li>
-              <a href="/"><i class='bx bx-home' style='color:#003566;background: #ffc300; padding: 14px 14px; border-radius: 5px'  ></i></a></div>
+            <div style="display: flex; align-items: center">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-togglee" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="display: flex; align-items: center; gap: 5px" id="dropdonToggle">المؤسسة
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="" href="{{ route('histoire') }}">لمحة تاريخية</a></li>
+                <li><a href="{{ route('website') }}">تقديم الموقع</a></li>
+              </ul>
+            </li>
+              <a href="/" id="exept"><i class='bx bx-home' style='color:#003566;background: #ffc300; padding: 14px 14px; border-radius: 5px'></i></a></div>
+              
           </ul>
       </div>
       </div>

@@ -30,6 +30,18 @@
             });
         </script>
     @endif
+    @if (session()->has('addedPost'))
+        <script>
+            Swal.fire({
+                position: "center-center",
+                icon: "success",
+                title: "{{ session('addedPost') }}",
+                showConfirmButton: false,
+                timer: 2000
+            });
+        </script>
+    @endif
+    
 
     
 
@@ -352,7 +364,7 @@
         @endphp
         
         @if ($isButtonAvailable)
-            <div style="position: fixed; bottom: 30px; left: 30px">
+            <div style="position: fixed; bottom: 30px; left: 30px; z-index: 2000">
                 <form action="{{ route('presence.register') }}" method="post">
                     @csrf
                     <button type="submit" class="presenceButtons"><i class='bx bx-log-in-circle' style='color:#003566'></i></button>
@@ -361,7 +373,7 @@
         @endif
 
         @if ($lastPresence && $lastPresence->time_in->isToday() && !$hasSetTimeOutToday)
-            <div style="position: fixed; bottom: 30px; left: 30px; z-index: 1000">
+            <div style="position: fixed; bottom: 30px; left: 30px; z-index: 2000">
                 <form action="{{ route('presence.timeout') }}" method="post">
                     @csrf
                     <button type="submit" class="presenceButtons"><i class='bx bx-log-out-circle' style='color:#003566'></i></button>
