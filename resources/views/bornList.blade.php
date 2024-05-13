@@ -77,6 +77,10 @@
 
     <x-foo_ter/>
     
-    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.title = document.title + ' - ' + 'طلبات-الولادة';
+        });
+    </script>
 </body>
 </html>

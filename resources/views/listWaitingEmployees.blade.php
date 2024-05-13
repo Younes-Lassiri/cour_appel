@@ -78,7 +78,11 @@
             </table>
         </div>
     </div>
-
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.title = document.title + ' - ' + 'طلبات التسجيل';
+        });
+    </script>
     <x-foo_ter/>
     
     

@@ -319,6 +319,14 @@ for (let i = 0; i < selectedOptions.length; i++) {
     }
 </script>
 
+
+
     <script src="/js/main.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+          document.title = document.title + ' - ' + 'قائمة-طلبات-المطبوعات';
+      });
+    </script>
 </body>
 </html>

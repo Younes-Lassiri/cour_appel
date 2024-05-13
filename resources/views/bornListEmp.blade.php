@@ -59,6 +59,11 @@
             </table>
         </div>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.title = document.title + ' - ' + 'قائمة-طلبات-الولادة';
+        });
+    </script>
 
     <x-foo_ter/>
     

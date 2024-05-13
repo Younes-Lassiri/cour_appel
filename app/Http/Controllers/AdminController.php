@@ -9,6 +9,7 @@ use App\Models\Presence;
 use App\Models\Response;
 use Illuminate\Http\Request;
 use App\Models\DemandeAbsence;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -48,16 +49,9 @@ class AdminController extends Controller
     
         return redirect()->route('adminBlade')->with('add','تم إظافة الحساب بنجاح');
     }
-    
-
-
-
-
     public function loginBlade(){
         return view('loginPage');
     }
-
-
     public function login(Request $request)
 {
     $request->validate([
@@ -80,9 +74,6 @@ class AdminController extends Controller
         return redirect()->route('adminBlade')->with('login', 'البريد الإلكتروني أو كلمة المرور خاطئة');
     }
 }
-
-
-
 
 
     public function logout(){
@@ -192,5 +183,33 @@ class AdminController extends Controller
         $admin = Admin::create($newAdmin);
     
         return redirect()->route('new-amploye')->with('addNewEmp','تم إظافة الحساب بنجاح');
+    }
+
+    public function resetBlade()
+    {
+        return view('resetPassword');
+    }
+
+    public function resetPassord(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email|exists:admins',
+            'password' => 'required|min:8|regex:/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]+$/|confirmed',
+            'password_confirmation' => 'required'
+        ]);
+        $updatedPassword = DB::table('password_resets')->where([
+            'email' => $request->email,
+            'token' => $request->token
+        ])->first();
+        if(!$updatedPassword){
+            return redirect()->route('reset.email')->with('errorEmail', 'المرجو التأكد من البريد الإلكتروني');
+        }
+        Admin::where('email', $request->email)->update([
+            'password' => Hash::make($request->password)
+        ]);
+
+        DB::table('password_resets')->where(['email' => $request->email,])->delete();
+
+        return redirect()->route('adminBlade')->with('resetSuccess', 'تمت إعادة تعيين كلمة المرور بنجاح. يمكنك الآن تسجيل الدخول باستخدام كلمة المرور الجديدة. شكرًا!');
     }
 }

@@ -327,6 +327,11 @@ for (let i = 0; i < selectedOptions.length; i++) {
     }
                     </script>
 
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+      document.title = document.title + ' - ' + 'ملئ طلب أدوات المكتب';
+  });
+</script>
     <script src="/js/main.js"></script>
 </body>
 </html>

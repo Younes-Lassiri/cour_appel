@@ -14,7 +14,6 @@
     <div class="allMessagesDivOneThree"><i class='bx bx-chevron-up thei' style='color:#000009' onclick="showAll()"></i></div>
     <div class="allMessagesDivOneTwo">الرسائل</div>
     <div class="allMessagesDivOneOne"><img src="/img/maroc-logo.png" alt=""></div>
-    
   </div>
   <div class="allMessagesDiv">
     <div class="allMessagesDivMain">
@@ -27,7 +26,14 @@
                 <div class="messInfosDivNotTwoOne">
                   <h6 style="color: #00000099; font-size: 12px">{{ explode(':', explode(' ',  $notice->created_at)[1])[0] }}:{{ explode(':', explode(' ',  $notice->created_at)[1])[1] }}</h6>
                   <h6 style="color: #000000bf; font-weight: 800; margin-top: -5px">.</h6>
-                  <h6 style="font-weight: 500" class="name">{{ $notice->admin->admin_name }}</h6>
+                  <h6 style="font-weight: 500" class="name" onclick="fill(
+                    '<?php echo $notice->admin->admin_name ?>',
+                    '<?php echo $notice->admin->cadre ?>',
+                    '<?php echo $notice->admin->email ?>',
+                    '<?php echo $notice->admin->role ?>',
+                    '<?php echo $notice->admin->address ?>',
+                    '<?php echo $notice->admin->rental_number ?>'
+                )">{{ $notice->admin->admin_name }}</h6>
                 </div>
                 <div class="messInfosDivNotTwoTwo">
                   {{ $notice->content }}
@@ -44,7 +50,15 @@
               </div>
               <div class="messInfosDivTwo">
                 <div class="messInfosDivTwoOne">
-                  <h6 style="font-weight: 500" class="name">{{ $notice->admin->admin_name }}</h6>
+                  <h6 style="font-weight: 500" class="name" onclick="fill(
+                    '<?php echo $notice->admin->admin_name ?>',
+                    '<?php echo $notice->admin->cadre ?>',
+                    '<?php echo $notice->admin->email ?>',
+                    '<?php echo $notice->admin->role ?>',
+                    '<?php echo $notice->admin->address ?>',
+                    '<?php echo $notice->admin->rental_number ?>'
+                )"
+                >{{ $notice->admin->admin_name }}</h6>
                   <h6 style="color: #000000bf; font-weight: 800; margin-top: -5px">.</h6>
                   <h6 style="color: #00000099; font-size: 12px">{{ explode(':', explode(' ',  $notice->created_at)[1])[0] }}:{{ explode(':', explode(' ',  $notice->created_at)[1])[1] }}</h6>
                 </div>
@@ -72,7 +86,7 @@
     </form>
     </div>
   </div>
-  
+
 <script>
   function checkMess(){
     let inp = document.querySelector('#message');
@@ -120,25 +134,28 @@
   hours = hours < 10 ? '0' + hours : hours;
   minutes = minutes < 10 ? '0' + minutes : minutes;
   let authName = document.querySelector('#authName').value;
-  let fakeName = "السيد محمد الأمين هلاب";
+  let fakeName = 'موضف';
   const pusher = new Pusher('{{config('broadcasting.connections.pusher.key')}}', { cluster: 'eu' });
   const channel = pusher.subscribe('public');
   channel.bind('chat', function (data) {
-    $(".allMessagesDivMainOne").append('<div class="messInfosDivNot">' +
-    '<div class="messInfosDivNotTwo">' +
-        '<div class="messInfosDivNotTwoOne">' +
-            '<h6 style="color: #00000099; font-size: 12px">' + hours + ':' + minutes + '</h6>' +
+    $(".allMessagesDivMainOne").append('<div class="messInfosDiv">' +
+    '<div class="messInfosDivOne">' +
+        '<img src="/img/maroc-logo.png" alt="">' +
+    '</div>' +
+    '<div class="messInfosDivTwo">' +
+        '<div class="messInfosDivTwoOne">' +
+          '<h6 style="font-weight: 500" class="name">' + fakeName + '</h6>'
+             +
             '<h6 style="color: #000000bf; font-weight: 800; margin-top: -5px">.</h6>' +
-            '<h6 style="font-weight: 500" class="name">' + fakeName + '</h6>' +
+            '<h6 style="color: #00000099; font-size: 12px">' + hours + ':' + minutes + '</h6>'
+             +
         '</div>' +
-        '<div class="messInfosDivNotTwoTwo">' +
+        '<div class="messInfosDivTwoTwo">' +
             data.message +
         '</div>' +
     '</div>' +
-    '<div class="messInfosDivNotOne">' +
-        '<img src="/img/maroc-logo.png" alt="">' +
-    '</div>' +
-'</div>');  
+'</div>');
+ 
     $('.allMessagesDivMainOne').scrollTop($('.allMessagesDivMainOne')[0].scrollHeight);
   });
   $("#messageForm").submit(function (event) {
@@ -154,7 +171,7 @@
         message: $("#message").val(),
       },
       success: function (res) {
-        $(".allMessagesDivMainOne").append('<div class="messInfosDiv message"><div class="messInfosDivOne"><img src="/img/maroc-logo.png" alt=""></div><div class="messInfosDivTwo"><div class="messInfosDivTwoOne"><h6 style="color: #000000bf; font-weight: 500">' + authName + '</h6><h6 style="color: #000000bf; font-weight: 800">.</h6><h6 style="color: #00000099; font-size: 12px">' + hours + ':' + minutes + '</h6></div><div class="messInfosDivTwoTwo">' + $("#message").val() + '</div></div></div>');
+        $(".allMessagesDivMainOne").append('<div class="messInfosDivNot message"><div class="messInfosDivNotTwo"><div class="messInfosDivNotTwoOne"><h6 style="color: #00000099; font-size: 12px">' + hours + ':' + minutes + '</h6><h6 style="color: #000000bf; font-weight: 800">.</h6><h6 style="color: #000000bf; font-weight: 500">' + authName + '</h6></div><div class="messInfosDivNotTwoTwo">' + $("#message").val() + '</div></div><div class="messInfosDivNotOne"><img src="/img/maroc-logo.png" alt=""></div></div>');
         $("#message").val('');
         $("#sendButton").addClass('notFilled');
         $('.allMessagesDivMainOne').scrollTop($('.allMessagesDivMainOne')[0].scrollHeight);

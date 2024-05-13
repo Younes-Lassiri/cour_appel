@@ -2,10 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <title>نافذة الحق</title>
     <link rel="icon" href="/img/icon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/upload.css">
     <link rel="stylesheet" href="/css/main.css">
     <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
@@ -83,13 +86,15 @@
               </div>
             </div>
             <div class="create-post-sectionTwoTwoThree">
-              <div class="create-post-sectionTwoTwoThreeOne">
-                صور المنشور
+              <div>
+                <input type="file" id="file-input" name="images[]" accept="image/png, image/jpeg" onchange="preview()" multiple>
+              <label for="file-input" id="label">
+            <i class="bx bxs-cloud-upload"></i> &nbsp; تحديد الصور
+        </label>
+        <p id="num-of-files">لم يتم تحديد صور بعد</p>
               </div>
-              <div class="create-post-sectionTwoTwoThreeTwo">
-                <div class="create-post-sectionTwoTwoThreeTwoSumb"><i class='bx bx-plus' style='color:#003566'  ></i></div>
-                <div><input type="file" name="images[]" id="" multiple></div>
-              </div>
+        <div id="images">
+        </div>
             </div>
           </div>
         </div>
@@ -98,7 +103,7 @@
             <div class="create-post-sectionThreeOneOne"><button type="submit">نشر</button></div>
             <div></div>
           </div>
-          <div class="create-post-sectionThreeTwo"><a href="{{ route('dashboard') }}">تراجع</a></div>
+          <div class="create-post-sectionThreeTwo"><a href="{{ route('dashboard') }}"><button type="button">تراجع</button></a></div>
         </div>
     </div>
     </form>
@@ -110,5 +115,13 @@
                 console.error( error );
             } );
     </script>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+      document.title = document.title + ' - ' + 'إضافة منشور';
+  });
+</script>
+<script src="/js/main.js"></script>
 </body>
 </html>

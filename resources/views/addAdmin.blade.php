@@ -73,6 +73,12 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.title = document.title + ' - ' + 'إنشاء-حساب';
+    });
+</script>
 <x-foo_ter/>
 
     <script src="/js/main.js"></script>

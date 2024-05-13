@@ -11,11 +11,90 @@
     <script src="https://cdn.lordicon.com/lordicon.js"></script>
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Include Noto Sans Arabic font from Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;700&display=swap" rel="stylesheet">
 </head>
+<style>
+  .med{
+    width: 100%;
+    height: 100%;
+}
+.parent1{
+    display: grid;
+grid-template-columns: 50% 50%;
+
+}
+.bigchild2{
+    display: grid;
+grid-template-columns: 7fr  1fr;
+padding: 50px 15px;
+
+}
+
+.child1{
+
+    display: grid;
+    grid-template-rows: 50px 50px ; /* تحديد ارتفاع الصفوف بشكل ثابت */
+    height: 100px;
+    ;
+}
+.son{
+  display: flex;
+  align-items: end;
+  justify-content: end;
+}
+
+.child2{
+
+  height: 100px;
+  width: 100px;
+  display: flex;
+justify-content: start;
+padding: 0 10px
+  ;
+}
+.mydiv{
+display: grid;
+grid-template-rows: 100px ; place-items: center;
+}
+.mysvg{
+width: 45px;
+height: 45px;  
+border-radius: 50%;
+background-color: #ffbc2b;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 23px;
+color: #003566
+}
+.mytext{
+color:#666666;
+font-family: "Tajawal", sans-serif;
+font-family: "Tajawal", sans-serif;
+font-family: 'Noto Sans Arabic', sans-serif;
+}
+.myh1{
+font-size: 22px;
+line-height: 28px;
+float: right;
+font-family: "Tajawal", sans-serif;
+font-family: 'Noto Sans Arabic', sans-serif;
+font-family: "Tajawal", sans-serif;
+}
+
+</style>
 <body>
 
   <div class="landing-section">
     <x-landing-section_head />
+
+    @if (!session()->has('logOut'))
+    <x-loader />
+@endif
+
+
 
   @if (session()->has('success'))
         <script>
@@ -65,13 +144,13 @@
 
 
 <div class="services">
-  <a href="/طلب-شكاية" style="text-decoration: none" id="serviceLink" data-value='إرسال طلب شكاية'>
+  <a href="{{ route('send') }}" style="text-decoration: none" id="serviceLink" data-value='إرسال طلب شكاية'>
     <div class="service">
   
   
       <div class="serviceOne">
        <div class="serviceImg"><img src="https://www.mahakim.ma/assets/images/register-commercial.svg" alt=""></div>
-       <div class="serviceTitle">إرسال طلب شكاية</div>
+       <div class="serviceTitle">طلب إستفسار</div>
        <div class="servicePara">هذه الخدمة تسمح لكم بتقديم طلب شكوى عن طريق الأنترنيت، وتتم العملية في بضع خطوات، تأكدوا من اتباع جميع مراحل الإجراء و تأكدوا من أن المعلومات التي تم تضمينها بالطلب صحيحة قبل تأكيد طلبكم.</div>
       </div>
    
@@ -88,8 +167,8 @@
 
 
       <div class="serviceOne">
-       <div class="serviceImg"><img src="https://www.mahakim.ma/assets/images/dossier-suivi.svg" alt=""></div>
-       <div class="serviceTitle">تتبع طلب شكاية</div>
+       <div class="serviceImg"><img src="https://www.mahakim.ma/assets/images/6.svg" alt=""></div>
+       <div class="serviceTitle">مستجدات المحكمة</div>
        <div class="servicePara">هذه الخدمة تسمح لكم بتتبع طلب شكاية عن طريق الأنترنيت، وتتم العملية في بضع خطوات، تأكدوا من اتباع جميع مراحل الإجراء و تأكدوا من أن المعلومات التي تم تضمينها بالطلب صحيحة قبل تأكيد طلبكم.</div>
       </div>
    
@@ -104,7 +183,7 @@
 
 
       <div class="serviceOne">
-      <div class="serviceImg"><img src="https://www.mahakim.ma/assets/images/register-commercial.svg" alt=""></div>
+      <div class="serviceImg"><img src="https://mahakim.ma/assets/images/fiche-n3.svg" alt=""></div>
       <div class="serviceTitle">إرسال طلب شكاية</div>
       <div class="servicePara">هذه الخدمة تسمح لكم بتقديم طلب شكوى عن طريق الأنترنيت، وتتم العملية في بضع خطوات، تأكدوا من اتباع جميع مراحل الإجراء و تأكدوا من أن المعلومات التي تم تضمينها بالطلب صحيحة قبل تأكيد طلبكم.</div>
       </div>
@@ -121,7 +200,7 @@
 
       <div class="serviceOne">
        <div class="serviceImg"><img src="https://www.mahakim.ma/assets/images/dossier-suivi.svg" alt=""></div>
-       <div class="serviceTitle">تتبع طلب شكاية</div>
+       <div class="serviceTitle">تتبع الملفات</div>
        <div class="servicePara">هذه الخدمة تسمح لكم بتتبع طلب شكاية عن طريق الأنترنيت، وتتم العملية في بضع خطوات، تأكدوا من اتباع جميع مراحل الإجراء و تأكدوا من أن المعلومات التي تم تضمينها بالطلب صحيحة قبل تأكيد طلبكم.</div>
       </div>
    
@@ -151,12 +230,7 @@
   <div class="posts-section" id="postsSection">
     @foreach ($newsposts as $post)
       <div class="posts-sectionOne">
-        @php
-            $postMonth = intval(explode('-', explode(' ', $post->created_at)[0])[1]);
-            $monthAbbreviation = isset($months[$postMonth - 1]) ? $months[$postMonth - 1] : '';
-        @endphp
-
-        <div class="posts-sectionOneOne"><p><span style="color: #003566;">{{ $monthAbbreviation }}</span>{{ explode('-', explode(' ', $post->created_at)[0])[0] }} {{ explode('-', explode(' ', $post->created_at)[0])[2] }}<i class='bx bxs-time-five' style='color:#003566'  ></i></p><img src="{{ asset('storage/'.$post->images[0]->image) }}" alt=""></div>
+        <div class="posts-sectionOneOne"><img src="{{ asset('storage/'.$post->images[0]->image) }}" alt=""></div>
         <div class="posts-sectionOneTwo">
           <p>
             <?php
@@ -172,11 +246,7 @@
     @endforeach
     @foreach ($newsposts as $post)
       <div class="posts-sectionOne">
-        @php
-            $postMonth = intval(explode('-', explode(' ', $post->created_at)[0])[1]);
-            $monthAbbreviation = isset($months[$postMonth - 1]) ? $months[$postMonth - 1] : '';
-        @endphp
-        <div class="posts-sectionOneOne"><p><span style="color: #003566;">{{ $monthAbbreviation }}</span>{{ explode('-', explode(' ', $post->created_at)[0])[0] }} {{ explode('-', explode(' ', $post->created_at)[0])[2] }}<i class='bx bxs-time-five' style='color:#003566'  ></i></p><img src="{{ asset('storage/'.$post->images[0]->image) }}" alt=""></div>
+        <div class="posts-sectionOneOne"><img src="{{ asset('storage/'.$post->images[0]->image) }}" alt=""></div>
         <div class="posts-sectionOneTwo">
           <p>
             <?php
@@ -194,11 +264,7 @@
   <div class="posts-section" id="reportSection" style="display: none">
     @foreach ($reportposts as $post)
       <div class="posts-sectionOne">
-        @php
-            $postMonth = intval(explode('-', explode(' ', $post->created_at)[0])[1]);
-            $monthAbbreviation = isset($months[$postMonth - 1]) ? $months[$postMonth - 1] : '';
-        @endphp
-        <div class="posts-sectionOneOne"><p><span style="color: #003566;">{{ $monthAbbreviation }}</span>{{ explode('-', explode(' ', $post->created_at)[0])[0] }} {{ explode('-', explode(' ', $post->created_at)[0])[2] }}<i class='bx bxs-time-five' style='color:#003566'  ></i></p><img src="{{ asset('storage/'.$post->images[0]->image) }}" alt=""></div>
+        <div class="posts-sectionOneOne"><img src="{{ asset('storage/'.$post->images[0]->image) }}" alt=""></div>
         <div class="posts-sectionOneTwo">
           <p>
             <?php
@@ -214,11 +280,7 @@
     @endforeach
     @foreach ($reportposts as $post)
       <div class="posts-sectionOne">
-        @php
-            $postMonth = intval(explode('-', explode(' ', $post->created_at)[0])[1]);
-            $monthAbbreviation = isset($months[$postMonth - 1]) ? $months[$postMonth - 1] : '';
-        @endphp
-        <div class="posts-sectionOneOne"><p><span style="color: #003566;">{{ $monthAbbreviation }}</span>{{ explode('-', explode(' ', $post->created_at)[0])[0] }} {{ explode('-', explode(' ', $post->created_at)[0])[2] }}<i class='bx bxs-time-five' style='color:#003566'  ></i></p><img src="{{ asset('storage/'.$post->images[0]->image) }}" alt=""></div>
+        <div class="posts-sectionOneOne"><img src="{{ asset('storage/'.$post->images[0]->image) }}" alt=""></div>
         <div class="posts-sectionOneTwo">
           <p>
             <?php
@@ -265,6 +327,156 @@
   </script>
   <div class="posts-showAll"><a href="{{ route('categorie', 'news') }}"><button>← عرض الكل</button></a></div>
 </div>
+
+
+<div class="ministreNumbers">
+  <div class="ministreNumbersOne">الوزارة في أرقام</div>
+  <div class="ministreNumbersTwo">
+    يرتكز نظام المملكة المغربية على الملكية الدستورية الديمقراطية والاجتماعية، مما يفرض علينا بالنظر إلى الوظائف التي يقوم بها القضاء، متابعة العمل من أجل تقوية دور المؤسسات، وسيادة القانون، وتحصين مجتمعنا، وتعزيز الأمن والطمأنينة، وتشجيع الاستثمار، ودعم التنمية الشاملة والمستديمة.
+  </div>
+  <div class="ministreNumbersThree">
+    <div class="ministreNumbersThreeOne">
+      <div class="ministreNumbersThreeOneOne">
+        <div class="ministreNumbersThreeOneOneOne">محاكم الإستئناف</div>
+        <div class="ministreNumbersThreeOneOneTwo">23</div>
+      </div>
+      <div class="ministreNumbersThreeOneTwo"><img src="/img/mnh.svg" alt=""></div>
+    </div>
+
+    <div class="ministreNumbersThreeOne">
+      <div class="ministreNumbersThreeOneOne">
+        <div class="ministreNumbersThreeOneOneOne">المحاكم الإدارية</div>
+        <div class="ministreNumbersThreeOneOneTwo">10</div>
+      </div>
+      <div class="ministreNumbersThreeOneTwo"><img src="/img/mnc.svg" alt=""></div>
+    </div>
+
+    <div class="ministreNumbersThreeOne">
+      <div class="ministreNumbersThreeOneOne">
+        <div class="ministreNumbersThreeOneOneOne">المحاكم التجارية</div>
+        <div class="ministreNumbersThreeOneOneTwo">10</div>
+      </div>
+      <div class="ministreNumbersThreeOneTwo"><img src="/img/mna.svg" alt=""></div>
+    </div>
+
+    <div class="ministreNumbersThreeOne">
+      <div class="ministreNumbersThreeOneOne">
+        <div class="ministreNumbersThreeOneOneOne">المحاكم الابتدائية</div>
+        <div class="ministreNumbersThreeOneOneTwo">88</div>
+      </div>
+      <div class="ministreNumbersThreeOneTwo"><img src="/img/mnh.svg" alt=""></div>
+    </div>
+
+    <div class="ministreNumbersThreeOneExept">
+      <div class="ministreNumbersThreeOneOne">
+        <div class="ministreNumbersThreeOneOneOne">مراكز القاضي المقيم</div>
+        <div class="ministreNumbersThreeOneOneTwo">83</div>
+      </div>
+      <div class="ministreNumbersThreeOneTwo"><img src="/img/mnp.svg" alt=""></div>
+    </div>
+  </div>
+</div>
+   
+  <div class="parent1">
+    <div class="h-96 md:h-80 lg:h-100 bigchild1">
+        <iframe class="med"
+          class="w-full h-full"
+          loading="lazy"
+          allowfullscreen
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3649.5466800312084!2d-13.1815651!3d27.1367691!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xc37730a2a81c9e9%3A0xd6ce0dce12d9ff50!2s%C2%A0%D9%85%D8%AD%D9%83%D9%85%D8%A9%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D8%A6%D9%86%D8%A7%D9%81%E2%80%AD!5e0!3m2!1sen!2sma!4v1643913201467!5m2!1sen!2sma
+
+          "
+        >
+        </iframe>
+      </div>
+      <div class="bigchild2">
+
+        <div class="child1">
+            <div class="son">
+                <h1 class="myh1">العنوان</h1>
+            </div>
+            <div class="son2">
+                <p class="mytext" style="float: right;">مَحكَمة الإسْتئنَاف : شارع سمارة، ص.ب 1015، العيون، المغرب</p>
+            </div>
+        </div>
+        
+<div class="child2 " >
+<div class="mydiv">
+<img src="https://mahakim.ma/assets/images/logo/position.svg" alt="">
+</div></div>
+
+
+<div class="child1">
+    <div class="son">
+        <h1 class="myh1">الهاتف</h1>
+    </div>
+    <div class="son2">
+        <p class="mytext" style="float: right;">+212 537 21 37 37</p>
+    </div>
+</div>
+
+<div class="child2 " >
+<div class="mydiv">
+    <img class="" src="https://www.mahakim.ma/assets/images/logo/phone.svg" alt="V4vGM0Iec6"/> 
+</div></div>
+
+
+<div class="child1">
+    <div class="son">
+        <h1 class="myh1">البريد الالكتروني الخاص بمَحكَمة الإسْتئنَاف بالعيون
+        </h1>
+    </div>
+    <div class="son2">
+        <p class="mytext" style="float: right;">justice-window.support@justice.gov.ma
+
+        </p>
+    </div>
+</div>
+
+<div class="child2 " >
+<div class="mydiv">
+  <i class='bx bxs-envelope mysvg'></i>
+</div></div>
+
+
+<div class="child1">
+    <div class="son">
+        <h1 class="myh1">الهاتف الخاص بالشكايات
+        </h1>
+    </div>
+    <div class="son2">
+        <p class="mytext" style="float: right;">+212 537 56 52 77
+        </p>
+    </div>
+</div>
+
+<div class="child2 " >
+<div class="mydiv">
+  <i class='bx bx-support mysvg'></i>
+</div></div>
+
+</div>
+      </div>
+
+<script>
+    function createWidget() {
+  var div = document.createElement("div");
+  div.className = "h-96 md:h-80 lg:h-96";
+
+  var iframe = document.createElement("iframe");
+  iframe.className = "w-full h-full";
+  iframe.loading = "lazy";
+  iframe.allowFullscreen = true;
+  iframe.src = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3649.5466800312084!2d-13.1815651!3d27.1367691!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xc37730a2a81c9e9%3A0xd6ce0dce12d9ff50!2s%C2%A0%D9%85%D8%AD%D9%83%D9%85%D8%A9%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D8%A6%D9%86%D8%A7%D9%81%E2%80%AD!5e0!3m2!1sen!2sma!4v1643913201467!5m2!1sen!2sma";
+
+  div.appendChild(iframe);
+
+  return div;
+}
+
+
+</script>
+
 <x-foo_ter/>
 
 <script>
@@ -282,6 +494,18 @@
    })
   }
  </script>
-<script src="/js/main.js"></script>   
+<script src="/js/main.js"></script>
+
+<script>
+  window.addEventListener('load', function() {
+    document.body.classList.add('shadow-overlay');
+    setTimeout(function() {
+      document.querySelector('.landing-section .theLoader').style.display = 'none';
+      document.querySelector('.landing-section .preLoader').style.display = 'none';
+      document.body.classList.remove('shadow-overlay');
+    }, 1500);
+  });
+</script>
+
 </body>
 </html>

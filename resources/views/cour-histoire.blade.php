@@ -17,7 +17,8 @@
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <title>لمحة تاريخية للتنظيم الإداري والقضائي لمحكمة الإسْتئنَاف</title>
+    <title>نافذة الحق - لمحة تاريخية للتنظيم الإداري والقضائي لمحكمة الإسْتئنَاف</title>
+
   </head>
   <body>
         

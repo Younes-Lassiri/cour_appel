@@ -46,6 +46,7 @@ class ComplainController extends Controller
         $randomNumber = rand(1000, 9999);
         $suiviNum = $numericPart . $randomNumber;
 
+        
         $theComplain = [
             "senderName" =>$request->firstName. " ". $request->lastName,
             "senderEmail" =>$request->email,

@@ -93,7 +93,11 @@
     </div>
 
     <x-foo_ter/>
-    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.title = document.title + ' - ' + 'طلبات الغياب';
+        });
+    </script>
     
 </body>
 </html>

@@ -19,7 +19,7 @@
 <body>
     <div class="listMessages-section">
         <x-landing-section_head />
-
+        <x-loader />
         <x-admin_navbar :count="count($waitingEmploye)" />
         
           <div class="messageInfos">
@@ -149,6 +149,22 @@
 
 </script>
     <script src="/js/main.js"></script>
-    
+    <script>
+        window.addEventListener('load', function() {
+          document.body.classList.add('shadow-overlay');
+          setTimeout(function() {
+            document.querySelector('.theLoader').style.display = 'none';
+            document.querySelector('.preLoader').style.display = 'none';
+            document.body.classList.remove('shadow-overlay');
+          }, 1500);
+        });
+      </script>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.title = document.title + ' - ' + 'لائحة-الواردات';
+    });
+</script>
 </body>
 </html>

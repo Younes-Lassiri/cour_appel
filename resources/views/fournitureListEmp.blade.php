@@ -52,6 +52,12 @@
         </div>
     </div>
 
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.title = document.title + ' - ' + 'قائمة طلبات أدوات المكتب';
+        });
+    </script>
     <x-foo_ter/>
     
     

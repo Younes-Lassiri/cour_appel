@@ -632,5 +632,11 @@
                     handleCheck1('t','y');
                     });
     </script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.title = document.title + ' - ' + 'ملئ-طلب-الغياب';
+    });
+</script>
 </body>
 </html>

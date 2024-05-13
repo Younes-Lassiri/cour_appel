@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="/img/icon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>نافذة الحق</title>
@@ -77,7 +78,11 @@
         </div>
     </div>
 </div>
-
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.title = document.title + ' - ' + 'إنشاء-حساب';
+    });
+</script>
 <x-foo_ter/>
 
     <script src="/js/main.js"></script>

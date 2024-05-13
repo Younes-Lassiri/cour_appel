@@ -106,6 +106,11 @@
 </div>
 
 
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.title = document.title + ' - ' + 'ملئ طلب شكاية الخطوة 5';
+    });
+</script>
 <x-foo_ter/>
 
 </body>

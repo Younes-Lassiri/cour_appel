@@ -24,6 +24,19 @@
   </script>
 @endif
 
+
+@if (session()->has('resetSuccess'))
+<script>
+    Swal.fire({
+        position: "center-center",
+        icon: "success",
+        title: "{{ session('resetSuccess') }}",
+        showConfirmButton: false,
+        timer: 2000
+    });
+</script>
+@endif
+
     @if (session()->has('login'))
   <script>
       Swal.fire({
@@ -61,7 +74,10 @@
                 <input type="password" id="c" class="input-field @if ($errors->has('password')) errorInput @endif" name="password" onchange="handleCheck('c', 'v')" value="{{ old('password') }}">
                 <label for="" class="input-label" id="v"><span>*  </span>كلمة السر</label>
             </div>
-            <div class="div-login-link"><a href="/إنشاء-حساب" class="login-link">ليس لديك حساب؟</a></div>
+            <div class="div-login-link">
+                <a href="{{ route('reset.get') }}" class="login-link">نسيت كلمة المرور؟</a>
+                <a href="/إنشاء-حساب" class="login-link">ليس لديك حساب؟</a>
+            </div>
             <div>
                 <button type="submit">تسجيل الدخول</button>
             </div>
@@ -69,7 +85,11 @@
         </div>
     </div>
 </div>
-
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.title = document.title + ' - ' + 'تسجيل-الدخول';
+    });
+</script>
 <x-foo_ter/>
     <script src="/js/main.js"></script>
 </body>

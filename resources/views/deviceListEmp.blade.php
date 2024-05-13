@@ -51,7 +51,11 @@
             </table>
         </div>
     </div>
-
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.title = document.title + ' - ' + 'قائمة طلبات جهاز الحاسوب و الطابعات';
+        });
+    </script>
     <x-foo_ter/>
     
     

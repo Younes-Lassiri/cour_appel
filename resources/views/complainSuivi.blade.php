@@ -40,5 +40,12 @@
             </div>
         </form>
     </div>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.title = document.title + ' - ' + 'تتبع طلب';
+        });
+    </script>
 </body>
 </html>

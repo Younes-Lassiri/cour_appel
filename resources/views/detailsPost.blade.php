@@ -18,6 +18,7 @@
     <x-landing-section_head />
     <x-user_navbar/>
     <div class="detailPost-section">
+        <input type="hidden" name="" id="title" value="{{ $post->title }}">
         <div class="detailPost-sectionOne">
             <nav style="" aria-label="breadcrumb" class="breadCumb">
                 <ol class="breadcrumb" style="padding: 14px 0 0 0">
@@ -63,8 +64,13 @@
             </div>
         </div>
     </div>
-
-
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let title = document.querySelector('#title').value;
+            document.title = document.title + ' - ' + title;
+        });
+    </script>
+    
     <x-foo_ter/>
 </body>
 </html>

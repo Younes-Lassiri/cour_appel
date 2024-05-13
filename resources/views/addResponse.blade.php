@@ -77,6 +77,12 @@
     <x-foo_ter/>
     </div>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.title = document.title + ' - ' + 'إضافة-صادرة';
+        });
+    </script>
+
     <script src="/js/main.js"></script>
 </body>
 </html>

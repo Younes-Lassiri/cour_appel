@@ -133,7 +133,11 @@
         }
         </script>
         
-    
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                document.title = document.title + ' - ' + 'تدبير الموظفين';
+            });
+        </script>
 </body>
 </html>
 

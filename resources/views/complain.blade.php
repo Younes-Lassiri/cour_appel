@@ -72,6 +72,11 @@
         </div>
     </div>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.title = document.title + ' - ' + 'ملئ-طلب-شكاية';
+        });
+    </script>
     <x-foo_ter/>
 </body>
 </html>

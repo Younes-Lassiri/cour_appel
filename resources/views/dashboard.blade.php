@@ -128,7 +128,7 @@
         </script>
     @endif
 
-
+    <x-loader />
 @if (auth()->user()->role === 'employe')
 <div class="messageInfos">
     <span class="suivie">لائحة الواردات و الصادرات</span>
@@ -322,8 +322,9 @@
 
 <div class="employeDetail">
     <div class="employeDetailOne">
-        <button class="hideProfile" onclick="hideDetail()">×</button>
-        <img src="/img/userImg.png" alt=""></div>
+        <div class="employeDetailOneOne"><button class="hideProfile" onclick="hideDetail()">×</button></div>
+        <div class="employeDetailOneTwo"><img src="/img/userImg.png" alt=""></div>
+    </div>
 
     <div class="employeDetailTwo">
         <div class="employeDetailTwoOne">
@@ -498,6 +499,23 @@ function search2() {
 
 </script>
 
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.title = document.title + ' - ' + 'الرئيسية';
+    });
+</script>
+
+<script>
+    window.addEventListener('load', function() {
+      document.body.classList.add('shadow-overlay');
+      setTimeout(function() {
+        document.querySelector('.theLoader').style.display = 'none';
+        document.querySelector('.preLoader').style.display = 'none';
+        document.body.classList.remove('shadow-overlay');
+      }, 1500);
+    });
+  </script>
 
 
 </body>

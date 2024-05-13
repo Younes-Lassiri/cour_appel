@@ -68,5 +68,6 @@ class Kernel extends HttpKernel
         'employe.role' => \App\Http\Middleware\EmployeMiddleware::class,
         'status' => \App\Http\Middleware\StatusMiddleware::class,
         'message.employe' => \App\Http\Middleware\MessagesMiddleware::class,
+        'reset.link' => \App\Http\Middleware\VerifyPasswordResetToken::class,
     ];
 }

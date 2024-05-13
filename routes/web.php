@@ -12,6 +12,7 @@ use App\Http\Controllers\ComplainController;
 use App\Http\Controllers\messagesController;
 use App\Http\Controllers\PresenceController;
 use App\Http\Controllers\ResponseController;
+use App\Http\Controllers\Mail\MailController;
 use App\Http\Controllers\BornDemandeController;
 use App\Http\Controllers\DemandeAbsenceController;
 use App\Http\Controllers\DevicesDemandeController;
@@ -65,7 +66,7 @@ Route::get('/تدبير-الواردات', [messagesController::class, 'gestion'
 Route::get('/ملئ-طلب-الغياب', [DemandeAbsenceController::class, 'sendDemandeAbsence'])->name('demande.show')->middleware('message.employe');
 Route::post('/send_demande', [DemandeAbsenceController::class, 'sendDemandeAbsenceStore'])->name('demande.store')->middleware('message.employe');
 Route::get('/list-demande', [DemandeAbsenceController::class, 'listDemande'])->name('list.demande')->middleware('message.employe');
-Route::get('/إظافة-واردة/{id}', [ResponseController::class, 'show'])->name('response.show')->middleware('message.employe');
+Route::get('/إضافة-صادرة/{id}', [ResponseController::class, 'show'])->name('response.show')->middleware('message.employe');
 Route::get('/الإعدادات', [AdminController::class, 'settingsShow'])->name('settings.show');
 Route::get('/ملئ-طلب-رخصة-إدارية', [LicenceDemandeController::class, 'licenceShow'])->name('licence.show')->middleware('message.employe');
 Route::post('/licence-send', [LicenceDemandeController::class, 'licenceSend'])->name('licence.send')->middleware('message.employe');
@@ -85,9 +86,9 @@ Route::post('/pdf-plastique', [PlastiqueDemandeController::class, 'pdfPlastique'
 Route::post('/plastique-send', [PlastiqueDemandeController::class, 'plastiqueSend'])->name('plastique.send')->middleware('message.employe');
 Route::get('إضافة-منشور', function(){
     return view('create-post');
-})->name('add-post-blade');
+})->name('add-post-blade')->middleware('message.employe');
 Route::post('addPost', [PostController::class, 'addPost'])->name('addPost');
-});
+})->middleware('message.employe');
 Route::get('/قائمة-طلبات-الطوابع-المطاطية', [PlastiqueDemandeController::class, 'listPlastiqueEmp'])->name('plastique.show.employe')->middleware('message.employe');
 Route::post('logout', [AdminController::class, 'logout'])->name('admin.logout');
 Route::post('/login', [AdminController::class, 'login'])->name('admin.login');
@@ -158,6 +159,18 @@ Route::get('/تقديم-الموقع', function(){
 })->name('website');
 
 
+Route::post('send-mail',[MailController::class,'mail'])->name('send');
+
+Route::get('/إعادة-تعيين-كلمة-المرور', [AdminController::class,'resetBlade'])->name('reset.get');
+
+
+Route::get('/إعادة-تعيين-كلمة-المرور/{token}', [MailController::class,'emailReset'])->name('reset.email')->middleware('reset.link');
+Route::post('reset-password', [AdminController::class, 'resetPassord'])->name('resetPasswordPost');
+
+
+Route::get('test', function(){
+    return view('uploadFiles');
+});
 
 Route::get('/{any}', function () {
     return view('landing');

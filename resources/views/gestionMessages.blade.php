@@ -33,7 +33,7 @@
         </script>
     @endif
     <div class="listMessages-section">
-        
+        <x-loader />
         <x-landing-section_head />
 
         <x-admin_navbar :count="count($waitingEmploye)" />
@@ -186,5 +186,21 @@
 </script>
     <script src="/js/main.js"></script>
     
+    <script>
+        window.addEventListener('load', function() {
+          document.body.classList.add('shadow-overlay');
+          setTimeout(function() {
+            document.querySelector('.theLoader').style.display = 'none';
+            document.querySelector('.preLoader').style.display = 'none';
+            document.body.classList.remove('shadow-overlay');
+          }, 1500);
+        });
+      </script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.title = document.title + ' - ' + 'تدبير الواردات';
+    });
+</script>
 </body>
 </html>

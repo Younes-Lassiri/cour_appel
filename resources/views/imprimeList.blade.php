@@ -66,7 +66,11 @@
     </div>
 
     <x-foo_ter/>
-    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.title = document.title + ' - ' + 'طلبات المطبوعات';
+        });
+    </script>
     
 </body>
 </html>

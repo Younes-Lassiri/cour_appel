@@ -850,5 +850,12 @@
                     handleCheck1('t','y');
                     });
     </script>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.title = document.title + ' - ' + 'إظافة-واردة';
+    });
+</script>
 </body>
 </html>

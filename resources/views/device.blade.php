@@ -320,6 +320,12 @@
     
                         </script>
 
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+      document.title = document.title + ' - ' + 'ملئ-طلب-جهاز-الحاسوب-و-الطابعات';
+  });
+</script>
+
     <script src="/js/main.js"></script>
 </body>
 </html>

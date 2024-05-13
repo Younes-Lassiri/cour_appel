@@ -56,6 +56,11 @@
         
     </div>
     </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+          document.title = document.title + ' - ' + 'إتصل بنا';
+      });
+  </script>
     <x-foo_ter/>
     <script src="/js/main.js"></script>
 </body>

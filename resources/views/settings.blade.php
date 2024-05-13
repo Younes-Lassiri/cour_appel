@@ -68,6 +68,11 @@
         </div>
     </div>
 </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.title = document.title + ' - ' + 'الإعدادات';
+    });
+</script>
 
 <x-foo_ter/>
     <script src="/js/main.js"></script>

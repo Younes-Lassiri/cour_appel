@@ -117,5 +117,11 @@
 
 </script>
 
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.title = document.title + ' - ' + 'لائحة الحظور';
+    });
+</script>
+
 </body>
 </html>

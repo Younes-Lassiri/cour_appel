@@ -17,6 +17,7 @@
 <body>
     <x-landing-section_head />
     <x-user_navbar/>
+    <input type="hidden" id="title" value="{{ $categorie === 'news' ? 'قسم الأخبار' : 'قسم البلاغات' }}">
     <div class="categorieSection">
         <div class="categorieSectionOne">
             <nav style="" aria-label="breadcrumb" class="breadCumb">
@@ -61,6 +62,12 @@
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let title = document.querySelector('#title').value;
+            document.title = document.title + ' - ' + title;
+        });
+    </script>
 <x-foo_ter/>
 </body>
 </html>

@@ -26,8 +26,8 @@
           <ul class="navbar-ul">
             <li><a href="{{ route('contact') }}" style="text-decoration: none">إتصل بنا</a></li>
             @guest
-              <li><a href="/إنشاء-حساب-موظف" style="text-decoration: none">فضاء الموظفين</a></li>
-              <li><a href="/إنشاء-حساب" style="text-decoration: none">فضاء الرؤساء</a></li>
+              <li><a href="{{ route('adminBlade') }}" style="text-decoration: none">فضاء الموظفين</a></li>
+              <li><a href="{{ route('adminBlade') }}" style="text-decoration: none">فضاء الرؤساء</a></li>
             @endguest
             <li><a href="#" style="text-decoration: none">نصوص قانونية</a></li>
             <li><a href="#" style="text-decoration: none">نصوص قانونية</a></li>
@@ -36,8 +36,8 @@
               <a class="nav-link dropdown-togglee" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="display: flex; align-items: center; gap: 5px" id="dropdonToggle">المؤسسة
               </a>
               <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="" href="{{ route('histoire') }}">لمحة تاريخية</a></li>
                 <li><a href="{{ route('website') }}">تقديم الموقع</a></li>
+                <li><a class="" href="{{ route('histoire') }}">لمحة تاريخية</a></li>
               </ul>
             </li>
               <a href="/" id="exept"><i class='bx bx-home' style='color:#003566;background: #ffc300; padding: 14px 14px; border-radius: 5px'></i></a></div>

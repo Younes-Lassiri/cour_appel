@@ -16,7 +16,7 @@ class employeController extends Controller
     public function signUpEpmploye(Request $request){
         $request->validate([
             'employe_name' => 'required|regex:/^[\p{Arabic}a-zA-Z\s]+$/u',
-            'employe_email' => 'required|email',
+            'employe_email' => 'required|email|unique:admins',
             'employe_password' => 'required|min:8|regex:/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]+$/|confirmed',
             'employe_rental' => 'required',
             'employe_cadre' => 'required',

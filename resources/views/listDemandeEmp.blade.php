@@ -52,6 +52,11 @@
         </div>
     </div>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.title = document.title + ' - ' + 'قائمة طلبات الغياب';
+        });
+    </script>
     <x-foo_ter/>
     
     
