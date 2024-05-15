@@ -85,7 +85,7 @@
                                 <li value="{{ $day }}">{{ $day }}</li>
                             @endfor
                             </ul>
-                            <label for="" class=""><span>*  </span>اليوم</label>
+                            <label for="" class="">اليوم</label>
                         </div>
                         <script>
                             document.addEventListener("DOMContentLoaded", function() {
@@ -153,7 +153,7 @@
                                 @endfor
 
                             </ul>
-                            <label for="" class=""><span>*  </span>الشهر</label>
+                            <label for="" class="">الشهر</label>
                         </div>
                         <script>
                             document.addEventListener("DOMContentLoaded", function() {
@@ -219,7 +219,7 @@
                             <li value="{{ $year }}">{{ $year }}</li>
                         @endfor
                             </ul>
-                            <label for="" class=""><span>*  </span>السنة</label>
+                            <label for="" class="">السنة</label>
                         </div>
                         <script>
                             document.addEventListener("DOMContentLoaded", function() {
@@ -316,15 +316,6 @@
 
 
     </div>
-
-    
-
-
-
-
-
-
-
 
     <div class="footerThetwo">
 

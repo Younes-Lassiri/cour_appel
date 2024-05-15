@@ -79,7 +79,7 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            document.title = document.title + ' - ' + 'إضافة-صادرة';
+            document.title = document.title + ' - ' + 'إضافة صادرة';
         });
     </script>
 

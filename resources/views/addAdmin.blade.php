@@ -76,7 +76,7 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        document.title = document.title + ' - ' + 'إنشاء-حساب';
+        document.title = document.title + ' - ' + 'إنشاء حساب';
     });
 </script>
 <x-foo_ter/>

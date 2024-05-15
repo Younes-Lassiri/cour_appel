@@ -23,6 +23,11 @@ class LicenceDemandeController extends Controller
             "duree" => $request->license_duree,
             "leave_date" => $request->license_on_year. "-". $request->license_on_month. "-". $request->license_on_day,
         ];
+        if ($request->filled('license_on_year') && $request->filled('license_on_month') && $request->filled('license_on_day')) {
+            $newDemande['leave_date'] = $request->license_on_year . "-" . $request->license_on_month . "-" . $request->license_on_day;
+        } else {
+            $newDemande['leave_date'] = null;
+        }
     
         $newAdd =LicenceDemande::create($newDemande);
     

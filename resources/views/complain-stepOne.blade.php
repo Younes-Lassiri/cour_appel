@@ -375,7 +375,7 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        document.title = document.title + ' - ' + 'ملئ-طلب-شكاية-الخطوة-1';
+        document.title = document.title + ' - ' + 'ملئ طلب شكاية الخطوة 1';
     });
 </script>
 </body>

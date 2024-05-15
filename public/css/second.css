@@ -943,7 +943,6 @@ align-self: center;
   grid-template-columns: 1fr;
   grid-template-rows: 7fr 1fr 0.7fr;
 }
-
 .allMessagesDivMainOne{
   overflow-y: auto;
   display: grid;

@@ -1346,15 +1346,16 @@ align-items: center;
 justify-content: center;
 border-radius: 50%;
 border: 0.5px solid #003566;
-
 }
 .acceptDemande{
 background-color: green;
 border: 1px solid transparent;
+padding: 5px 0;
+border-radius: 4px;
 }
 
 .acceptDemande:hover{
-background-color: white;
+background-color: transparent;
 color: #003566;
 border: 1px solid green;
 }
@@ -1393,11 +1394,6 @@ color: white;
 border-radius: 10px;
 padding: 5px 40px;
 }
-
-
-
-
-
 .dropdown-menu-end{
 background-color: #003566;
 text-align: right;
@@ -1408,26 +1404,17 @@ font-size: 15px;
 }
 
 .dropdown-menu-end li{
-width: 200px;
+width: 230px;
 padding: 10px 15px;
 }
 
 .dropdown-togglee:focus{
 color: white;
 }
-
-
-
-
 .formSection .inputContainer input{
 text-align: right;
 width: 40%;
 }
-
-
-
-
-
 /* presence css*/
 
 .presenceSection{
@@ -3238,109 +3225,126 @@ align-self: center;
   background-color: #ffc221;
   color: #003566;
 }
-
-
-
 .employeDetail{
-  height: 80vh;
-  background-color: white;
-  box-shadow: 0 4.08952px 4.08952px #0000000d!important;
-  border-radius: 5px;
+  background-color: #003566;
   position: fixed;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
+  left: 0;
+  transform: translateY(-50%);
   z-index: 4000;
-  width: 80%;
-  height: 80%;
+  width: 27%;
+  height: 100%;
   display: none;
-  grid-template-columns: 1fr 2fr;
+  border-radius: 0;
+  animation: showUp 0.8s alternate;
+  grid-template-columns: 1fr;
+  grid-template-rows: 5% 95%;
 }
-
 .employeDetailOne{
-  align-self: start;
-  padding: 25px 0;
-  justify-self: center;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  padding-right: 15px;
 }
+.employeDetailOneTwo{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  font-size: 27px;
+  font-weight: 400;
+  transition: 0.7s;
+  cursor: pointer;
+  color: white;
+}
+.employeDetailOneTwo i{
+  transform: rotate(45deg);
+}
+.employeDetailOneTwo:hover{
+  background-color: #ffbc2b;
+  color: #003566;
+}
+.hideEmpDetail{
+  animation: hideUp 0.8s alternate;
+  display: none;
+  transform: translateY(-50%) translateX(-100%);
+}
+
 .employeDetailTwo{
+  height: 100%;
   display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1.5fr 0.5fr 4fr;
-}
-
-
-.employeDetailTwoTwo{
-  text-align: right;
-  font-size: 19px;
-  font-weight: 700;
-  color: rgb(153, 153, 153);
-  width: 98%;
-  border-bottom: 0.5px solid #00356610;
-}
-.employeDetailTwoTwo span{
-  color: rgb(153, 153, 153);
-  border-bottom: 1px solid #003566;
-  padding: 0 15px 15px 15px;
-
-}
-
-
-.employeDetailTwoThree{
-  display: grid;
-  padding: 0 15px;
   grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 }
-
-.employeDetailTwoOneOne{
-  color: rgb(92, 91, 91);
-  text-align: right;
-  font-size: 25px;
-  padding: 15px 15px 0 0;
-  font-weight: 700;
+.employeDetailTwoOne{
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  font-size: 22px;
+  font-weight: 500;
+  color: #fff;
+  padding-right: 15px;
+  position: relative;
 }
-
-.employeDetailTwoOneTwo{
-  padding: 0 15px;
-  text-align: right;
-  color: #003566;
+.employeDetailTwoOne::before{
+  content: "";
+  width: 50%;
+  height: 2px;
+  background-color: #ffbc2b;
+  position: absolute;
+  right: 15px;
+  bottom: 15px;
+}
+.employeDetailTwoTwo{
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  font-size: 18px;
+  font-weight: 400;
+  transition: 0.7s;
+  cursor: pointer;
+  color: white;
+  padding-right: 15px;
+}
+.empArrow{
+  position: relative;
+  padding-right: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: end;
   font-size: 16px;
-  font-weight: 700;
-}
-
-
-.employeDetailTwoThreeTwo{
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-gap: 25px;
-  align-self: center;
+  font-weight: 300;
+  transition: 0.7s;
+  cursor: pointer;
+  color: white;
   text-align: right;
 }
-
-
-.employeDetailTwoThreeOne{
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-gap: 25px;
-  align-self: center;
-  text-align: right;
+.empArrow::before{
+  content: "";
+  width: 13px;
+  height: 2px;
+  background-color: #ffbc2b;
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
 }
-
-.hideProfile{
-  border: none;
-  outline: none;
-  background-color: transparent;
-  font-size: 45px;
-  color: #003566;
-  text-align: left;
+@keyframes hideUp{
+  from{
+    transform: translateY(-50%)translateX(0);
+  }
+  to{
+    transform: translateY(-50%) translateX(-100%);
+  }
+  
 }
-
-.hideProfile:hover{
-  border: none;
-  outline: none;
+@keyframes showUp{
+  from{
+    transform: translateY(-50%) translateX(-100%);
+  }
+  to{
+    transform: translateY(-50%)translateX(0);
+  }
 }
-
-
-
 .stepTwoInfos{
   background-color: #fff;
   grid-column: 1/2;
@@ -3351,8 +3355,6 @@ align-self: center;
   grid-template-columns: 1fr;
   grid-template-rows: 1.5fr 1.5fr 3fr 1fr;
 }
-
-
 .stepTwoInfosOne{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -3360,10 +3362,6 @@ align-self: center;
   width: 96%;
   margin: 0 auto;
 }
-
-
-
-
 .stepTwoInfosOneTwoFour{
   color: #003566;
   font-size: 17px;
@@ -3374,9 +3372,6 @@ align-self: center;
   justify-self: end;
   position: relative;
 }
-
-
-
 .stepTwoInfosOneTwoFour::before{
   content: "";
   width: 14px;
@@ -3386,12 +3381,6 @@ align-self: center;
   right: 0;
   top: 50%;
 }
-
-
-
-
-
-
 .stepTwoInfosOneThree{
   align-self: center;
   justify-self: end;
@@ -5124,4 +5113,7 @@ position: relative;
 .ministreNumbersThreeOneTwo img{
   width: 60%;
   height: auto !important;
+}
+#autreActivite{
+  display: none;
 }

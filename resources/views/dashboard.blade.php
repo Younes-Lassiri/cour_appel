@@ -182,8 +182,6 @@
     </div>
   </div>
 
-
-
   <div class="theResult">
     <span class="suivie">نتيجة البحث</span>
   </div>
@@ -322,38 +320,23 @@
 
 <div class="employeDetail">
     <div class="employeDetailOne">
-        <div class="employeDetailOneOne"><button class="hideProfile" onclick="hideDetail()">×</button></div>
-        <div class="employeDetailOneTwo"><img src="/img/userImg.png" alt=""></div>
+        <div class="employeDetailOneTwo" onclick="hideDetail()"><i class='bx bx-plus'></i></div>
     </div>
-
     <div class="employeDetailTwo">
-        <div class="employeDetailTwoOne">
-            <div class="employeDetailTwoOneOne name"></div>
-            <div class="employeDetailTwoOneTwo cadre"></div>
-        </div>
-        <div class="employeDetailTwoTwo"><span>معلومات حول الموضف</span></div>
-
-        <div class="employeDetailTwoThree">
-            <div class="employeDetailTwoThreeOne">
-                <div>
-                    <div class="about namee"></div>
-                    <div class="about rental"></div>
-                    <div class="about cadree"></div>
-                    <div class="about address"></div>
-                    <div class="about email"></div>
-                    </div>
-            </div>
-            <div class="employeDetailTwoThreeTwo">
-                <div>
-                <div class="about">اسم الموضف</div>
-                <div class="about">رقم تأجير الموضف</div>
-                <div class="about">الإطار</div>
-                <div class="about">العنوان</div>
-                <div class="about">البريد الإكتروني للموضف</div>
-                </div>
-            </div>
-        </div>
+        <div></div>
+        <div class="employeDetailTwoOne">: الملف الشخصي</div>
+        <div class="empName empArrow"></div>
+        <div class="employeDetailTwoTwo empArrow">الإسم الشخصي</div>
+        <div class="empCadre empArrow"></div>
+        <div class="employeDetailTwoTwo empArrow">المسمى وظيفي</div>
+        <div class="empRental empArrow"></div>
+        <div class="employeDetailTwoTwo empArrow">رقم التأجير</div>
+        <div class="empEmail empArrow"></div>
+        <div class="employeDetailTwoTwo empArrow">البريد لإلكتروني</div>
+        <div class="empAddress empArrow"></div>
+        <div class="employeDetailTwoTwo empArrow">العنوان الشخصي</div>
     </div>
+</div>
 </div>
 @auth
     @if (auth()->user()->role === 'employe')
@@ -385,12 +368,6 @@
 @endauth
 
 
-
-
-
-
-
-
 <script>
     function showMess() {
     let mess = document.querySelector('.contactDivBtn');
@@ -402,23 +379,20 @@
 <script>
     function fill(name, cadre, email, role, address, rental){
         let theDetail = document.querySelector('.employeDetail')
-        let theName = document.querySelector('.name')
-        let theCadre = document.querySelector('.cadre')
-        let theAdress = document.querySelector('.address')
-        let theEmail = document.querySelector('.email')
-        let theRent = document.querySelector('.rental')
-        let theNamee = document.querySelector('.namee')
-        let theCadree = document.querySelector('.cadree')
+        let theName = document.querySelector('.empName')
+        let theCadre = document.querySelector('.empCadre')
+        let theAdress = document.querySelector('.empAddress')
+        let theEmail = document.querySelector('.empEmail')
+        let theRent = document.querySelector('.empRental')
         
         if (theDetail.style.display = 'none') {
+            theDetail.classList.remove('hideEmpDetail');
             theDetail.style.display = 'grid';
+            theRent.innerHTML = rental;
             theName.innerHTML = name;
             theCadre.innerHTML = cadre;
-            theNamee.innerHTML = name;
-            theCadree.innerHTML = cadre;
             theAdress.innerHTML = address;
             theEmail.innerHTML = email;
-            theRent.innerHTML = rental;
         }
     }
 </script>
@@ -429,7 +403,8 @@
     function hideDetail(){
         let theDetail = document.querySelector('.employeDetail')
         if (theDetail.style.display = 'grid') {
-            theDetail.style.display = 'none'
+            theDetail.classList.add('hideEmpDetail');
+
         }
     }
 </script>

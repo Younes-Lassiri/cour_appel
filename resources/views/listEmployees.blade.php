@@ -86,7 +86,7 @@
                 </tr>
                 @foreach ($employees as $emp)
                     <tr class="messageRow">
-                        <td>
+                        <td style="text-align: center">
                             <form action="{{ route('employe.delete', $emp->id) }}" method="POST">
                                 @csrf
                                 <button type="submit" class="cancelDemande"><i class='bx bx-x'></i></button>

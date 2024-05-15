@@ -9,7 +9,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class courMail extends Mailable
+class successMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -18,12 +18,9 @@ class courMail extends Mailable
      *
      * @return void
      */
-    public $token;
-    public $email;
-    public function __construct($token,$email)
+    public function __construct()
     {
-        $this->token = $token;
-        $this->email = $email;
+        //
     }
 
     /**
@@ -34,7 +31,7 @@ class courMail extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Cour Mail',
+            subject: 'Success password reset',
         );
     }
 
@@ -44,11 +41,11 @@ class courMail extends Mailable
      * @return \Illuminate\Mail\Mailables\Content
      */
     public function content()
-{
-    return new Content(
-        view: 'send'
-    );
-}
+    {
+        return new Content(
+            view: 'successReset',
+        );
+    }
 
     /**
      * Get the attachments for the message.

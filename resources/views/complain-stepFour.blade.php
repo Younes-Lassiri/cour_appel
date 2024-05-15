@@ -295,7 +295,7 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        document.title = document.title + ' - ' + 'ملئ-طلب-شكاية-الخطوة-4';
+        document.title = document.title + ' - ' + 'ملئ طلب شكاية الخطوة 4';
     });
 </script>
 <x-foo_ter/>

@@ -89,19 +89,79 @@
 
             <li><a href="{{ route('add-post-blade') }}"><i class='bx bx-pencil' style='color:#ffffff'></i>إضافة منشور</a></li>
 
+@php
+    $absence = App\Models\DemandeAbsence::get();
+    $born = App\Models\bornDemande::get();
+    $device = App\Models\DevicesDemande::get();
+    $fourniture = App\Models\FournitureDemande::get();
+    $imprime = App\Models\ImprimeDemande::get();
+    $license = App\Models\LicenceDemande::get();
+    $plastique = App\Models\PlastiqueDemande::get();
+    $demandeCount = $absence->count()+$born->count()+$device->count()+$fourniture->count()+$imprime->count()+$license->count()+$plastique->count();
 
+@endphp
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-togglee" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="display: flex; align-items: center; gap: 5px">
-                <i class='bx bxs-down-arrow' style="font-size: 11px"></i>قائمة الطلبات
+                @if ($demandeCount > 0)
+                <span style="color: #ffc221">({{ $demandeCount }})</span>
+                <i class='bx bxs-down-arrow' style="font-size: 8px"></i>قائمة الطلبات
+                @else
+                    <i class='bx bxs-down-arrow' style="font-size: 8px"></i>
+                    قائمة الطلبات
+                @endif
               </a>
               <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="" href="{{ route('licence.show.employe') }}">طلبات رخصة إدارية</a></li>
-                <li><a class="" href="{{ route('fourniture.show.employe') }}">طلبات أدوات المكتب</a></li>
-                <li><a class="" href="{{ route('plastique.show.employe') }}">طلبات الطوابع المطاطية</a></li>
-                <li><a href="{{ route('list.device.employe') }}">طلبات جهاز الحاسوب و الطابعات</a></li>
-                <li><a href="{{ route('list.imprime.employe') }}">طلبات المطبوعات</a></li>
-                <li><a href="{{ route('list.born.employe') }}">طلبات الولادة</a></li>
-                <li><a href="{{ route('demande.index.employe') }}">طلبات الغياب</a></li>
+                <li>
+                  <a class="" href="{{ route('licence.show.employe') }}">
+                    @if ($license->count() > 0)
+                    <span style="color: #ffc221">({{ $license->count() }}) </span>طلبات رخصة إدارية
+                    @else
+                     طلبات رخصة إدارية
+                    @endif
+                  </a>
+                </li>
+                <li><a class="" href="{{ route('fourniture.show.employe') }}">
+                  @if ($fourniture->count() > 0)
+                  <span style="color: #ffc221">({{ $fourniture->count() }}) </span>طلبات أدوات المكتب
+                  @else
+                      طلبات أدوات المكتب
+                  @endif
+                </a></li>
+                <li><a class="" href="{{ route('plastique.show.employe') }}">
+                  @if ($plastique->count() > 0)
+                  <span style="color: #ffc221">({{ $plastique->count() }}) </span>طلبات الطوابع المطاطية
+                  @else
+                  طلبات الطوابع المطاطية
+                  @endif
+                </a></li>
+                <li><a href="{{ route('list.device.employe') }}">
+                  @if ($device->count() > 0)
+                  <span style="color: #ffc221">({{ $device->count() }}) </span>طلبات جهاز الحاسوب و الطابعات
+                  @else
+                  طلبات جهاز الحاسوب و الطابعات
+                  @endif
+                </a></li>
+                <li><a href="{{ route('list.imprime.employe') }}">
+                  @if ($imprime->count() > 0)
+                  <span style="color: #ffc221">({{ $imprime->count() }}) </span>طلبات المطبوعات
+                  @else
+                  طلبات المطبوعات
+                  @endif
+                </a></li>
+                <li><a href="{{ route('list.born.employe') }}">
+                  @if ($born->count() > 0)
+                  <span style="color: #ffc221">({{ $born->count() }}) </span>طلبات الولادة
+                  @else
+                  طلبات الولادة
+                  @endif
+                </a></li>
+                <li><a href="{{ route('demande.index.employe') }}">
+                  @if ($absence->count() > 0)
+                  <span style="color: #ffc221">({{ $absence->count() }}) </span>طلبات الغياب
+                  @else
+                  طلبات الغياب
+                  @endif
+                </a></li>
               </ul>
             </li>
 

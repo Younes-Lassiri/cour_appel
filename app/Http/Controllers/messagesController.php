@@ -26,7 +26,6 @@ class messagesController extends Controller
             'sender_city' => 'required',
             'message_object' => 'required',
         ]);
-
         
         $newMessage = [
             'message_date' => $request->input('message_year') . '-' . $request->input('message_month') . '-' . $request->input('message_day'),
@@ -34,7 +33,7 @@ class messagesController extends Controller
             'received_date' => $request->input('received_year') . '-' . $request->input('received_month') . '-' . $request->input('received_day'),
             'sender_name' => $request->input('sender_name'),
             'sender_city' => $request->input('sender_city'),
-            'message_object' => $request->input('message_object'),
+            'message_object' => $request->input('message_object') == 'موضوع آخر'? $request->message_objectv : $request->input('message_object')
             
         ];
     

@@ -172,6 +172,7 @@ Route::get('test', function(){
     return view('uploadFiles');
 });
 
+
 Route::get('/{any}', function () {
     return view('landing');
 })->where('any', '.*');

@@ -147,7 +147,7 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        document.title = document.title + ' - ' + 'ملئ-طلب-شكاية-الخطوة-3';
+        document.title = document.title + ' - ' + 'ملئ طلب شكاية الخطوة 3';
     });
 </script>
 <x-foo_ter/>

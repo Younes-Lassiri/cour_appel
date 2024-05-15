@@ -569,7 +569,7 @@
 
                 </div>
                 <div class="testFormTwoNineThree">
-                    <input type="hidden" name="message_object" id="messageObject" value="{{ old('message_object') }}">
+                    <input type="hidden" name="message_object" id="messageObject" value="{{ old('message_object') }}" onchange="handleActivite()">
                     <div class="dropdown testTwotheDropdown @if ($errors->has('message_object')) errorInput @endif">
                         <div class="dropdown-btn notChoosed">الموضوع</div>
                         <ul class="testdropdown-list">
@@ -585,7 +585,8 @@
                                     "طلب مراقبة",
                                     "طلب تحقيق",
                                     "طلب إعلان",
-                                    "طلب استجواب"
+                                    "طلب استجواب",
+                                    "موضوع آخر"
                                 ];
                             @endphp
                             @foreach ($objects as $object)
@@ -626,12 +627,18 @@
                                     dropdownBtn.classList.add('choosed');
                                     dropdownList.style.display = "none";
                                     inpGender.value = e.target.textContent;
+                                    const event = new Event('change');
+                                    inpGender.dispatchEvent(event);
                                 }
                             });
                         });
                     </script>
                     
                     
+                </div>
+                <div class="testFormTwoFour" id="autreActivite" style="margin-top: 20px">
+                    <input type="text" id="w" class="test-field" name="message_objectv" onchange="handleCheck1('w', 'x')">
+                    <label for="" class="test-label" id="x"><span>*  </span>موضوع آخر</label>
                 </div>
                 <div class="testSubmit"><button type="submit">حفظ</button></div>
             </div>
@@ -853,9 +860,15 @@
 
 
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        document.title = document.title + ' - ' + 'إظافة-واردة';
-    });
+    let autreInput = document.querySelector('#autreActivite');
+    function handleActivite(){
+    let activitInp = document.querySelector('#messageObject').value;
+        if (activitInp === 'موضوع آخر') {
+            autreInput.style.display = 'block';
+        }else{
+            autreInput.style.display = 'none';
+        }
+    }
 </script>
 </body>
 </html>

@@ -74,7 +74,7 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            document.title = document.title + ' - ' + 'ملئ-طلب-شكاية';
+            document.title = document.title + ' - ' + 'ملئ طلب شكاية';
         });
     </script>
     <x-foo_ter/>

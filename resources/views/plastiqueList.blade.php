@@ -69,7 +69,7 @@
     </div>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            document.title = document.title + ' - ' + 'طلبات-الطوابع-المطاطية';
+            document.title = document.title + ' - ' + 'طلبات الطوابع المطاطية';
         });
     </script>
     <x-foo_ter/>

@@ -7,11 +7,13 @@ use App\Models\Notice;
 use App\Models\Message;
 use App\Models\Presence;
 use App\Models\Response;
+use App\Mail\successMail;
 use Illuminate\Http\Request;
 use App\Models\DemandeAbsence;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class AdminController extends Controller
 {
@@ -207,7 +209,8 @@ class AdminController extends Controller
         Admin::where('email', $request->email)->update([
             'password' => Hash::make($request->password)
         ]);
-
+        
+        Mail::to($request->email)->send(new successMail());
         DB::table('password_resets')->where(['email' => $request->email,])->delete();
 
         return redirect()->route('adminBlade')->with('resetSuccess', 'تمت إعادة تعيين كلمة المرور بنجاح. يمكنك الآن تسجيل الدخول باستخدام كلمة المرور الجديدة. شكرًا!');

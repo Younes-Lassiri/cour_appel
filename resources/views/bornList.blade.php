@@ -79,7 +79,7 @@
     
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            document.title = document.title + ' - ' + 'طلبات-الولادة';
+            document.title = document.title + ' - ' + 'طلبات الولادة';
         });
     </script>
 </body>

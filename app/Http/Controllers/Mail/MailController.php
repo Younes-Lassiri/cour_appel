@@ -22,7 +22,7 @@ class MailController extends Controller
             'email' =>$email,
             'token' =>$token
         ]);
-        Mail::to($email)->send(new courMail($token));
+        Mail::to($email)->send(new courMail($token,$email));
         return redirect()->route('reset.get')->with('resetSent','تم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني. يرجى التحقق من بريدك الإلكتروني واتباع التعليمات لإعادة تعيين كلمة المرور الخاصة بك');
     }
 

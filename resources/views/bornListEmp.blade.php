@@ -61,7 +61,7 @@
     </div>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            document.title = document.title + ' - ' + 'قائمة-طلبات-الولادة';
+            document.title = document.title + ' - ' + 'قائمة طلبات الولادة';
         });
     </script>
 
