@@ -61,4 +61,70 @@ class PostController extends Controller
         $posts = Post::where('tag', $categorie)->get();
         return view('post-galerie', compact('posts', 'categorie', 'months'));
     }
+
+    public function postsIndex()
+    {
+        $posts = Post::get();
+        $months = [
+            "Jan", 
+            "Feb", 
+            "Mar", 
+            "Apr", 
+            "May", 
+            "Jun",
+            "Jul", 
+            "Aug", 
+            "Sep", 
+            "Oct", 
+            "Nov", 
+            "Dec"
+        ]; 
+        return view('gestionPosts', compact('posts', 'months'));
+    }
+    public function delete(Request $request)
+    {
+        $post = Post::findOrFail($request->id);
+
+        $deleted = $post->delete();
+        return redirect()->route('gestionPosts')->with('deletePost','تم حذف المنشور بنجاح');
+    }
+
+    public function postEditBlade(Request $request)
+    {
+        $post = Post::findOrFail($request->id);
+
+        return view('editPost', compact('post'));
+    }
+    public function postUpdate(Request $request)
+{
+    $post = Post::findOrFail($request->id);
+    $tag = isset($request->tag) && $request->tag === 'قسم الأخبار' ? 'news' : 'report';
+
+    $request->validate([
+        'title' => 'required',
+        'tag' => 'required'
+    ]);
+
+    $updatedPost = [
+        'title' => $request->title,
+        'description' => $request->description,
+        'tag' => $tag,
+    ];
+    $post->update($updatedPost);
+
+    if ($request->hasFile('images')) {
+        $post->images()->delete();
+        foreach ($request->file('images') as $image) {
+            $imagePath = $image->store('posts_images', 'public');
+            $post->images()->create([
+                'image' => $imagePath,
+                'post_id' => $post->id,
+            ]);
+        }
+    }
+    return redirect()->route('gestionPosts')->with('updatePost','تم تعديل المنشور بنجاح');
+
+}
+
+    
 }

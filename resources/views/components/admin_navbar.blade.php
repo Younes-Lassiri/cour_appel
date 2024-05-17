@@ -86,8 +86,10 @@
             <li><a href="{{ route('presence.list') }}"><i class='bx bxs-bell-plus' style='color:#ffffff'  ></i> لائحة الحظور</a></li>
             @endif
             @if (auth()->user()->role === 'employe')
+            <li><a href={{ route('gestionPosts') }} style="display: flex; align-items: center; gap: 5px"><i class='bx bx-line-chart'></i>إدارة المنشورات</a></li>
 
-            <li><a href="{{ route('add-post-blade') }}"><i class='bx bx-pencil' style='color:#ffffff'></i>إضافة منشور</a></li>
+
+            <li><a href="{{ route('add-post-blade') }}" style="display: flex; align-items: center; gap: 5px"><i class='bx bx-pencil' style='color:#ffffff'></i>إضافة منشور</a></li>
 
 @php
     $absence = App\Models\DemandeAbsence::get();
@@ -165,10 +167,6 @@
               </ul>
             </li>
 
-
-
-
-
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-togglee" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="display: flex; align-items: center; gap: 5px">
                 <i class='bx bxs-down-arrow' style="font-size: 11px"></i>ملئ  طلب
@@ -184,8 +182,7 @@
               </ul>
             </li>
 
-
-            <li><a href={{ route('message.gestion') }} style="display: flex; align-items: center; gap: 5px"><i class='bx bx-table'></i>تدبير الواردات</a></li>
+            <li><a href={{ route('message.gestion') }} style="display: flex; align-items: center; gap: 5px"><i class='bx bx-table'></i>تدبير الواردات</a></li>            
             <li><a href={{ route('message.index') }} style="display: flex; align-items: center; gap: 5px"><i class='bx bx-envelope'></i>لائحة الواردات</a></li>
             <li><a href={{ route('message.add') }} style="display: flex; align-items: center; gap: 5px"><i class='bx bx-add-to-queue'></i>إظافة واردة</a></li>
             @endif

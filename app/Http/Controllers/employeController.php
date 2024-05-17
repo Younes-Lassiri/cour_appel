@@ -55,8 +55,6 @@ class employeController extends Controller
     public function employeDelete(Request $request){
 
         $employe = Admin::findOrFail($request->id);
-
-
         $deleted = $employe->delete();
 
         return redirect()->route('employees.show')->with('delete', 'تم حذف الموظف بنجاح');

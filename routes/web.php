@@ -59,6 +59,10 @@ Route::middleware(['auth.redirect'])->group(function () {
     Route::get('/تسجيل-الدخول', [AdminController::class, 'loginBlade'])->name('adminBlade');
 });
 Route::middleware(['auth'])->group(function () {
+Route::get('إدارة-المنشورات', [PostController::class, 'postsIndex'])->name('gestionPosts')->middleware('message.employe');
+Route::post('post-delete/{id}', [PostController::class, 'delete'])->name('post-delete')->middleware('message.employe');
+Route::get('تعديل-منشور/إدارة-المنشورات/{id}', [PostController::class, 'postEditBlade'])->name('post-edit-blade')->middleware('message.employe');
+Route::post('post-update/{id}', [PostController::class,'postUpdate'])->name('post-update')->middleware('message.employe');
 Route::view('/إظافة-واردة', 'addMessage')->name('message.add')->middleware('message.employe');
 Route::get('/لائحة-الواردات', [messagesController::class, 'index'])->name('message.index')->middleware('message.employe');
 Route::get('/لوحة-التحكم', [AdminController::class, 'dashboard'])->name('dashboard');
