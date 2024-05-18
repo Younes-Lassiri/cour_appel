@@ -259,8 +259,6 @@
                     </div>
                     <div class="stepTwoInfosOneTwoFour">: معلومات حول القضية</div>
                 </div>
-    
-    
                 <div class="stepInfosTheLastOne">
                     <div class="stepInfosTheLastOneOne"><button type="submit"><i class='bx bx-chevron-left'></i>تأكيد</button></div>
                 </div>

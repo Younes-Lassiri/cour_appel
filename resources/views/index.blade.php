@@ -7,6 +7,7 @@
   <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
   <link rel="stylesheet" href="/css/second.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 </head>
 <body>
   
@@ -127,39 +128,51 @@
   }
 </script>
 
+
+
 <script>
   let currentTime = new Date();
   let hours = currentTime.getHours();
   let minutes = currentTime.getMinutes();
   hours = hours < 10 ? '0' + hours : hours;
   minutes = minutes < 10 ? '0' + minutes : minutes;
-  let authName = document.querySelector('#authName').value;
-  let fakeName = 'موضف';
   const pusher = new Pusher('{{config('broadcasting.connections.pusher.key')}}', { cluster: 'eu' });
   const channel = pusher.subscribe('public');
+  
   channel.bind('chat', function (data) {
-    $(".allMessagesDivMainOne").append('<div class="messInfosDiv">' +
-    '<div class="messInfosDivOne">' +
-        '<img src="/img/maroc-logo.png" alt="">' +
-    '</div>' +
-    '<div class="messInfosDivTwo">' +
-        '<div class="messInfosDivTwoOne">' +
-          '<h6 style="font-weight: 500" class="name">' + fakeName + '</h6>'
-             +
-            '<h6 style="color: #000000bf; font-weight: 800; margin-top: -5px">.</h6>' +
-            '<h6 style="color: #00000099; font-size: 12px">' + hours + ':' + minutes + '</h6>'
-             +
-        '</div>' +
-        '<div class="messInfosDivTwoTwo">' +
-            data.message +
-        '</div>' +
-    '</div>' +
-'</div>');
- 
-    $('.allMessagesDivMainOne').scrollTop($('.allMessagesDivMainOne')[0].scrollHeight);
+    if (data.senderId !== '{{ auth()->user()->id }}') {
+      $(".allMessagesDivMainOne").append('<div class="messInfosDiv">' +
+      '<div class="messInfosDivOne">' +
+          '<img src="/img/maroc-logo.png" alt="">' +
+      '</div>' +
+      '<div class="messInfosDivTwo">' +
+          '<div class="messInfosDivTwoOne">' +
+            '<h6 style="font-weight: 500" class="name">' + data.senderNameAuth + '</h6>' +
+              '<h6 style="color: #000000bf; font-weight: 800; margin-top: -5px">.</h6>' +
+              '<h6 style="color: #00000099; font-size: 12px">' + hours + ':' + minutes + '</h6>' +
+          '</div>' +
+          '<div class="messInfosDivTwoTwo">' +
+              data.message +
+          '</div>' +
+      '</div>' +
+    '</div>');
+
+      $('.allMessagesDivMainOne').scrollTop($('.allMessagesDivMainOne')[0].scrollHeight);
+
+      Toastify({
+        text: "لقد تلقيت إشعار جديد",
+        className: "info",
+        style: {
+          background: "#ffc221",
+          color: "#003566"
+        }
+      }).showToast();
+    }
   });
+
   $("#messageForm").submit(function (event) {
     event.preventDefault();
+    const messageId = Date.now(); 
     $.ajax({
       url: "/broadcast",
       method: 'POST',
@@ -169,9 +182,12 @@
       data: {
         _token: '{{csrf_token()}}',
         message: $("#message").val(),
+        senderId: '{{ auth()->user()->id }}', 
+        senderName: '{{ auth()->user()->admin_name }}',
+        messageId: messageId 
       },
       success: function (res) {
-        $(".allMessagesDivMainOne").append('<div class="messInfosDivNot message"><div class="messInfosDivNotTwo"><div class="messInfosDivNotTwoOne"><h6 style="color: #00000099; font-size: 12px">' + hours + ':' + minutes + '</h6><h6 style="color: #000000bf; font-weight: 800">.</h6><h6 style="color: #000000bf; font-weight: 500">' + authName + '</h6></div><div class="messInfosDivNotTwoTwo">' + $("#message").val() + '</div></div><div class="messInfosDivNotOne"><img src="/img/maroc-logo.png" alt=""></div></div>');
+        $(".allMessagesDivMainOne").append('<div class="messInfosDivNot message"><div class="messInfosDivNotTwo"><div class="messInfosDivNotTwoOne"><h6 style="color: #00000099; font-size: 12px">' + hours + ':' + minutes + '</h6><h6 style="color: #000000bf; font-weight: 800">.</h6><h6 style="color: #000000bf; font-weight: 500">' + '{{ auth()->user()->admin_name }}' + '</h6></div><div class="messInfosDivNotTwoTwo">' + $("#message").val() + '</div></div><div class="messInfosDivNotOne"><img src="/img/maroc-logo.png" alt=""></div></div>');
         $("#message").val('');
         $("#sendButton").addClass('notFilled');
         $('.allMessagesDivMainOne').scrollTop($('.allMessagesDivMainOne')[0].scrollHeight);
@@ -180,15 +196,16 @@
           url: $("#hiddenForm").attr('action'),
           method: $("#hiddenForm").attr('method'),
           data: $("#hiddenForm").serialize(),
-          success: function (response) {
-          },
-          error: function (xhr, status, error) {
-          }
+          success: function (response) {},
+          error: function (xhr, status, error) {}
         });
+
       }
     });
   });
 </script>
+
+
 
 
 <script>
@@ -199,5 +216,8 @@
   }
   document.querySelector('#message').addEventListener('input', setContent);
 </script>
+
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 </body>
 </html>

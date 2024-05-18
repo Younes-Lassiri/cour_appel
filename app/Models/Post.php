@@ -16,9 +16,12 @@ class Post extends Model
         'description',
         'tag'
     ];
-
     public function images()
     {
         return $this->hasMany(Image::class);
+    }
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }

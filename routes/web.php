@@ -34,35 +34,20 @@ use App\Http\Controllers\FournitureDemandeController;
 Route::get('/chat-app', 'App\Http\Controllers\PusherController@index');
 Route::post('/broadcast', 'App\Http\Controllers\PusherController@broadcast');
 Route::post('/receive', 'App\Http\Controllers\PusherController@receive');
-Route::get('/', function () {
-    $months = [
-        "Jan", 
-        "Feb", 
-        "Mar", 
-        "Apr", 
-        "May", 
-        "Jun",
-        "Jul", 
-        "Aug", 
-        "Sep", 
-        "Oct", 
-        "Nov", 
-        "Dec"
-    ];
-    $newsposts = Post::where('tag', 'news')->get();
-    $reportposts = Post::where('tag', 'report')->get();
-    return view('landing', compact('newsposts','reportposts','months'));
-})->name('home');
+Route::get('/', [AdminController::class, 'landing'])->name('home');
 Route::post('/message', [messagesController::class, 'store'])->name('message.store');
 Route::post('/download-pdf', [messagesController::class, 'downloadPdf'])->name('download.pdf');
 Route::middleware(['auth.redirect'])->group(function () {
     Route::get('/تسجيل-الدخول', [AdminController::class, 'loginBlade'])->name('adminBlade');
 });
 Route::middleware(['auth'])->group(function () {
+Route::get('تدبير-الشكايات',[ComplainController::class, 'listChikaya'])->name('listChikaya')->middleware('message.employe');
 Route::get('إدارة-المنشورات', [PostController::class, 'postsIndex'])->name('gestionPosts')->middleware('message.employe');
 Route::post('post-delete/{id}', [PostController::class, 'delete'])->name('post-delete')->middleware('message.employe');
 Route::get('تعديل-منشور/إدارة-المنشورات/{id}', [PostController::class, 'postEditBlade'])->name('post-edit-blade')->middleware('message.employe');
 Route::post('post-update/{id}', [PostController::class,'postUpdate'])->name('post-update')->middleware('message.employe');
+Route::post('restore-post/{id}', [PostController::class, 'restore'])->name('post-restore')->middleware('message.employe');
+Route::post('force-post/{id}', [PostController::class, 'force'])->name('post-force')->middleware('message.employe');
 Route::view('/إظافة-واردة', 'addMessage')->name('message.add')->middleware('message.employe');
 Route::get('/لائحة-الواردات', [messagesController::class, 'index'])->name('message.index')->middleware('message.employe');
 Route::get('/لوحة-التحكم', [AdminController::class, 'dashboard'])->name('dashboard');
@@ -108,6 +93,7 @@ Route::middleware(['employe.role'])->group(function () {
     Route::post('/add-employe', [AdminController::class, 'submitEmploye'])->name('new-amploye-sub');
 });
 Route::post('/accept/{id}', [AdminController::class, 'acceptEmploye'])->name('employe.accept');
+Route::post('rejectEmploye/{id}', [AdminController::class, 'rejectEmploye'])->name('employe.reject');
 Route::post('/add-response', [ResponseController::class, 'create'])->name('response.create');
 Route::post('/presence-register', [PresenceController::class, 'register'])->name('presence.register');
 Route::post('/presence-time-out', [PresenceController::class, 'timeout'])->name('presence.timeout');
@@ -161,24 +147,19 @@ Route::get('/تقديم-الموقع', function(){
     $posts = Post::get();
     return view('website', compact('posts'));
 })->name('website');
-
-
 Route::post('send-mail',[MailController::class,'mail'])->name('send');
-
 Route::get('/إعادة-تعيين-كلمة-المرور', [AdminController::class,'resetBlade'])->name('reset.get');
-
-
 Route::get('/إعادة-تعيين-كلمة-المرور/{token}', [MailController::class,'emailReset'])->name('reset.email')->middleware('reset.link');
 Route::post('reset-password', [AdminController::class, 'resetPassord'])->name('resetPasswordPost');
-
-
 Route::get('test', function(){
     return view('uploadFiles');
 });
 
-
-Route::get('/{any}', function () {
-    return view('landing');
+Route::get('assist', function(){
+    return view('assist');
+});
+Route::any('/{any}', function () {
+    return 'Not found';
 })->where('any', '.*');
 
 

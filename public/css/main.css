@@ -323,7 +323,7 @@ color: #ffc221;
 transition: .7s;
 }
 .logoutDiv button:hover .ii{
-color: #46443e;
+color: #ffc221;
 }
 .logoutDiv button{
 padding: 0;
@@ -856,9 +856,6 @@ padding: 50px 0 0 0;
 }
 
 }
-
-
-
 .listMessages-section{
 width: 100%;
 }
@@ -1363,6 +1360,24 @@ background-color: transparent;
 color: #003566;
 border: 1px solid green;
 }
+
+.rejectDemande{
+  background-color: #f03738;
+  border: 1px solid transparent;
+  padding: 5px 0;
+  border-radius: 4px;
+  width: 58%;
+  }
+
+  .rejectDemande i{
+    transform: rotate(-45deg);
+  }
+
+  .rejectDemande:hover{
+  background-color: transparent;
+  color: #003566;
+  border: 1px solid #f03738;
+  }
 
 
 .cancelDemande{
@@ -2509,11 +2524,6 @@ height: 60px;/* Altura quando não checado */
   padding: 0 20px;
 }
 
-
-
-
-
-
 .stepOne-section{
   width: 100%;
   display: grid;
@@ -2523,8 +2533,6 @@ height: 60px;/* Altura quando não checado */
   padding: 5px 0 0 5px;
   background-color: #f5f5f5;
 }
-
-
 .stepsIntroduction{
   grid-column: 2/3;
   background-color: #fff;
@@ -2735,6 +2743,8 @@ height: 60px;/* Altura quando não checado */
   position: relative;
 }
 
+
+
 .custom-checkbox input:checked + .custom-checkbox-inner {
   background-color: #ffc221;
 }
@@ -2750,6 +2760,7 @@ height: 60px;/* Altura quando não checado */
   border-radius: 50%;
   background-color: white;
 }
+
 .stepInfosOne{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
@@ -3204,7 +3215,7 @@ align-self: center;
 
 .stepInfosTheLastOneOne button{
   position: absolute;
-  left: 25px;
+  left: 0;
   top: 50%;
   transform: translateY(-50%) scale(0.8);
   display: flex;
@@ -4328,11 +4339,13 @@ padding: 15px 0;
         width: 100%;
         width: 300px;
         height: 200px;
+        object-fit: cover;
       }
       .attachmentImagesTwo img{
         width: 100%;
         width: 300px;
         height: 200px;
+        object-fit: cover;
       }
       .posts-section{
         width: 100%;
@@ -4511,16 +4524,21 @@ padding: 15px 0;
         padding: 0 107px;
         display: grid;
         grid-template-columns: 3.5fr 1fr;
-        grid-template-rows: 0.5fr 15fr;
       }
       .detailPost-sectionOne
       {
         grid-column: 1/3;
-        height: 50px;
-        display: flex;
-        justify-content: end;
-        align-items: center;
+        display: grid;
+        grid-template-columns: 0.2fr 1fr;
         border-bottom: 1px solid #b3c2d142;
+      }
+      .detailPost-sectionOneOne{
+        display: flex;
+        align-items: center;
+      }
+      .detailPost-sectionOneOne i{
+        font-size: 18px;
+        cursor: pointer;
       }
       .detailPost-sectionTwo{
         padding: 40px 0;
@@ -4570,7 +4588,7 @@ padding: 15px 0;
         transform: scale(0.8);
       }
       .ck-editor__editable[role="textbox"] {
-        min-height: 200px;
+        min-height: 270px;
         background: #f8f9fa !important;
         border: 1px solid rgba(0, 53, 102, .25) !important;
         box-shadow: 0 1px 2px #0000001a !important;
@@ -4724,6 +4742,12 @@ padding: 15px 0;
   grid-template-columns: 1fr;
   grid-template-rows: 4.7fr 1fr 1fr 1fr;
 }
+
+.categorieSectionTwoOneOneSoft{
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 4.7fr 1fr 1fr 1fr;
+}
 .categorieSectionTwoOneOneOne{
   width: 100%;
 }
@@ -4731,6 +4755,15 @@ padding: 15px 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+.categorieSectionTwoOneOneOneSoft{
+  width: 100%;
+}
+.categorieSectionTwoOneOneOneSoft img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(100%) brightness(100%);
 }
 .categorieSectionTwoOneOneTwo{
   text-align: right;
@@ -4797,6 +4830,26 @@ padding: 15px 0;
   display: flex;
   justify-content: center;
   gap: 8px;
+}
+
+.categorieSectionTwoOneOneFourOneGOneSoft button{
+  background-color: green;
+  border-radius: 30px;
+  color: #fff;
+  padding: 6px 0;
+  width: 55%;
+  font-size: 14px;
+  font-weight: 400;
+  border: none;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+.categorieSectionTwoOneOneFourOneGOneSoft{
+  align-self: center;
+}
+.categorieSectionTwoOneOneFourOneGOneSoft button:hover{
+  border: none;
 }
 
 .categorieSectionTwoOneOneFourOneGOne button{
@@ -5236,9 +5289,98 @@ position: relative;
   background-color: #003566;
   border-radius: 7px;
 }
-.noPostFound{
-  height: 100vh;
-  text-align: center;
-  padding: 25px 0;
-}
 
+.thisStillChecked {
+  background-color: #ffc221;
+  position: relative;
+}
+.thisStillChecked::before{
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: white;
+}
+.dropdownPosts li{
+  width: 150px;
+  }
+  
+  .messages-tableChikaya{
+    width: 100%;
+    border: none;
+    }
+  
+  .messages-tableChikaya th {
+  text-align: right;
+  background-color: #003566;
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 16px;
+  white-space: nowrap;
+  }
+  
+  .messages-tableChikaya th:not(:first-child) {
+  border-left: 1px solid white;
+  }
+  
+  .messages-tableChikaya th:first-child {
+  border-left: none;
+  }
+  
+  .messages-tableChikaya td{
+  text-align: right;
+  background-color: #eceef0;
+  border-width: 1px 0px 0px 1px;
+  color: #495057;
+  padding: 16px 10px;
+  font-size: 15px;
+  white-space: nowrap;
+  }
+  
+  
+  .messages-tableChikaya td:first-child {
+  border-left: none;
+  }
+
+
+  .tableDivChikaya{
+    background-color: rgba(0,53,102,.02);
+    border-radius: 4px;
+    border: 1px solid rgba(0, 53, 102, .1);
+    width: 95%;
+    padding: 30px;
+    margin: auto;
+    box-shadow: 0 1.77858px 8.89288px #32475c1a;
+    margin-bottom: 50px;
+    }
+    .tableDivChikayaOne{
+      overflow-x: auto;
+      scrollbar-width: thin;
+      scrollbar-color: #003566 #f1f1f1;
+      width: 100%;
+      margin: auto;
+    }
+    .tableDivChikayaOne::-webkit-scrollbar {
+      height: 12px;
+  }
+  
+  .tableDivChikayaOne::-webkit-scrollbar-track {
+      background: #f1f1f1;
+  }
+  
+  .tableDivChikayaOne::-webkit-scrollbar-thumb {
+      background-color: #888;
+      border-radius: 10px;
+      border: 2px solid #f1f1f1;
+  }
+  
+  .tableDivChikayaOne::-webkit-scrollbar-thumb:hover {
+      background: red;
+  }
+  
+  

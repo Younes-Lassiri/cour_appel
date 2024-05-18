@@ -1,3 +1,6 @@
+@php
+    $notices = App\Models\Notice::get();
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -86,7 +89,7 @@
 
 
 
-
+@include('index')
 
 
 <x-foo_ter/>

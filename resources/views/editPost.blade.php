@@ -1,3 +1,7 @@
+@php
+    $notices = App\Models\Notice::get();
+@endphp
+@include('index')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -100,7 +104,7 @@
         </div>
         <div class="create-post-sectionThree">
           <div class="create-post-sectionThreeOne">
-            <div class="create-post-sectionThreeOneOne"><button type="submit">نشر</button></div>
+            <div class="create-post-sectionThreeOneOne"><button type="submit">تعديل</button></div>
             <div></div>
           </div>
           <div class="create-post-sectionThreeTwo"><a href="{{ route('gestionPosts') }}"><button type="button">تراجع</button></a></div>

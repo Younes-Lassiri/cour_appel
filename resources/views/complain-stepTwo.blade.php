@@ -167,10 +167,10 @@
             <div class="stepTwoInfosTwo">
                 <div></div>
                 <div class="stepTwoInfosOneThree">
-                    <div class="stepTwoInfosOneThreeOne"><input type="time" class="" name="time" style="letter-spacing: 2px"><label for="" class=""><span>*  </span>التوقيت التقريبي</label></div>
+                    <div class="stepTwoInfosOneThreeOne"><input type="time" class="@error('time') errorInput @enderror" name="time" style="letter-spacing: 2px" value="{{ old('time') }}"><label for="" class=""><span>*  </span>التوقيت التقريبي</label></div>
                 </div>
                 <div class="stepTwoInfosOneThree">
-                    <div class="stepTwoInfosOneThreeOne"><input type="date" class="" name="date" style="letter-spacing: 2px"><label for="" class=""><span>*  </span>تاريخ الإعتداء</label></div>
+                    <div class="stepTwoInfosOneThreeOne"><input type="date" class="@error('date') errorInput @enderror" name="date" style="letter-spacing: 2px" value="{{ old('date') }}"><label for="" class=""><span>*  </span>تاريخ الإعتداء</label></div>
                 </div>
                 <div class="stepTwoInfosOneTwoFour">: معلومات حول القضية</div>
             </div>
@@ -180,8 +180,6 @@
                     <textarea name="sujet" id="desc-textarea" cols="" rows=""></textarea>
                 </div>
             </div>
-    
-    
             <div class="stepInfosTheLastOne">
                 <div class="stepInfosTheLastOneOne"><button type="submit"><i class='bx bx-chevron-left'></i>متابعة</button></div>
             </div>

@@ -71,9 +71,7 @@
         color: #fff;
         position: absolute;
         left: 50%;
-        transform: translateX(-50%)
-
-
+        transform: translateX(-50%);
     }
     .reset-email-divFive{
         text-align: right;

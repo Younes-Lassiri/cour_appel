@@ -1,3 +1,28 @@
+@php
+    $chikaya = App\Models\Complain::get();
+    $absence = App\Models\DemandeAbsence::where('employe_name', auth()->user()->admin_name)->get();
+    $born = App\Models\bornDemande::where('employe_name', auth()->user()->admin_name)->get();
+    $device = App\Models\DevicesDemande::where('employe_name', auth()->user()->admin_name)->get();
+    $fourniture = App\Models\FournitureDemande::where('employe_name', auth()->user()->admin_name)->get();
+    $imprime = App\Models\ImprimeDemande::where('employe_name', auth()->user()->admin_name)->get();
+    $license = App\Models\LicenceDemande::where('employe_name', auth()->user()->admin_name)->get();
+    $plastique = App\Models\PlastiqueDemande::where('employe_name', auth()->user()->admin_name)->get();
+    $demandeCount = $absence->count()+$born->count()+$device->count()+$fourniture->count()+$imprime->count()+$license->count()+$plastique->count();
+
+@endphp
+
+@php
+    $absenceA = App\Models\DemandeAbsence::get();
+    $bornA = App\Models\bornDemande::get();
+    $deviceA = App\Models\DevicesDemande::get();
+    $fournitureA = App\Models\FournitureDemande::get();
+    $imprimeA = App\Models\ImprimeDemande::get();
+    $licenseA = App\Models\LicenceDemande::get();
+    $plastiqueA = App\Models\PlastiqueDemande::get();
+    $demandeCountA = $absenceA->count()+$bornA->count()+$deviceA->count()+$fournitureA->count()+$imprimeA->count()+$licenseA->count()+$plastiqueA->count();
+
+@endphp
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -61,16 +86,66 @@
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-togglee" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="display: flex; align-items: center; gap: 5px">
-              <i class='bx bxs-down-arrow' style="font-size: 11px"></i>قائمة الطلبات
+              @if ($demandeCountA > 0)
+              <span style="color: #ffc221">({{ $demandeCountA }})</span>
+              <i class='bx bxs-down-arrow' style="font-size: 8px"></i>قائمة الطلبات
+              @else
+                  <i class='bx bxs-down-arrow' style="font-size: 8px"></i>
+                  قائمة الطلبات
+              @endif
             </a>
             <ul class="dropdown-menu dropdown-menu-end">
-              <li><a class="" href="{{ route('list-licence') }}">طلبات رخصة إدارية</a></li>
-              <li><a class="" href="{{ route('list-fourniture') }}">طلبات أدوات المكتب</a></li>
-              <li><a class="" href="{{ route('list-plastique') }}">طلبات الطوابع المطاطية</a></li>
-              <li><a href="{{ route('list-device') }}">طلبات جهاز الحاسوب و الطابعات</a></li>
-              <li><a href="{{ route('list-imprime') }}">طلبات المطبوعات</a></li>
-              <li><a href="{{ route('list-born') }}">طلبات الولادة</a></li>
-              <li><a href="{{ route('demande.index') }}">طلبات الغياب</a></li>
+              <li>
+                <a class="" href="{{ route('list-licence') }}">
+                  @if ($licenseA->count() > 0)
+                  <span style="color: #ffc221">({{ $licenseA->count() }}) </span>طلبات رخصة إدارية
+                  @else
+                   طلبات رخصة إدارية
+                  @endif
+                </a>
+              </li>
+              <li><a class="" href="{{ route('list-fourniture') }}">
+                @if ($fournitureA->count() > 0)
+                <span style="color: #ffc221">({{ $fournitureA->count() }}) </span>طلبات أدوات المكتب
+                @else
+                    طلبات أدوات المكتب
+                @endif
+              </a></li>
+              <li><a class="" href="{{ route('list-plastique') }}">
+                @if ($plastiqueA->count() > 0)
+                <span style="color: #ffc221">({{ $plastiqueA->count() }}) </span>طلبات الطوابع المطاطية
+                @else
+                طلبات الطوابع المطاطية
+                @endif
+              </a></li>
+              <li><a href="{{ route('list-device') }}">
+                @if ($deviceA->count() > 0)
+                <span style="color: #ffc221">({{ $deviceA->count() }}) </span>طلبات جهاز الحاسوب و الطابعات
+                @else
+                طلبات جهاز الحاسوب و الطابعات
+                @endif
+              </a></li>
+              <li><a href="{{ route('list-imprime') }}">
+                @if ($imprimeA->count() > 0)
+                <span style="color: #ffc221">({{ $imprimeA->count() }}) </span>طلبات المطبوعات
+                @else
+                طلبات المطبوعات
+                @endif
+              </a></li>
+              <li><a href="{{ route('list-born') }}">
+                @if ($bornA->count() > 0)
+                <span style="color: #ffc221">({{ $bornA->count() }}) </span>طلبات الولادة
+                @else
+                طلبات الولادة
+                @endif
+              </a></li>
+              <li><a href="{{ route('demande.index') }}">
+                @if ($absenceA->count() > 0)
+                <span style="color: #ffc221">({{ $absenceA->count() }}) </span>طلبات الغياب
+                @else
+                طلبات الغياب
+                @endif
+              </a></li>
             </ul>
           </li>
               <li>
@@ -86,22 +161,17 @@
             <li><a href="{{ route('presence.list') }}"><i class='bx bxs-bell-plus' style='color:#ffffff'  ></i> لائحة الحظور</a></li>
             @endif
             @if (auth()->user()->role === 'employe')
-            <li><a href={{ route('gestionPosts') }} style="display: flex; align-items: center; gap: 5px"><i class='bx bx-line-chart'></i>إدارة المنشورات</a></li>
+            <li><a href={{ route('listChikaya') }} style="display: flex; align-items: center; gap: 5px"><span style="color: #ffc221">({{ $chikaya->count() }})</span><i class='bx bx-line-chart'></i> تدبير الشكايات</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-togglee" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="display: flex; align-items: center; gap: 5px">
+                <i class='bx bxs-down-arrow' style="font-size: 8px"></i>المنشورات
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end dropdownPosts">
+                <li><a href="{{ route('add-post-blade') }}" style="display: flex; align-items: center; gap: 5px;justify-content: end"><i class='bx bx-pencil' style='color:#ffffff'></i>إضافة منشور</a></li>
+                <li><a href={{ route('gestionPosts') }} style="display: flex; align-items: center; gap: 5px;justify-content: end"><i class='bx bx-line-chart'></i>إدارة المنشورات</a></li>
 
-
-            <li><a href="{{ route('add-post-blade') }}" style="display: flex; align-items: center; gap: 5px"><i class='bx bx-pencil' style='color:#ffffff'></i>إضافة منشور</a></li>
-
-@php
-    $absence = App\Models\DemandeAbsence::get();
-    $born = App\Models\bornDemande::get();
-    $device = App\Models\DevicesDemande::get();
-    $fourniture = App\Models\FournitureDemande::get();
-    $imprime = App\Models\ImprimeDemande::get();
-    $license = App\Models\LicenceDemande::get();
-    $plastique = App\Models\PlastiqueDemande::get();
-    $demandeCount = $absence->count()+$born->count()+$device->count()+$fourniture->count()+$imprime->count()+$license->count()+$plastique->count();
-
-@endphp
+              </ul>
+            </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-togglee" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="display: flex; align-items: center; gap: 5px">
                 @if ($demandeCount > 0)

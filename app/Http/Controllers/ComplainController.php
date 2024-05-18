@@ -30,13 +30,14 @@ class ComplainController extends Controller
         $requestData = $request->all();
         return view('complain-stepThree', compact('requestData'));
     }
-
     public function step4(Request $request)
     {
+        $request->validate([
+            'carteNacional' => 'required',
+            'additionalImages' => 'required',
+        ]);
         $imagePath = $request->file('carteNacional')->store('images', 'public');
-
         $imagePatha = $request->file('additionalImages')->store('images', 'public');
-
         $requestData = $request->all();
         return view('complain-stepFour', compact('requestData', 'imagePath', 'imagePatha'));
     }
@@ -45,7 +46,6 @@ class ComplainController extends Controller
         $numericPart = preg_replace('/[^0-9]/', '', $request->documentNum);
         $randomNumber = rand(1000, 9999);
         $suiviNum = $numericPart . $randomNumber;
-
         
         $theComplain = [
             "senderName" =>$request->firstName. " ". $request->lastName,
@@ -63,10 +63,9 @@ class ComplainController extends Controller
             "time" =>$request->time,
             "cinImage" =>$request->cartNational,
             "suiviNum" =>$suiviNum,
-            "sujet" =>$request->sujet,
+            "sujet" => $request->sujet ? $request->sujet : null,
             'status' => 'under review'
         ];
-
         $newComplain = Complain::create($theComplain);
 
         return view('complainLast', compact('suiviNum'));
@@ -95,6 +94,12 @@ class ComplainController extends Controller
     } else {
         return redirect()->route('complainSuivi')->with(['status' => 'لا توجد شكوى تحت هذا الرقم، يرجى مراجعة رقم الطلب', 'sn' => $request->sn]);
     }
+}
+
+public function listChikaya()
+{
+    $complains = Complain::get();
+    return view('list-complains', compact('complains'));
 }
 
 }

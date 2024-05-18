@@ -1,3 +1,8 @@
+@php
+    $notices = App\Models\Notice::get();
+@endphp
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,8 +32,6 @@
           <div class="searchResultWaiting">
             <p>تمكن هذه الواجهة من معاينة طلبات التسجيل المقدمة من الموظفين والمديرين الجدد على حد سواء. لديك الخيار لقبول أو رفض هذه الطلبات حسب الرغبة<br><span>.واجهة خاصة بالموظفين تحت مسمى وظيفي رئيس</span></p>
           </div>
-
-
           <div class="theResult">
             
             <span class="suivie">لائحة الموظفين</span>
@@ -46,9 +49,24 @@
                 });
             </script>
         @endif
+
+        @if (session()->has('reject'))
+            <script>
+                Swal.fire({
+                    position: "center-center",
+                    icon: "success",
+                    title: "{{ session('reject') }}",
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+            </script>
+        @endif
+
+        
         <div class="tableDiv">
             <table border="1" class="messages-table">
                 <tr>
+                    <th>رفض الطلب</th>
                     <th>الموافقة على الطلب</th>
                     <th>وضعية الطلب</th>
                     <th>المسمى الوظيفي</th>
@@ -57,6 +75,12 @@
                 </tr>
                 @foreach ($waitingEmploye as $emp)
                     <tr class="messageRow">
+                        <td>
+                            <form action={{ route('employe.reject', $emp->id) }} method="post">
+                                @csrf
+                                <button type="submit" class="rejectDemande"><i class='bx bx-plus'></i></button>
+                            </form>
+                        </td>
                         <td>
                             <form action={{ route('employe.accept', $emp->id) }} method="post">
                                 @csrf
@@ -85,6 +109,7 @@
     </script>
     <x-foo_ter/>
     
+    @include('index')
     
 </body>
 </html>

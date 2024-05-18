@@ -1,3 +1,6 @@
+@php
+    $notices = App\Models\Notice::get();
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,6 +20,8 @@
 
 </head>
 <body>
+    
+@include('index')
     <div class="listMessages-section">
 
         @if (session()->has('delete'))

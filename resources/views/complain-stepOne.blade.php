@@ -111,29 +111,39 @@
                     </div>
             
             <div class="stepInfosOne">
-                <div><input type="hidden" id="chikayaType" name="selectedType"></div>
-
-
+                <div><input type="hidden" id="chikayaType" name="selectedType" value="{{ old('selectedType') }}"></div>
                 <div class="stepInfosOneTwo">
                     <div>شكايات الجيران</div>
                     <div class="custom-checkbox" data-name="type">
                         <input type="checkbox" id="myCheckbox" name="" value="شكايات الجيران">
-                        <div class="custom-checkbox-inner @if ($errors->has('selectedType')) errorInputCheck @endif"></div>
+                        <div class="custom-checkbox-inner @if ($errors->has('selectedType')) errorInputCheck @endif" data-type-chikaya="شكايات الجيران" id="typeOfChikaya"></div>
                     </div>
                 </div>
+                <script>
+                    document.addEventListener("DOMContentLoaded", function() {
+                    let checkboxes = document.querySelectorAll('#typeOfChikaya');
+                    let chikayaType = document.querySelector('#chikayaType').value;
+
+                    checkboxes.forEach(check => {
+                        if (check.getAttribute('data-type-chikaya') === chikayaType) {
+                            check.classList.add('thisStillChecked');
+                        }
+                    });
+                });
+                </script>
                 
                 <div class="stepInfosOneTwo">
                     <div>شكاية سرقة</div>
                     <div class="custom-checkbox" data-name="type">
                         <input type="checkbox" id="myCheckbox" name="" value="شكاية سرقة">
-                        <div class="custom-checkbox-inner @if ($errors->has('selectedType')) errorInputCheck @endif"></div>
+                        <div class="custom-checkbox-inner @if ($errors->has('selectedType')) errorInputCheck @endif" data-type-chikaya="شكاية سرقة" id="typeOfChikaya"></div>
                     </div>
                 </div>
                 <div class="stepInfosOneTwo">
                     <div>شكاية ظرب أو جرج</div>
                     <div class="custom-checkbox" data-name="type">
                         <input type="checkbox" id="myCheckbox" name="" value="شكاية ظرب أو جرج">
-                        <div class="custom-checkbox-inner @if ($errors->has('selectedType')) errorInputCheck @endif"></div>
+                        <div class="custom-checkbox-inner @if ($errors->has('selectedType')) errorInputCheck @endif" data-type-chikaya="شكاية ظرب أو جرج" id="typeOfChikaya"></div>
                     </div>
                 </div>
 
@@ -144,16 +154,15 @@
 
             <div class="stepInfosTwo">
                 <div class="stepInfosOneThree">: المعني بالطلب</div>
-                <input type="hidden" id="chikayaNacio" name="selectedNacio">
+                <input type="hidden" id="chikayaNacio" name="selectedNacio" value="{{ old('selectedNacio') }}">
                 <input type="hidden" id="chikayaDocument" name="selectedDocument" value="{{ old('selectedDocument') }}">
                 <input type="hidden" name="chikayaGender" id="chikayaGender" value="{{ old('chikayaGender') }}">
                 <div class="stepInfosTwoTwo">
-
                     <div  class="stepInfosTwoTwoOne">
                         <div>أجنبي</div>
                         <div class="custom-checkboxNacio" data-name="type">
                             <input type="checkbox" id="myCheckbox" name="" value="أجنبي">
-                            <div class="custom-checkbox-inner @if ($errors->has('selectedNacio')) errorInputCheck @endif"></div>
+                            <div class="custom-checkbox-inner @if ($errors->has('selectedNacio')) errorInputCheck @endif"  data-type-nacio="أجنبي" id="chikayaNacioCheck"></div>
                         </div>
                     </div>
 
@@ -161,9 +170,23 @@
                         <div>مغربي</div>
                         <div class="custom-checkboxNacio" data-name="type">
                             <input type="checkbox" id="myCheckbox" name="" value="مغربي">
-                            <div class="custom-checkbox-inner @if ($errors->has('selectedNacio')) errorInputCheck @endif"></div>
+                            <div class="custom-checkbox-inner @if ($errors->has('selectedNacio')) errorInputCheck @endif"  data-type-nacio="مغربي" id="chikayaNacioCheck"></div>
                         </div>
                     </div>
+
+                    <script>
+                    document.addEventListener("DOMContentLoaded", function() {
+                    let checkboxes = document.querySelectorAll('#chikayaNacioCheck');
+                    let chikayaType = document.querySelector('#chikayaNacio').value;
+
+                    checkboxes.forEach(check => {
+                        if (check.getAttribute('data-type-nacio') === chikayaType) {
+                            check.classList.add('thisStillChecked');
+                        }
+                    });
+                });
+                </script>
+                    
 
                     <div class="stepInfosTwoTwoFive">: الجنسية</div>
 
@@ -290,7 +313,6 @@
         document.addEventListener("DOMContentLoaded", function() {
         const checkboxes = document.querySelectorAll('.custom-checkbox input[type="checkbox"]');
         const hiddenInput = document.getElementById("chikayaType");
-        
         checkboxes.forEach(function(checkbox) {
             checkbox.addEventListener("change", function() {
             const groupName = this.closest('.custom-checkbox').dataset.name;

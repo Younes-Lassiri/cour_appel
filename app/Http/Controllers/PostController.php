@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\Image;
+use App\Models\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
@@ -64,7 +66,7 @@ class PostController extends Controller
 
     public function postsIndex()
     {
-        $posts = Post::get();
+        $posts = Post::withTrashed()->get();
         $months = [
             "Jan", 
             "Feb", 
@@ -125,6 +127,23 @@ class PostController extends Controller
     return redirect()->route('gestionPosts')->with('updatePost','تم تعديل المنشور بنجاح');
 
 }
+
+    public function restore(Request $request)
+    {
+        $post = Post::withTrashed()->findOrFail($request->id);
+        $post->restore();
+        return redirect()->route('gestionPosts')->with('restore', 'تم استرجاع المنشور بنجاح');
+    }
+
+    public function force(Request $request)
+{
+    $post = Post::withTrashed()->findOrFail($request->id);
+    
+    DB::table('images')->where('post_id', $post->id)->delete();
+    $post->forceDelete();
+    return redirect()->route('gestionPosts')->with('force', 'تم الحذف النهائي للمنشور بنجاح');
+}
+
 
     
 }

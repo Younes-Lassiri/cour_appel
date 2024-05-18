@@ -1,3 +1,7 @@
+@php
+    $notices = App\Models\Notice::get();
+@endphp
+@include('index')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -91,6 +95,8 @@
             </table>
         </div>
     </div>
+
+   
 
     <x-foo_ter/>
     <script>

@@ -13,7 +13,7 @@
 </head>
 <body>
     
-    <form method="post" action="{{ route('step4') }}" enctype="multipart/form-data">
+    <form action="{{ route('step4') }}" enctype="multipart/form-data" method="post">
         @csrf
     <div>
         <div class="landing-sectionHeadO">
@@ -109,11 +109,11 @@
             
             <div class="stepThreeInfosOne">
                 <div class="stepThreeInfosOneOne">
-                    <input type="file" name="carteNacional" id="">
+                    <input type="file" name="carteNacional" id="" required>
                 </div>
     
                 <div class="stepThreeInfosOneTwo">
-                    <label for="">صورة البطاقة الوطنية</label>
+                    <label for="">(الواجهة الأمامية) صورة البطاقة الوطنية</label>
                 </div>
     
     
@@ -124,11 +124,10 @@
     
             <div class="stepThreeInfosOne">
                 <div class="stepThreeInfosOneOne">
-                    <input type="file" name="additionalImages" id="carteNacio">
+                    <input type="file" name="additionalImages" id="carteNacio" required>
                 </div>
-    
                 <div class="stepThreeInfosOneTwo">
-                    <label for="">مرفقات إضافية</label>
+                    <label for="">(الواجهة الخلفية) صورة البطاقة الوطنية</label>
                 </div>
     
     
@@ -140,8 +139,6 @@
             </div>
         </div>
     </div>
-
-    
 </form>
 
 

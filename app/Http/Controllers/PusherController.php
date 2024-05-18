@@ -20,14 +20,19 @@ class PusherController extends Controller
 
     public function broadcast(Request $request)
     {
-        broadcast(new PusherBroadcast($request->get('message')))->toOthers();
+        $senderNameAuth = auth()->user()->admin_name;
+        broadcast(new PusherBroadcast($request->get('message'),$senderNameAuth))->toOthers();
 
-        return view('broadcast', ['message' => $request->get('message')]);
+        return view('broadcast', [
+            'message' => $request->get('message'),
+            'senderNameAuth' => $senderNameAuth
+        ]);
     }
 
     public function receive(Request $request)
     {
-        return view('receive', ['message' => $request->get('message')]);
+        return view('receive', [
+            'message' => $request->get('message')]);
     }
     
 }

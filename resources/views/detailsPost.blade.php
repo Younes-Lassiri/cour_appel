@@ -15,17 +15,34 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
+    @if (session()->has('commentAdded'))
+        <script>
+            Swal.fire({
+                position: "top-center",
+                icon: "success",
+                title: "{{ session('commentAdded') }}",
+                showConfirmButton: false,
+                timer: 2000
+            });
+        </script>
+    @endif
     <x-landing-section_head />
     <x-user_navbar/>
     <div class="detailPost-section">
         <input type="hidden" name="" id="title" value="{{ $post->title }}">
         <div class="detailPost-sectionOne">
-            <nav style="" aria-label="breadcrumb" class="breadCumb">
-                <ol class="breadcrumb" style="padding: 14px 0 0 0">
-                  <li class="breadcrumb-item"><a class="decoration" href="" style="color: #809AB3;font-style: normal;font-weight: bold">{{ $post->title }}</a></li>
-                  <li class="breadcrumb-item active" aria-current="page"><a href="{{ route('home') }}"><i class='bx bx-home' style='color:#809AB3; padding: 2px 2px; border-radius: 5px'  ></i></a></li>
-                </ol>
-              </nav>
+<div class="detailPost-sectionOneOne">
+    <i class='bx bx-star' style='color:#003566' data-post-id={{ $post->id }} onclick="togglePostId(this)"></i>
+
+</div>
+<div class="detailPost-sectionOneTwo">
+    <nav style="" aria-label="breadcrumb" class="breadCumb">
+        <ol class="breadcrumb" style="padding: 14px 0 0 0">
+          <li class="breadcrumb-item"><a class="decoration" href="" style="color: #809AB3;font-style: normal;font-weight: bold">{{ $post->title }}</a></li>
+          <li class="breadcrumb-item active" aria-current="page"><a href="{{ route('home') }}"><i class='bx bx-home' style='color:#809AB3; padding: 2px 2px; border-radius: 5px'  ></i></a></li>
+        </ol>
+      </nav>
+</div>
         </div>
         <div class="detailPost-sectionTwo">
             <div class="detailPost-sectionTwoOne"><img src="{{ asset('storage/'. $post->images[0]->image) }}" alt=""></div>
@@ -72,5 +89,55 @@
     </script>
     
     <x-foo_ter/>
+
+    <script>
+        function getStoredPostIds() {
+            const storedPostIds = localStorage.getItem('postIds');
+            return storedPostIds ? JSON.parse(storedPostIds) : [];
+        }
+
+        function savePostIds(postIds) {
+            localStorage.setItem('postIds', JSON.stringify(postIds));
+        }
+
+        function togglePostId(element) {
+            const postId = element.getAttribute('data-post-id');
+            let postIds = getStoredPostIds();
+
+            if (postIds.includes(postId)) {
+                // Remove the post ID from the list
+                postIds = postIds.filter(id => id !== postId);
+                element.classList.remove('bxs-star');
+                element.classList.add('bx-star');
+                console.log('Post ID removed:', postId);
+            } else {
+                // Add the post ID to the list
+                postIds.push(postId);
+                element.classList.remove('bx-star');
+                element.classList.add('bxs-star');
+                console.log('Post ID stored:', postId);
+            }
+
+            savePostIds(postIds);
+        }
+
+        // On page load, update the classes based on stored post IDs
+        document.addEventListener('DOMContentLoaded', function() {
+            const postIds = getStoredPostIds();
+            const elements = document.querySelectorAll('.detailPost-sectionOneOne i');
+
+            elements.forEach(element => {
+                const postId = element.getAttribute('data-post-id');
+                if (postIds.includes(postId)) {
+                    element.classList.remove('bx-star');
+                    element.classList.add('bxs-star');
+                }
+            });
+        });
+    </script>
+
+
+<script src="/js/main.js"></script>
+    
 </body>
 </html>

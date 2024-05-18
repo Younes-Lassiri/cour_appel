@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use App\Models\Admin;
 use App\Models\Notice;
 use App\Models\Message;
@@ -17,6 +18,26 @@ use Illuminate\Support\Facades\Mail;
 
 class AdminController extends Controller
 {
+    public function landing()
+    {
+        $months = [
+            "Jan", 
+            "Feb", 
+            "Mar", 
+            "Apr", 
+            "May", 
+            "Jun",
+            "Jul", 
+            "Aug", 
+            "Sep", 
+            "Oct", 
+            "Nov", 
+            "Dec"
+        ];
+        $newsposts = Post::where('tag', 'news')->get();
+        $reportposts = Post::where('tag', 'report')->get();
+        return view('landing', compact('newsposts','reportposts','months'));
+    }
     public function signupBlade(){
         return view('addAdmin');
     }
@@ -117,6 +138,13 @@ class AdminController extends Controller
         $theEmploye->update(['status' => 'approved']);
     
         return redirect()->route('listWaitingEmployees')->with('accept', 'تم قبول طلب الموظف بنجاح');
+    }
+
+    public function rejectEmploye(Request $request){
+        $theEmploye = Admin::findOrFail($request->id);
+
+        $theEmploye->delete();
+        return redirect()->route('listWaitingEmployees')->with('reject', 'تم رفض طلب الموظف بنجاح');
     }
 
     public function settingsShow(){

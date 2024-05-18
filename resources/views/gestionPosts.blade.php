@@ -27,6 +27,30 @@
         </script>
     @endif
 
+    @if (session()->has('restore'))
+        <script>
+            Swal.fire({
+                position: "center-center",
+                icon: "success",
+                title: "{{ session('restore') }}",
+                showConfirmButton: false,
+                timer: 2000
+            });
+        </script>
+    @endif
+
+    @if (session()->has('force'))
+        <script>
+            Swal.fire({
+                position: "center-center",
+                icon: "success",
+                title: "{{ session('force') }}",
+                showConfirmButton: false,
+                timer: 2000
+            });
+        </script>
+    @endif
+
     @if (session()->has('updatePost'))
     <script>
         Swal.fire({
@@ -52,6 +76,7 @@
         <div class="categorieSectionTwo">
             <div class="categorieSectionTwoOne">
                 @foreach ($posts as $post)
+                    @if ($post->deleted_at === Null)
                     <div class="categorieSectionTwoOneOne" data-tag="{{ $post->tag }}" data-date="{{ $post->created_at }}">
                         <div class="categorieSectionTwoOneOneOne"><img src="{{ asset('storage/'. $post->images[0]->image) }}" alt=""></div>
                         <div class="categorieSectionTwoOneOneTwo">{{ $post->title }}</div>
@@ -82,6 +107,38 @@
                             <div class="categorieSectionTwoOneOneFourTwo"><p><span style="color: #003566;">{{ $monthAbbreviation }}</span>{{ explode('-', explode(' ', $post->created_at)[0])[0] }} {{ explode('-', explode(' ', $post->created_at)[0])[2] }}<i class='bx bxs-time-five' style='color:#003566'  ></i></p></div>
                         </div>
                     </div>
+                    @else
+                    <div class="categorieSectionTwoOneOneSoft" data-tag="{{ $post->tag }}" data-date="{{ $post->created_at }}">
+                        <div class="categorieSectionTwoOneOneOneSoft"><img src="{{ asset('storage/'. $post->images[0]->image) }}" alt=""></div>
+                        <div class="categorieSectionTwoOneOneTwo">{{ $post->title }}</div>
+                        <div class="categorieSectionTwoOneOneThree">
+                            <?php
+                                $words = explode(' ', $post->description);
+                                $limitedWords = implode(' ', array_slice($words, 0, 15));
+                                print($limitedWords);
+                            ?>
+                            <span style="color: #ffbc2b">[</span>...<span style="color: #ffbc2b">]</span>
+                        </div>
+                        <div class="categorieSectionTwoOneOneFourG">
+                            @php
+                                $postMonth = intval(explode('-', explode(' ', $post->created_at)[0])[1]);
+                                $monthAbbreviation = isset($months[$postMonth - 1]) ? $months[$postMonth - 1] : '';
+                            @endphp
+                            <div class="categorieSectionTwoOneOneFourOneG">
+                                <form action="{{ route('post-force', $post->id) }}" method="post">
+                                @csrf
+                                <button><i class='bx bxs-message-x' style="margin-top: 5px"></i> حذف</button>
+                                </form>
+                            </div>
+                            <div class="categorieSectionTwoOneOneFourOneGOneSoft">
+                                <form action="{{ route('post-restore', $post->id) }}" method="POST">
+                                    @csrf
+                                    <button><i class='bx bx-pen' style="margin-top: 5px"></i> استرجاع</button>                                </form>
+                                </div>
+                            <div class="categorieSectionTwoOneOneFourTwo"><p><span style="color: #003566;">{{ $monthAbbreviation }}</span>{{ explode('-', explode(' ', $post->created_at)[0])[0] }} {{ explode('-', explode(' ', $post->created_at)[0])[2] }}<i class='bx bxs-time-five' style='color:#003566'  ></i></p></div>
+                        </div>
+                    </div>
+                    @endif
                 @endforeach
             </div>
             <div class="post-filtrage">

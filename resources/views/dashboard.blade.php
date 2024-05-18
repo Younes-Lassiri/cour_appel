@@ -209,7 +209,6 @@
             <td></td>
             <td></td>
             <td></td>
-
         @endif
         <td>{{ $mess->message_object }}</td>
         <td>{{ $mess->sender_city }}</td>
@@ -220,7 +219,6 @@
         <td>{{ $mess->id }}</td>
     </tr>
 @endforeach
-
     </table>
 
 
