@@ -1,7 +1,3 @@
-@php
-    $notices = App\Models\Notice::get();
-@endphp
-@include('index')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>نافذة الحق</title>
-    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://cdn.lordicon.com/lordicon.js"></script>
@@ -39,7 +35,7 @@
             <div class="categorieSectionTwoOne">
                 @foreach ($posts as $post)
                     <div class="categorieSectionTwoOneOne">
-                        <div class="categorieSectionTwoOneOneOne"><img src="{{ asset('storage/'. $post->images[0]->image) }}" alt=""></div>
+                        <div class="categorieSectionTwoOneOneOne"><img src="{{ asset($post->images[0]->image) }}" alt=""></div>
                         <div class="categorieSectionTwoOneOneTwo">{{ $post->title }}</div>
                         <div class="categorieSectionTwoOneOneThree">
                             <?php

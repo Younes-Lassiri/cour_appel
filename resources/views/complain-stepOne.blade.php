@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>نافذة الحق</title>
-    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link rel="icon" href="/img/icon.ico">
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -22,7 +22,7 @@
         <div class="head-three"><img src="/img/newLight.png" alt=""></div>
     </div>
 
-    <div class="stepOne-section">
+    <div class="stepOne-sectionFirstComplain">
         <div class="allSteps">
 
             <div class="allStepsOne">
@@ -109,7 +109,6 @@
                         <div class="theErrorsSection">تعبئة أو اختيار كل حقول الإدخال باللون الأحمر</div>
                     @endif
                     </div>
-            
             <div class="stepInfosOne">
                 <div><input type="hidden" id="chikayaType" name="selectedType" value="{{ old('selectedType') }}"></div>
                 <div class="stepInfosOneTwo">
@@ -140,7 +139,7 @@
                     </div>
                 </div>
                 <div class="stepInfosOneTwo">
-                    <div>شكاية ظرب أو جرج</div>
+                    <div>شكاية ضرب أو جرج</div>
                     <div class="custom-checkbox" data-name="type">
                         <input type="checkbox" id="myCheckbox" name="" value="شكاية ظرب أو جرج">
                         <div class="custom-checkbox-inner @if ($errors->has('selectedType')) errorInputCheck @endif" data-type-chikaya="شكاية ظرب أو جرج" id="typeOfChikaya"></div>
@@ -175,16 +174,16 @@
                     </div>
 
                     <script>
-                    document.addEventListener("DOMContentLoaded", function() {
-                    let checkboxes = document.querySelectorAll('#chikayaNacioCheck');
-                    let chikayaType = document.querySelector('#chikayaNacio').value;
+                        document.addEventListener("DOMContentLoaded", function() {
+                        let checkboxes = document.querySelectorAll('#chikayaNacioCheck');
+                        let chikayaType = document.querySelector('#chikayaNacio').value;
 
-                    checkboxes.forEach(check => {
-                        if (check.getAttribute('data-type-nacio') === chikayaType) {
-                            check.classList.add('thisStillChecked');
-                        }
+                        checkboxes.forEach(check => {
+                            if (check.getAttribute('data-type-nacio') === chikayaType) {
+                                check.classList.add('thisStillChecked');
+                            }
+                        });
                     });
-                });
                 </script>
                     
 
@@ -218,25 +217,16 @@
                         </div>
                     </div>
                 </div>
-
-
                 <div class="stepInfosTwoOneLast">
-
 <div class="stepInfosTwoOneLastOne">
     <div class="stepInfosTwoOneLastOneOne"><input type="email" class="@error('email') errorInput @enderror" name="email" value="{{ old('email') }}" autocomplete="off"><label for="" class=""><span>*  </span>البريد الالكتروني</label></div>
 </div>
-
-
-
 <div class="stepInfosTwoOneLastOne">
     <div class="stepInfosTwoOneLastOneOne"><input type="tel" class="@error('telephone') errorInput @enderror" name="telephone" placeholder="(+212) 06-66-66-66-66" value="{{ old('telephone') }}" autocomplete="off"><label for="" class=""><span>*  </span>الهاتف</label></div>
 </div>
-
-
 <div class="stepInfosTwoOneLastOne">
     <div class="stepInfosTwoOneLastOneOne"><input style="text-align: right" type="date" class="@error('dateNaissance') errorInput @enderror" name="dateNaissance" value="{{ old('dateNaissance') }}"><label for="" class=""><span>*  </span>تاريخ الازدياد</label></div>
 </div>
-
 <div class="stepInfosGender">
     <div class="dropdown theDropdown @if ($errors->has('chikayaGender')) errorInput @endif">
         <div class="dropdown-btn notChoosed">إختار جنس المعني</div>

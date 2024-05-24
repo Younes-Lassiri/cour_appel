@@ -7,7 +7,7 @@
     <link rel="icon" href="/img/icon.ico">
     <link rel="stylesheet" href="path/to/bootstrap.min.css">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>

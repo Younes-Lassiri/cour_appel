@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>نافذة الحق</title>
-    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link rel="icon" href="/img/icon.ico">
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -13,18 +13,17 @@
 </head>
 <body>
     
-    <form action="{{ route('step4') }}" enctype="multipart/form-data" method="post">
-        @csrf
-    <div>
-        <div class="landing-sectionHeadO">
+<form action="{{ route('step4') }}" enctype="multipart/form-data" method="post">
+    @csrf
+    <div class="landing-sectionHeadO">
       
             <div class="head-one"><a href="/"><img src="/img/project_nameLight.png" alt=""></a></div>
             <div class="head-twoO"><span style="color: #ffbc2b">مَحكَمة الإسْتئنَاف </span>في خدمة المواطن</div>
             <div class="head-three"><img src="/img/newLight.png" alt=""></div>
-        </div>
+    </div>
     
-        <div class="stepOne-section">
-            <div class="allSteps">
+    <div class="stepOne-sectionUpload">
+        <div class="allSteps">
     
                 <div class="allStepsOne">
                     <div class="allStepsOneOne">استلام الوصل</div>
@@ -67,10 +66,8 @@
                     <div class="allStepsOneTwoColor">1</div>
                     <div class="allStepsOneThree">مقدم الطلب/المعني بالطلب</div>
                 </div>
-            </div>
-    
-    
-            <div class="stepsIntroduction">
+        </div>
+        <div class="stepsIntroduction">
                 <div class="stepsIntroductionOne"><img src="https://egrace.justice.gov.ma/assets/images/etapes/group_mizan.svg" alt=""></div>
                 <div class="stepsIntroductionTwo">
                     <div class="stepsIntroductionTwoOne"><div style="font-weight: 700;font-size: 14px">تعريف بالمرحلة</div>
@@ -86,10 +83,8 @@
     
                 <div class="stepsIntroductionThree"></div>
                 
-            </div>
-    
-    
-        <div class="stepThreeInfos">
+        </div>
+    <div class="stepThreeInfos">
             <input type="hidden" name="selectedType" value="{{ $requestData["selectedType"] }}" id="">
             <input type="hidden" name="selectedNacio" value="{{ $requestData["selectedNacio"] }}" id="">
             <input type="hidden" name="selectedDocument" value="{{ $requestData["selectedDocument"] }}" id="">
@@ -137,7 +132,7 @@
             <div class="stepInfosTheLastOne">
                 <div class="stepInfosTheLastOneOne"><button type="submit"><i class='bx bx-chevron-left'></i>متابعة</button></div>
             </div>
-        </div>
+    </div>
     </div>
 </form>
 

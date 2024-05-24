@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>نافذة الحق</title>
     <link rel="icon" href="/img/icon.ico">
-    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
 </head>

@@ -1,7 +1,3 @@
-@php
-    $notices = App\Models\Notice::get();
-@endphp
-@include('index')
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -69,5 +69,6 @@ class Kernel extends HttpKernel
         'status' => \App\Http\Middleware\StatusMiddleware::class,
         'message.employe' => \App\Http\Middleware\MessagesMiddleware::class,
         'reset.link' => \App\Http\Middleware\VerifyPasswordResetToken::class,
+        'block.mobile' => \App\Http\Middleware\BlockMobile::class,
     ];
 }

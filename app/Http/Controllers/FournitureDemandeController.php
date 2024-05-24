@@ -13,10 +13,16 @@ class FournitureDemandeController extends Controller
     }
 
     public function fournitureSend(Request $request){
+        $request->validate([
+            'typeF' => 'required',
+            'why' => 'required',
+            'input_values' => 'required'
+        ]);
         $newDemande = [
             "employe_name" => auth()->user()->admin_name,
             "type_fourniture" =>$request->typeF ,
             "number_fourniture" =>implode(',', $request->input_values),
+            "status" => "under review",
             "why" => $request->why
         ];
         $newAdd =FournitureDemande::create($newDemande);
@@ -49,5 +55,23 @@ class FournitureDemandeController extends Controller
         $waitingEmploye = Admin::where('status', '=', 'not approved')->get();
 
         return view('fournitureListEmp', compact('fournitureDemandes', 'waitingEmploye'));
+    }
+
+
+    public function acceptFournitureDemande(Request $request)
+    {
+        $licence = FournitureDemande::findOrFail($request->id);
+        $licence->status = 'approved';
+        $licence->save();
+
+        return redirect()->back()->with('successAccept', 'تم الموافقة على طلب الموضف');
+    }
+    public function rejectFournitureDemande(Request $request)
+    {
+        $licence = FournitureDemande::findOrFail($request->id);
+        $licence->status = 'not approved';
+        $licence->save();
+
+        return redirect()->back()->with('successReject', 'تمت رفض طلب الموضف');
     }
 }

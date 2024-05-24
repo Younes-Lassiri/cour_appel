@@ -10,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>نافذة الحق</title>
     <link rel="icon" href="/img/icon.ico">
-    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://cdn.lordicon.com/lordicon.js"></script>
@@ -94,7 +94,7 @@
                         <tr class="messageRow">
                             <td style="text-align: center"><i class='bx bx-show' style='color:#003566; font-size: 20px; cursor: pointer' onclick="showAttach(
                                 '<?php echo $complain->cinImage ?>',
-                                '<?php echo $complain->cinImage ?>'
+                                '<?php echo $complain->cinImageBack ?>'
                             )"></i></td>
                             <td>{{ $complain->time }}</td>
                             <td>{{ $complain->date }}</td>
@@ -147,8 +147,8 @@
             let attachTwo = document.querySelector('.attachmentImagesTwo');
     
             if (attach.style.display === 'none') {
-                attachOne.innerHTML = `<img src="{{ asset('storage/' . '${imageOne}') }}" alt="Image One">`;
-                attachTwo.innerHTML = `<img src="{{ asset('storage/' . '${imageTwo}') }}" alt="Image Two">`;
+                attachOne.innerHTML = `<img src="{{ asset('images/' . '${imageOne}') }}" alt="Image One">`;
+                attachTwo.innerHTML = `<img src="{{ asset('images/' . '${imageTwo}') }}" alt="Image Two">`;
                 attach.style.display = 'grid';
             } else {
                 attach.style.display = 'none';

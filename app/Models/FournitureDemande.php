@@ -13,6 +13,7 @@ class FournitureDemande extends Model
         'employe_name',
         'type_fourniture',
         'number_fourniture',
+        'status',
         'why'
     ];
 }

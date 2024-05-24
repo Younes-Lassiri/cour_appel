@@ -11,29 +11,31 @@ use Illuminate\Support\Facades\DB;
 class PostController extends Controller
 {
     public function addPost(Request $request)
-    {
-        $tag = isset($request->tag) && $request->tag === 'قسم الأخبار' ? 'news' : 'report';
-        $request->validate([
-            'title' => 'required',
-            'tag' => 'required'
-        ]);
-        $post = [
-            'title' => $request->title,
-            'description' => $request->description,
-            'tag' => $tag,
-        ];
-        $newPost = Post::create($post);
-        if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $image) {
-                $imagePath = $image->store('posts_images', 'public');
-                Image::create([
-                    'image' => $imagePath,
-                    'post_id' => $newPost->id
-                ]);
-            }
+{
+    $tag = isset($request->tag) && $request->tag === 'قسم الأخبار' ? 'news' : 'report';
+    $request->validate([
+        'title' => 'required',
+        'tag' => 'required'
+    ]);
+    $post = [
+        'title' => $request->title,
+        'description' => $request->description,
+        'tag' => $tag,
+    ];
+    $newPost = Post::create($post);
+    if ($request->hasFile('images')) {
+        foreach ($request->file('images') as $image) {
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $image->move(public_path('images_posts'), $imageName);
+            Image::create([
+                'image' => 'images_posts/' . $imageName,
+                'post_id' => $newPost->id
+            ]);
         }
-        return redirect()->route('dashboard')->with('addedPost','تم إضافة المنشور بنجاح');
     }
+    return redirect()->route('dashboard')->with('addedPost', 'تم إضافة المنشور بنجاح');
+}
+
 
     public function detailPost(Request $request)
     {

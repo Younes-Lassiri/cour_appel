@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>نافذة الحق</title>
-    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     
 </head>
 <body>
@@ -22,8 +22,6 @@
         <div class="adminCreationFormOne">
             <img src="/img/frame.svg" alt="">
         </div>
-
-
         <div class="adminCreationFormTwo">
             <h1>إنشاء حساب</h1>
             <div class="theErrorsSectionAlla">
@@ -54,7 +52,7 @@
                 </div>
             </div>
             <div class="inputLabel">
-                <input type="text" id="b" class="input-field @if ($errors->has('employe_email')) errorInput @endif" name="employe_email" onchange="handleCheck('b', 'n')" value="{{ old('employe_email') }}">
+                <input type="email" id="b" class="input-field @if ($errors->has('email')) errorInput @endif" name="email" onchange="handleCheck('b', 'n')" value="{{ old('email') }}">
                 <label for="" class="input-label" id="n"><span>*  </span>البريد الإلكتروني</label>
             </div>
             <div class="inputLabel">
@@ -65,7 +63,7 @@
                 <input type="password" id="e" class="input-field @if ($errors->has('employe_password_confirmation')) errorInput @endif" name="employe_password_confirmation" onchange="handleCheck('e', 'r')" value="{{ old('employe_password_confirmation') }}">
                 <label for="" class="input-label" id="r"><span>*  </span>تأكيد كلمة السر</label>
             </div>
-            <div class="div-login-link"><a href="{{ route('adminBlade') }}" class="login-link">هل لديك حساب بالفعل؟</a></div>
+            <div class="div-login-link"><a href="{{ route('employeLoginBlade') }}" class="login-link">هل لديك حساب بالفعل؟</a></div>
 
 
             

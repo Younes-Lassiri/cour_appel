@@ -31,6 +31,7 @@ class BornDemandeController extends Controller
             "rental_number" => $request->born_rental,
             "born_date" => $request->born_on_year. "-". $request->born_on_month. "-". $request->born_on_day,
             "born_duree" => $request->born_duree,
+            "status" => "under review",
             "born_start" => $request->born_start_year. "-". $request->born_start_month. "-". $request->born_start_day,
             "born_back" => $request->born_back_year. "-". $request->born_back_month. "-". $request->born_back_day,
         ];
@@ -62,5 +63,23 @@ class BornDemandeController extends Controller
         $waitingEmploye = Admin::where('status', '=', 'not approved')->get();
 
         return view('bornListEmp', compact('bornDemandes', 'waitingEmploye'));
+    }
+
+
+    public function acceptBornDemande(Request $request)
+    {
+        $licence = BornDemande::findOrFail($request->id);
+        $licence->status = 'approved';
+        $licence->save();
+
+        return redirect()->back()->with('successAccept', 'تم الموافقة على طلب الموضف');
+    }
+    public function rejectBornDemande(Request $request)
+    {
+        $licence = BornDemande::findOrFail($request->id);
+        $licence->status = 'not approved';
+        $licence->save();
+
+        return redirect()->back()->with('successReject', 'تمت رفض طلب الموضف');
     }
 }

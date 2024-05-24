@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>نافذة الحق</title>
-    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link rel="icon" href="/img/icon.ico">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
@@ -24,6 +24,11 @@
     <div class="addMessage hh">
         <x-landing-section_head />
         <x-admin_navbar/>
+        <div class="testFormOne">
+          @if ($errors->any())
+              <div class="theErrorsSection">تعبئة أو اختيار كل حقول الإدخال باللون الأحمر</div>
+          @endif
+      </div>
         <div class="formSection">
             <h1>ملئ طلب المطبوعات</h1>
             
@@ -56,7 +61,7 @@
 
 
                 <div class="inputLabel">
-                    <input type="text" id="u" class="input-field" name="whyI" onchange="handleCheck('u','i')">
+                    <input type="text" id="u" class="input-field @if($errors->has('whyI')) errorInput @endif" name="whyI" onchange="handleCheck('u','i')">
                     <label for="" class="input-label" id="i"><span>*  </span>دواعي الإستعمال</label>
                 </div>
 <div style="margin-top: 30px">

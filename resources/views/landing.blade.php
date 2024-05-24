@@ -6,13 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>نافذة الحق</title>
     <link rel="icon" href="/img/icon.ico">
-    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.lordicon.com/lordicon.js"></script>
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
-  <!-- Include Noto Sans Arabic font from Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <style>
@@ -35,7 +34,7 @@ padding: 50px 15px;
 .child1{
 
     display: grid;
-    grid-template-rows: 50px 50px ; /* تحديد ارتفاع الصفوف بشكل ثابت */
+    grid-template-rows: 50px 50px ;
     height: 100px;
     ;
 }
@@ -93,8 +92,6 @@ font-family: "Tajawal", sans-serif;
     @if (!session()->has('logOut'))
     <x-loader />
 @endif
-
-
 
   @if (session()->has('success'))
         <script>
@@ -162,7 +159,7 @@ font-family: "Tajawal", sans-serif;
   </a>
    
   
-  <a href="{{ route('complainSuivi') }}" style="text-decoration: none" id="serviceLink" data-value='تتبع طلب شكاية'>
+  <a href="{{ route('categorie', 'news') }}" style="text-decoration: none" id="serviceLink" data-value='تتبع طلب شكاية'>
     <div class="service">
 
 
@@ -230,7 +227,7 @@ font-family: "Tajawal", sans-serif;
   <div class="posts-section" id="postsSection">
     @foreach ($newsposts as $post)
       <div class="posts-sectionOne">
-        <div class="posts-sectionOneOne"><img src="{{ asset('storage/'.$post->images[0]->image) }}" alt=""></div>
+        <div class="posts-sectionOneOne"><img src="{{ asset($post->images[0]->image) }}" alt=""></div>
         <div class="posts-sectionOneTwo">
           <p>
             <?php
@@ -244,27 +241,9 @@ font-family: "Tajawal", sans-serif;
         <div class="posts-sectionOneThree"><a href="{{ route('detailPost', [explode(' ',$post->created_at)[0], $post->id, str_replace(' ', '-', $post->title)]) }}" style="text-decoration: none"><p>← عرض</p></a></div>
       </div>  
     @endforeach
-    @foreach ($newsposts as $post)
+    @foreach ($reportposts->take(2) as $post)
       <div class="posts-sectionOne">
-        <div class="posts-sectionOneOne"><img src="{{ asset('storage/'.$post->images[0]->image) }}" alt=""></div>
-        <div class="posts-sectionOneTwo">
-          <p>
-            <?php
-            $words = explode(' ', $post->description);
-            $limitedWords = implode(' ', array_slice($words, 0, 15));
-            print($limitedWords);
-          ?>
-            <span style="color: #ffbc2b">[</span>...<span style="color: #ffbc2b">]</span>
-          </p>
-        </div>
-        <div class="posts-sectionOneThree"><a href="{{ route('detailPost', [explode(' ',$post->created_at)[0], $post->id, str_replace(' ', '-', $post->title)]) }}" style="text-decoration: none"><p>← عرض</p></a></div>
-      </div>  
-    @endforeach
-  </div>
-  <div class="posts-section" id="reportSection" style="display: none">
-    @foreach ($reportposts as $post)
-      <div class="posts-sectionOne">
-        <div class="posts-sectionOneOne"><img src="{{ asset('storage/'.$post->images[0]->image) }}" alt=""></div>
+        <div class="posts-sectionOneOne"><img src="{{ asset($post->images[0]->image) }}" alt=""></div>
         <div class="posts-sectionOneTwo">
           <p>
             <?php
@@ -278,9 +257,11 @@ font-family: "Tajawal", sans-serif;
         <div class="posts-sectionOneThree"><a href="{{ route('detailPost', [$post->created_at, $post->id, $post->title]) }}" style="text-decoration: none"><p><span style="color: #4D7294; font-weight: 600">←</span> عرض</p></a></div>
       </div>  
     @endforeach
+  </div>
+  <div class="posts-section" id="reportSection" style="display: none">
     @foreach ($reportposts as $post)
       <div class="posts-sectionOne">
-        <div class="posts-sectionOneOne"><img src="{{ asset('storage/'.$post->images[0]->image) }}" alt=""></div>
+        <div class="posts-sectionOneOne"><img src="{{ asset($post->images[0]->image) }}" alt=""></div>
         <div class="posts-sectionOneTwo">
           <p>
             <?php
@@ -291,7 +272,23 @@ font-family: "Tajawal", sans-serif;
           <span style="color: #ffbc2b">[</span>...<span style="color: #ffbc2b">]</span>
           </p>
         </div>
-        <div class="posts-sectionOneThree"><a href="{{ route('detailPost', [explode(' ',$post->created_at)[0], $post->id, str_replace(' ', '-', $post->title)]) }}" style="text-decoration: none"><p><span style="color: #4D7294; font-weight: 600">←</span> عرض</p></a></div>
+        <div class="posts-sectionOneThree"><a href="{{ route('detailPost', [$post->created_at, $post->id, $post->title]) }}" style="text-decoration: none"><p><span style="color: #4D7294; font-weight: 600">←</span> عرض</p></a></div>
+      </div>  
+    @endforeach
+    @foreach ($newsposts->take(1) as $post)
+      <div class="posts-sectionOne">
+        <div class="posts-sectionOneOne"><img src="{{ asset($post->images[0]->image) }}" alt=""></div>
+        <div class="posts-sectionOneTwo">
+          <p>
+            <?php
+            $words = explode(' ', $post->description);
+            $limitedWords = implode(' ', array_slice($words, 0, 15));
+            print($limitedWords);
+          ?>
+            <span style="color: #ffbc2b">[</span>...<span style="color: #ffbc2b">]</span>
+          </p>
+        </div>
+        <div class="posts-sectionOneThree"><a href="{{ route('detailPost', [explode(' ',$post->created_at)[0], $post->id, str_replace(' ', '-', $post->title)]) }}" style="text-decoration: none"><p>← عرض</p></a></div>
       </div>  
     @endforeach
   </div>

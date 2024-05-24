@@ -16,7 +16,7 @@ class employeController extends Controller
     public function signUpEpmploye(Request $request){
         $request->validate([
             'employe_name' => 'required|regex:/^[\p{Arabic}a-zA-Z\s]+$/u',
-            'employe_email' => 'required|email|unique:admins',
+            'email' => 'required|email|unique:admins',
             'employe_password' => 'required|min:8|regex:/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]+$/|confirmed',
             'employe_rental' => 'required',
             'employe_cadre' => 'required',
@@ -28,7 +28,7 @@ class employeController extends Controller
     
         $newEmploye = [
             'admin_name' => $request->employe_name,
-            'email' => $request->employe_email,
+            'email' => $request->email,
             'role' => 'employe',
             'status' => 'not approved',
             'password' => $hashedPassword,
@@ -39,7 +39,7 @@ class employeController extends Controller
     
         $admin = Admin::create($newEmploye);
     
-        return redirect()->route('adminBlade')->with('add','تم إظافة الحساب بنجاح');
+        return redirect()->route('employeLoginBlade')->with('add','تم إظافة الحساب بنجاح');
     }
 
 

@@ -13,12 +13,19 @@ class PlastiqueDemandeController extends Controller
     }
 
     public function plastiqueSend(Request $request){
+        $request->validate([
+            'classP' => 'required',
+            'obsP' => 'required',
+            'prototype' => 'required',
+            'typeF' => 'required'
+        ]);
         
         $newDemande = [
             "employe_name" => auth()->user()->admin_name,
             "prototype" =>$request->typeF ,
             "number_prototype" =>implode(',', $request->input_values),
             "class" => $request->classP,
+            "status" => "under review",
             "observations" => $request->obsP
         ];
     
@@ -27,11 +34,6 @@ class PlastiqueDemandeController extends Controller
     
         return redirect()->route('dashboard')->with('demandeAdded', 'تم إرسال الطلب بنجاح');
     }
-
-
-
-
-
     public function listPlastique(){
 
         $plastiqueDemandes = PlastiqueDemande::get();
@@ -55,5 +57,22 @@ class PlastiqueDemandeController extends Controller
         $waitingEmploye = Admin::where('status', '=', 'not approved')->get();
 
         return view('plastiqueListEmp', compact('plastiqueDemandes', 'waitingEmploye'));
+    }
+
+    public function acceptPlastiqueDemande(Request $request)
+    {
+        $licence = PlastiqueDemande::findOrFail($request->id);
+        $licence->status = 'approved';
+        $licence->save();
+
+        return redirect()->back()->with('successAccept', 'تم الموافقة على طلب الموضف');
+    }
+    public function rejectPlastiqueDemande(Request $request)
+    {
+        $licence = PlastiqueDemande::findOrFail($request->id);
+        $licence->status = 'not approved';
+        $licence->save();
+
+        return redirect()->back()->with('successReject', 'تمت رفض طلب الموضف');
     }
 }

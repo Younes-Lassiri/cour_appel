@@ -21,6 +21,7 @@ class LicenceDemandeController extends Controller
             "work_type" => $request->license_cadre,
             "rental" => $request->license_rental,
             "duree" => $request->license_duree,
+            "status" => "under review",
             "leave_date" => $request->license_on_year. "-". $request->license_on_month. "-". $request->license_on_day,
         ];
         if ($request->filled('license_on_year') && $request->filled('license_on_month') && $request->filled('license_on_day')) {
@@ -56,6 +57,24 @@ class LicenceDemandeController extends Controller
         $waitingEmploye = Admin::where('status', '=', 'not approved')->get();
 
         return view('licenseListEmp', compact('licenceDemandes', 'waitingEmploye'));
+    }
+
+
+    public function acceptLicenceDemande(Request $request)
+    {
+        $licence = LicenceDemande::findOrFail($request->id);
+        $licence->status = 'approved';
+        $licence->save();
+
+        return redirect()->back()->with('successAccept', 'تم الموافقة على طلب الموضف');
+    }
+    public function rejectLicenceDemande(Request $request)
+    {
+        $licence = LicenceDemande::findOrFail($request->id);
+        $licence->status = 'not approved';
+        $licence->save();
+
+        return redirect()->back()->with('successReject', 'تمت رفض طلب الموضف');
     }
 
     

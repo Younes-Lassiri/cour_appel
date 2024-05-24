@@ -25,6 +25,7 @@ class Complain extends Model
         "date",
         "time",
         "cinImage",
+        "cinImageBack",
         "suiviNum",
         "sujet",
         'status'

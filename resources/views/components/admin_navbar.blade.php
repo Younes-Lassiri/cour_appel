@@ -1,24 +1,24 @@
 @php
     $chikaya = App\Models\Complain::get();
-    $absence = App\Models\DemandeAbsence::where('employe_name', auth()->user()->admin_name)->get();
-    $born = App\Models\bornDemande::where('employe_name', auth()->user()->admin_name)->get();
-    $device = App\Models\DevicesDemande::where('employe_name', auth()->user()->admin_name)->get();
-    $fourniture = App\Models\FournitureDemande::where('employe_name', auth()->user()->admin_name)->get();
-    $imprime = App\Models\ImprimeDemande::where('employe_name', auth()->user()->admin_name)->get();
-    $license = App\Models\LicenceDemande::where('employe_name', auth()->user()->admin_name)->get();
-    $plastique = App\Models\PlastiqueDemande::where('employe_name', auth()->user()->admin_name)->get();
+    $absence = App\Models\DemandeAbsence::where('employe_name', auth()->user()->admin_name)->where('status','under review')->get();
+    $born = App\Models\BornDemande::where('employe_name', auth()->user()->admin_name)->where('status','under review')->get();
+    $device = App\Models\DevicesDemande::where('employe_name', auth()->user()->admin_name)->where('status','under review')->get();
+    $fourniture = App\Models\FournitureDemande::where('employe_name', auth()->user()->admin_name)->where('status','under review')->get();
+    $imprime = App\Models\ImprimeDemande::where('employe_name', auth()->user()->admin_name)->where('status','under review')->get();
+    $license = App\Models\LicenceDemande::where('employe_name', auth()->user()->admin_name)->where('status','under review')->get();
+    $plastique = App\Models\PlastiqueDemande::where('employe_name', auth()->user()->admin_name)->where('status','under review')->get();
     $demandeCount = $absence->count()+$born->count()+$device->count()+$fourniture->count()+$imprime->count()+$license->count()+$plastique->count();
 
 @endphp
 
 @php
-    $absenceA = App\Models\DemandeAbsence::get();
-    $bornA = App\Models\bornDemande::get();
-    $deviceA = App\Models\DevicesDemande::get();
-    $fournitureA = App\Models\FournitureDemande::get();
-    $imprimeA = App\Models\ImprimeDemande::get();
-    $licenseA = App\Models\LicenceDemande::get();
-    $plastiqueA = App\Models\PlastiqueDemande::get();
+    $absenceA = App\Models\DemandeAbsence::where('status', 'under review')->get();
+    $bornA = App\Models\bornDemande::where('status', 'under review')->get();
+    $deviceA = App\Models\DevicesDemande::where('status', 'under review')->get();
+    $fournitureA = App\Models\FournitureDemande::where('status', 'under review')->get();
+    $imprimeA = App\Models\ImprimeDemande::where('status', 'under review')->get();
+    $licenseA = App\Models\LicenceDemande::where('status', 'under review')->get();
+    $plastiqueA = App\Models\PlastiqueDemande::where('status', 'under review')->get();
     $demandeCountA = $absenceA->count()+$bornA->count()+$deviceA->count()+$fournitureA->count()+$imprimeA->count()+$licenseA->count()+$plastiqueA->count();
 
 @endphp
@@ -30,7 +30,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
@@ -161,7 +161,16 @@
             <li><a href="{{ route('presence.list') }}"><i class='bx bxs-bell-plus' style='color:#ffffff'  ></i> لائحة الحظور</a></li>
             @endif
             @if (auth()->user()->role === 'employe')
-            <li><a href={{ route('listChikaya') }} style="display: flex; align-items: center; gap: 5px"><span style="color: #ffc221">({{ $chikaya->count() }})</span><i class='bx bx-line-chart'></i> تدبير الشكايات</a></li>
+            <li>
+              @if ($chikaya->count() > 0)
+              <a href={{ route('listChikaya') }} style="display: flex; align-items: center; gap: 5px">
+                <span style="color: #ffc221">({{ $chikaya->count() }})</span>
+                <i class='bx bx-line-chart'></i> تدبير الشكايات</a>
+              @else
+              <a href={{ route('listChikaya') }} style="display: flex; align-items: center; gap: 5px">
+                <i class='bx bx-line-chart'></i> تدبير الشكايات</a>
+              @endif
+              </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-togglee" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="display: flex; align-items: center; gap: 5px">
                 <i class='bx bxs-down-arrow' style="font-size: 8px"></i>المنشورات

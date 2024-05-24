@@ -41,25 +41,20 @@ class AdminController extends Controller
     public function signupBlade(){
         return view('addAdmin');
     }
-    
-
-
     public function signUp(Request $request){
         $request->validate([
             'admin_name' => 'required|regex:/^[\p{Arabic}a-zA-Z\s]+$/u',
-            'admin_email' => 'required|email|unique:admins',
+            'email' => 'required|email|unique:admins',
             'admin_password' => 'required|min:8|regex:/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]+$/|confirmed',
             'admin_rental' => 'required',
             'admin_cadre' => 'required',
             'admin_address' => 'required'
         ]);
-        
-    
         $hashedPassword = Hash::make($request->admin_password);
     
         $newAdmin = [
             'admin_name' => $request->admin_name,
-            'email' => $request->admin_email,
+            'email' => $request->email,
             'role' => 'admin',
             'status' => 'approved',
             'password' => $hashedPassword,
@@ -159,7 +154,6 @@ class AdminController extends Controller
 {
     $id = auth()->user()->id;
     $admin = Admin::findOrFail($id);
-
     $request->validate([
         "new_name" => 'required|regex:/^[\p{Arabic}a-zA-Z\s]+$/u',
         "new_email" => 'required|email|unique:admins,email,' . $id,
@@ -189,7 +183,7 @@ class AdminController extends Controller
     public function submitEmploye(Request $request){
         $request->validate([
             'admin_name' => 'required|regex:/^[\p{Arabic}a-zA-Z\s]+$/u',
-            'admin_email' => 'required|email',
+            'email' => 'required|email|unique:admins',
             'admin_password' => 'required|min:8|regex:/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]+$/|confirmed',
             'admin_rental' => 'required',
             'admin_cadre' => 'required',
@@ -201,7 +195,7 @@ class AdminController extends Controller
     
         $newAdmin = [
             'admin_name' => $request->admin_name,
-            'email' => $request->admin_email,
+            'email' => $request->email,
             'role' => 'employe',
             'status' => 'not approved',
             'password' => $hashedPassword,

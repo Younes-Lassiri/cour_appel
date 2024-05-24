@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>نافذة الحق</title>
-    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     
 </head>
 <body>
@@ -53,7 +53,7 @@
                 </div>
             </div>
             <div class="inputLabel">
-                <input type="text" id="a" class="input-field @if ($errors->has('admin_email')) errorInput @endif" name="admin_email" onchange="handleCheck('a', 'z')" value="{{ old('admin_email') }}">
+                <input type="email" id="a" class="input-field @if ($errors->has('email')) errorInput @endif" name="email" onchange="handleCheck('a', 'z')" value="{{ old('email') }}">
                 <label for="" class="input-label" id="z"><span>*  </span>البريد الإلكتروني</label>
             </div>
             <div class="inputLabel">

@@ -54,11 +54,11 @@ class DemandeAbsenceController extends Controller
 
         $demande = DemandeAbsence::where('id', $id);
 
-        $demande->update(['status' => 'accepted']);
+        $demande->update(['status' => 'approved']);
 
 
 
-        return redirect()->route('demande.index')->with('demandeAccepted', 'تم قبول طلب الغياب بنجاح');
+        return redirect()->back()->with('successAccept', 'تم قبول طلب الغياب بنجاح');
     }
     
 
@@ -67,10 +67,8 @@ class DemandeAbsenceController extends Controller
         $id = $request->id;
 
         $demande = DemandeAbsence::where('id', $id);
-        
-        $demande->update(['status' => 'refused']);
-
-        return redirect()->route('demande.index')->with('demandeRefused', 'تم رفض طلب الغياب بنجاح');
+        $demande->update(['status' => 'not approved']);
+        return redirect()->back()->with('successReject', 'تم رفض طلب الغياب بنجاح');
     }
 
     public function listDemande(){

@@ -14,6 +14,7 @@ class PlastiqueDemande extends Model
         'prototype',
         'number_prototype',
         'class',
+        'status',
         'observations'
     ];
 }

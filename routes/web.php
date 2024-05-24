@@ -31,7 +31,13 @@ use App\Http\Controllers\FournitureDemandeController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/chat-app', 'App\Http\Controllers\PusherController@index');
+
+
+
+
+
+Route::middleware('block.mobile')->group(function () {
+    Route::get('/chat-app', 'App\Http\Controllers\PusherController@index');
 Route::post('/broadcast', 'App\Http\Controllers\PusherController@broadcast');
 Route::post('/receive', 'App\Http\Controllers\PusherController@receive');
 Route::get('/', [AdminController::class, 'landing'])->name('home');
@@ -39,6 +45,10 @@ Route::post('/message', [messagesController::class, 'store'])->name('message.sto
 Route::post('/download-pdf', [messagesController::class, 'downloadPdf'])->name('download.pdf');
 Route::middleware(['auth.redirect'])->group(function () {
     Route::get('/تسجيل-الدخول', [AdminController::class, 'loginBlade'])->name('adminBlade');
+    Route::get('/تسجيل_الدخول', function(){
+        return view('loginBlade-employe');
+    })->name('employeLoginBlade');
+
 });
 Route::middleware(['auth'])->group(function () {
 Route::get('تدبير-الشكايات',[ComplainController::class, 'listChikaya'])->name('listChikaya')->middleware('message.employe');
@@ -82,7 +92,7 @@ Route::get('/قائمة-طلبات-الطوابع-المطاطية', [PlastiqueD
 Route::post('logout', [AdminController::class, 'logout'])->name('admin.logout');
 Route::post('/login', [AdminController::class, 'login'])->name('admin.login');
 Route::post('/signUp', [employeController::class, 'signUpEpmploye'])->name('employe.signup');
-Route::get('/إنشاء-حساب-موظف', [employeController::class, 'signupBladeEpmploye']);
+Route::get('/إنشاء-حساب-موظف', [employeController::class, 'signupBladeEpmploye'])->name('signupBladeEmploye');
 Route::get('/إنشاء-حساب', [AdminController::class, 'signupBlade'])->name('signupBlade');
 Route::post('/signup', [AdminController::class, 'signUp'])->name('admin.signup');
 Route::middleware(['employe.role'])->group(function () {
@@ -91,6 +101,19 @@ Route::middleware(['employe.role'])->group(function () {
     Route::post('/employe-delete/{id}', [employeController::class, 'employeDelete'])->name('employe.delete');
     Route::get('/إظافة-موظف', [AdminController::class, 'newEmploye'])->name('new-amploye');
     Route::post('/add-employe', [AdminController::class, 'submitEmploye'])->name('new-amploye-sub');
+    Route::post('/accept-licence/{id}', [LicenceDemandeController::class, 'acceptLicenceDemande'])->name('admin-accept-licence');
+    Route::post('/reject-licence/{id}', [LicenceDemandeController::class, 'rejectLicenceDemande'])->name('admin-reject-licence');
+    Route::post('/accept-fourniture/{id}', [FournitureDemandeController::class, 'acceptFournitureDemande'])->name('admin-accept-fourniture');
+    Route::post('/reject-fourniture/{id}', [FournitureDemandeController::class, 'rejectFournitureDemande'])->name('admin-reject-fourniture');
+    Route::post('/accept-imprime/{id}', [ImprimeDemandeController::class, 'acceptImprimeDemande'])->name('admin-accept-imprime');
+    Route::post('/reject-imprime/{id}', [ImprimeDemandeController::class, 'rejectImprimeDemande'])->name('admin-reject-imprime');
+    Route::post('/accept-plastique/{id}', [PlastiqueDemandeController::class, 'acceptPlastiqueDemande'])->name('admin-accept-plastique');
+    Route::post('/reject-plastique/{id}', [PlastiqueDemandeController::class, 'rejectPlastiqueDemande'])->name('admin-reject-plastique');
+    Route::post('/accept-device/{id}', [DevicesDemandeController::class, 'acceptDeviceDemande'])->name('admin-accept-device');
+    Route::post('/reject-device/{id}', [DevicesDemandeController::class, 'rejectDeviceDemande'])->name('admin-reject-device');
+    Route::post('/accept-born/{id}', [BornDemandeController::class, 'acceptBornDemande'])->name('admin-accept-born');
+    Route::post('/reject-born/{id}', [BornDemandeController::class, 'rejectBornDemande'])->name('admin-reject-born');
+
 });
 Route::post('/accept/{id}', [AdminController::class, 'acceptEmploye'])->name('employe.accept');
 Route::post('rejectEmploye/{id}', [AdminController::class, 'rejectEmploye'])->name('employe.reject');
@@ -162,4 +185,4 @@ Route::any('/{any}', function () {
     return 'Not found';
 })->where('any', '.*');
 
-
+});

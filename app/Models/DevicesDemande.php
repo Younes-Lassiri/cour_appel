@@ -13,6 +13,7 @@ class DevicesDemande extends Model
         'employe_name',
         "type_device",
         "number_device",
+        'status',
         "why"
     ];
 }

@@ -543,9 +543,8 @@ background-color: #edf3f5;
 padding: 0 0 30px 0;
 box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
 margin-top: 50px;
-height: 250px;
+height: 280px;
 }
-
 .searchInput{
   width: 45%;
   background-color: white;
@@ -553,7 +552,7 @@ height: 250px;
   border-radius: 40px;
   height: 60px;
   grid-column: 1/4;
-  margin-top: 20px;
+  margin-top: 50px;
   display: grid;
   justify-self: center;
   grid-template-columns: 1fr 2.5fr;
@@ -573,7 +572,6 @@ height: 250px;
   border: 1px solid transparent;
   transition: .2s;
 }
-
 .searchInputOne input::placeholder{
   color: rgb(180, 180, 180);
 }
@@ -1929,10 +1927,6 @@ justify-self: end;
   font-size: 12px;
 }
 
-
-
-
-
 .contact-container{
   display: grid;
   grid-template-columns: 1fr;
@@ -2251,10 +2245,9 @@ height: 60px;/* Altura quando não checado */
 
 
 .services{
-  margin-top: -100px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: 20px;
+  grid-gap: 17px;
   padding: 0 105px;
   transition: 0.4s ease-in-out;
 }
@@ -2431,7 +2424,6 @@ height: 60px;/* Altura quando não checado */
   font-weight: 700;
   justify-self: center;
 }
-
 .stepsIntroOneThree{
   display: grid;
   grid-template-columns: 2fr 1fr 2fr 1fr 2fr;
@@ -2440,8 +2432,6 @@ height: 60px;/* Altura quando não checado */
   border: 1px solid rgb(214, 214, 214);
   border-radius: 5px;
 }
-
-
 .stepsIntroOneFour{
   display: grid;
   grid-template-columns: 0.9fr 1.1fr 1fr;
@@ -2523,12 +2513,29 @@ height: 60px;/* Altura quando não checado */
   align-self: center;
   padding: 0 20px;
 }
+.stepOne-sectionUpload{
+  width: 100%;
+  display: grid;
+  grid-template-columns: 3fr 0.5fr;
+  grid-template-rows: 0.5fr 4fr;
+  grid-gap: 5px;
+  padding: 5px 0 0 5px;
+  background-color: #f5f5f5;
+}
 
 .stepOne-section{
   width: 100%;
   display: grid;
   grid-template-columns: 3fr 0.5fr;
-  grid-template-rows: 0.4fr 3fr;
+  grid-gap: 5px;
+  padding: 5px 0 0 5px;
+  background-color: #f5f5f5;
+}
+.stepOne-sectionFirstComplain{
+  width: 100%;
+  display: grid;
+  grid-template-columns: 3fr 0.5fr;
+  grid-template-rows: 0.5fr 6fr;
   grid-gap: 5px;
   padding: 5px 0 0 5px;
   background-color: #f5f5f5;
@@ -2552,7 +2559,7 @@ height: 60px;/* Altura quando não checado */
   filter: drop-shadow(0px 0.25px 1px rgba(0, 0, 0, .039)) drop-shadow(0px 0.85px 3px rgba(0, 0, 0, .19));
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 0.2fr 1fr 5fr 1fr;
+  grid-template-rows: 0.2fr 1fr 4fr 1.3fr;
 }
 
 .stepsIntroductionOne{
@@ -2595,9 +2602,6 @@ height: 60px;/* Altura quando não checado */
   font-weight: 600;
   text-align: right;
 }
-
-
-
 .about{
   position: relative;
   padding: 5px 30px;
@@ -2611,9 +2615,6 @@ height: 60px;/* Altura quando não checado */
   right: 0;
   top: 50%;
 }
-
-
-
 .allSteps{
   grid-column: 1/2;
   background-color: #fff;
@@ -2622,6 +2623,7 @@ height: 60px;/* Altura quando não checado */
   border-radius: 7px;
   padding: 10px 20px;
   display: grid;
+  height: 110px;
   grid-template-columns: 1fr 0.5fr 1fr 0.5fr 1fr 0.5fr 1fr 0.5fr 1fr;
 }
 
@@ -2797,13 +2799,10 @@ height: 60px;/* Altura quando não checado */
   right: 0;
   top: 50%;
 }
-
-
 .stepInfosTwo{
   padding: 0 25px;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 0.8fr 1fr 1fr 1fr;
 }
 
 .stepInfosTwoTwo{
@@ -2821,7 +2820,6 @@ height: 60px;/* Altura quando não checado */
   color: #003566;
 
 }
-
 .stepInfosTwoTwoOne{
   display: flex;
   gap: 15px;
@@ -2872,8 +2870,6 @@ position: relative;
   border: 1px solid #003566;
 
 }
-
-
 .stepInfosTwoTwoFive{
   align-self: center;
   justify-self: center;
@@ -2883,7 +2879,6 @@ position: relative;
   padding: 7px 25px 7px 0;
   font-weight: 700;
 }
-
 .stepInfosTwoTwoFive::before{
   content: "";
   width: 14px;
@@ -2893,7 +2888,6 @@ position: relative;
   right: 0;
   top: 50%;
 }
-
 .stepInfosTwoTwoFour{
   align-self: center;
   justify-self: end;
@@ -2903,17 +2897,10 @@ position: relative;
   width: 100%;
   padding: 0 0 0 25px;
 }
-
-
-
-
-
-
 .custom-checkboxNacio {
   position: relative;
   display: inline-block;
 }
-
 .custom-checkboxNacio input {
   opacity: 0;
   position: absolute;
@@ -3169,26 +3156,29 @@ align-self: center;
 }
 
 .stepInfosTheLastOne{
+  padding: 50px 0;
   display: grid;
+  height: 100%;
   grid-template-columns: 1fr 1fr;
 }
 
 .stepInfosTheLastOneOne {
   align-self: center;
-  justify-self: start;
   width: 100%;
+  height: 100%;
   position: relative;
 }
 
 .stepInfosTheLastOneTwo{
   align-self: center;
+  height: 100%;
   width: 100%;
   position: relative;
 }
 
 .stepInfosTheLastOneTwo button{
   position: absolute;
-  right: 25px;
+  right: 0;
   top: 50%;
   transform: translateY(-50%) scale(0.8);
   display: flex;
@@ -3360,7 +3350,7 @@ align-self: center;
   filter: drop-shadow(0px 0.25px 1px rgba(0, 0, 0, .039)) drop-shadow(0px 0.85px 3px rgba(0, 0, 0, .19));
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1.5fr 1.5fr 3fr 1fr;
+  grid-template-rows: 1.3fr 1.3fr 3fr 1fr;
 }
 .stepTwoInfosOne{
   display: grid;
@@ -3503,7 +3493,6 @@ background: #f8f9fa !important;
     filter: drop-shadow(0px 0.25px 1px rgba(0, 0, 0, .039)) drop-shadow(0px 0.85px 3px rgba(0, 0, 0, .19));
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 1.5fr 1.5fr 3fr 1fr;
   }
 .stepThreeInfosOne{
   border-bottom: 0.5px solid #00356610;
@@ -3525,9 +3514,6 @@ background: #f8f9fa !important;
   transform: translateY(-50%);
   font-size: 30px;
 }
-
-
-
 .stepThreeInfosOneTwo{
   width: 100%;
   text-align: center;
@@ -3548,23 +3534,26 @@ background: #f8f9fa !important;
   cursor: pointer;
 
 }
-
-
 .stepThreeInfosOneOne input[type="file"]{
   z-index: 100;
   width: 100%;
   opacity: 0;
 }
-
+.stepOne-sectionTraitement{
+  width: 100%;
+  display: grid;
+  grid-template-columns: 3fr 0.5fr;
+  grid-template-rows: 0.5fr 6fr;
+  grid-gap: 5px;
+  padding: 5px 0 0 5px;
+  background-color: #f5f5f5;
+}
 .stepFourInfos{
   background-color: #fff;
-  grid-column: 1/2;
-  grid-row: 2/3;
   border-radius: 7px;
   filter: drop-shadow(0px 0.25px 1px rgba(0, 0, 0, .039)) drop-shadow(0px 0.85px 3px rgba(0, 0, 0, .19));
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 0.7fr 1fr 1fr 1fr 1fr 1fr;
 }
 
 .stepFourInfosOne{
@@ -4705,7 +4694,7 @@ padding: 15px 0;
       display: grid;
       width: 100%;
       grid-template-columns: 1fr;
-      grid-template-rows: 1fr 12fr;
+      grid-template-rows: 1fr;
       padding: 0 107px;
       height: fit-content;
     }

@@ -91,10 +91,10 @@
           <div class="updates">
 
 
-            @foreach ($posts as $post)
+            @foreach ($posts->take(3) as $post)
             <div class="item">
                 <div class="imgH">
-                  <img src="{{ asset('storage/'. $post->images[0]->image) }}" alt="" />
+                  <img src="{{ asset($post->images[0]->image) }}" alt="" />
                 </div>
                 <div class="rp-text">
                   <span class="date">{{ explode(' ', $post->created_at)[0] }}</span>

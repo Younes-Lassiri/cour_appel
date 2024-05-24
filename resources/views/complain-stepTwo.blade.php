@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>نافذة الحق</title>
-    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link rel="icon" href="/img/icon.ico">
     <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
@@ -18,12 +18,10 @@
         @csrf
     <div>
         <div class="landing-sectionHeadO">
-      
             <div class="head-one"><a href="/"><img src="/img/project_nameLight.png" alt=""></a></div>
             <div class="head-twoO"><span style="color: #ffbc2b">مَحكَمة الإسْتئنَاف </span>في خدمة المواطن</div>
             <div class="head-three"><img src="/img/newLight.png" alt=""></div>
         </div>
-    
         <div class="stepOne-section">
             <div class="allSteps">
     
@@ -73,8 +71,6 @@
                     <div class="allStepsOneThree">مقدم الطلب/المعني بالطلب</div>
                 </div>
             </div>
-    
-    
             <div class="stepsIntroduction">
                 <div class="stepsIntroductionOne"><img src="https://egrace.justice.gov.ma/assets/images/etapes/group_mizan.svg" alt=""></div>
                 <div class="stepsIntroductionTwo">
@@ -167,10 +163,10 @@
             <div class="stepTwoInfosTwo">
                 <div></div>
                 <div class="stepTwoInfosOneThree">
-                    <div class="stepTwoInfosOneThreeOne"><input type="time" class="@error('time') errorInput @enderror" name="time" style="letter-spacing: 2px" value="{{ old('time') }}"><label for="" class=""><span>*  </span>التوقيت التقريبي</label></div>
+                    <div class="stepTwoInfosOneThreeOne"><input type="time" class="@error('time') errorInput @enderror" name="time" style="letter-spacing: 2px" value="{{ old('time') }}" required><label for="" class=""><span>*  </span>التوقيت التقريبي</label></div>
                 </div>
                 <div class="stepTwoInfosOneThree">
-                    <div class="stepTwoInfosOneThreeOne"><input type="date" class="@error('date') errorInput @enderror" name="date" style="letter-spacing: 2px" value="{{ old('date') }}"><label for="" class=""><span>*  </span>تاريخ الإعتداء</label></div>
+                    <div class="stepTwoInfosOneThreeOne"><input type="date" class="@error('date') errorInput @enderror" name="date" style="letter-spacing: 2px" value="{{ old('date') }}" required><label for="" class=""><span>*  </span>تاريخ الإعتداء</label></div>
                 </div>
                 <div class="stepTwoInfosOneTwoFour">: معلومات حول القضية</div>
             </div>

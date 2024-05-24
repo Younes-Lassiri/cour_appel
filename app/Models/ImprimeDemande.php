@@ -13,6 +13,7 @@ class ImprimeDemande extends Model
         'employe_name',
         "type_imprime",
         "number_imprime",
+        'status',
         "why"
     ];
 }

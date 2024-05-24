@@ -30,16 +30,23 @@ class ComplainController extends Controller
         $requestData = $request->all();
         return view('complain-stepThree', compact('requestData'));
     }
+
     public function step4(Request $request)
     {
         $request->validate([
-            'carteNacional' => 'required',
-            'additionalImages' => 'required',
+            'carteNacional' => 'required|image',
+            'additionalImages' => 'required|image',
         ]);
-        $imagePath = $request->file('carteNacional')->store('images', 'public');
-        $imagePatha = $request->file('additionalImages')->store('images', 'public');
+    
+        $carteNacionalFilename = 'carteNacional_' . time() . '.' . $request->file('carteNacional')->getClientOriginalExtension();
+        $additionalImagesFilename = 'additionalImages_' . time() . '.' . $request->file('additionalImages')->getClientOriginalExtension();
+    
+        $imagePath = $request->file('carteNacional')->move(public_path('images'), $carteNacionalFilename);
+        $imagePatha = $request->file('additionalImages')->move(public_path('images'), $additionalImagesFilename);
+    
         $requestData = $request->all();
-        return view('complain-stepFour', compact('requestData', 'imagePath', 'imagePatha'));
+    
+        return view('complain-stepFour', compact('requestData', 'carteNacionalFilename', 'additionalImagesFilename'));
     }
     
     public function step5(Request $request){
@@ -62,8 +69,9 @@ class ComplainController extends Controller
             "date" =>$request->date,
             "time" =>$request->time,
             "cinImage" =>$request->cartNational,
+            "cinImageBack" =>$request->additionalImages,
             "suiviNum" =>$suiviNum,
-            "sujet" => $request->sujet ? $request->sujet : null,
+            "sujet" => $request->sujet,
             'status' => 'under review'
         ];
         $newComplain = Complain::create($theComplain);

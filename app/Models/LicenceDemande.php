@@ -14,6 +14,7 @@ class LicenceDemande extends Model
         "work_type",
         "rental",
         "duree",
+        'status',
         "leave_date"
     ];
 }

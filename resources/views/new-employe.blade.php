@@ -10,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>نافذة الحق</title>
     <link rel="icon" href="/img/icon.ico">
-    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
@@ -56,7 +56,7 @@
                 <label for="" class="input-label" id="v"><span>*  </span>العنوان الشخصي</label>
             </div>
             <div class="inputLabel">
-                <input type="text" id="b" class="input-field @if ($errors->has('admin_email')) errorInput @endif" name="admin_email" onchange="handleCheck('b', 'n')" value="{{ old('admin_email') }}">
+                <input type="email" id="b" class="input-field @if ($errors->has('email')) errorInput @endif" name="email" onchange="handleCheck('b', 'n')" value="{{ old('email') }}">
                 <label for="" class="input-label" id="n"><span>*  </span>البريد الإلكتروني</label>
             </div>
             <div class="inputLabel">
