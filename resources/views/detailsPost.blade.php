@@ -1,3 +1,6 @@
+@php
+    $posts = App\Models\Post::get();
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,6 +29,7 @@
             });
         </script>
     @endif
+    <x-header/>
     <x-landing-section_head />
     <x-user_navbar/>
     <div class="detailPost-section">
@@ -91,20 +95,24 @@
 
         function savePostIds(postIds) {
             localStorage.setItem('postIds', JSON.stringify(postIds));
+            updateInputValue(postIds.length);
+            updateAllInput(postIds);
         }
-
+        
+        function updateInputValue(length) {
+        const inputElement = document.getElementById('postIdsLength');
+        inputElement.textContent = length;
+        }
         function togglePostId(element) {
             const postId = element.getAttribute('data-post-id');
             let postIds = getStoredPostIds();
 
             if (postIds.includes(postId)) {
-                // Remove the post ID from the list
                 postIds = postIds.filter(id => id !== postId);
                 element.classList.remove('bxs-star');
                 element.classList.add('bx-star');
                 console.log('Post ID removed:', postId);
             } else {
-                // Add the post ID to the list
                 postIds.push(postId);
                 element.classList.remove('bx-star');
                 element.classList.add('bxs-star');
@@ -113,10 +121,19 @@
 
             savePostIds(postIds);
         }
-
-        // On page load, update the classes based on stored post IDs
+        function updateShowTitles() {
+        let allPostsTitles = document.querySelector('.employeDetailLikesTwo');
+        let postIds = getStoredPostIds();
+        postIds.forEach(postId => {
+        const post = posts.find(post => post.id === parseInt(postId));
+        if (post) {
+            allPostsTitles.innerHTML += post.title;
+        }
+    });
+    }
         document.addEventListener('DOMContentLoaded', function() {
             const postIds = getStoredPostIds();
+            var posts = <?php echo json_encode($posts); ?>;
             const elements = document.querySelectorAll('.detailPost-sectionOneOne i');
 
             elements.forEach(element => {
@@ -126,8 +143,12 @@
                     element.classList.add('bxs-star');
                 }
             });
+            updateInputValue(postIds.length);
+            updateShowTitles();
+            
         });
     </script>
+
 
 
 <script src="/js/main.js"></script>

@@ -15,6 +15,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
+    <x-header/>
     <x-landing-section_head />
     <x-user_navbar/>
     <input type="hidden" id="title" value="{{ $categorie === 'news' ? 'قسم الأخبار' : 'قسم البلاغات' }}">
@@ -69,5 +70,54 @@
         });
     </script>
 <x-foo_ter/>
+
+
+<script>
+    function getStoredPostIds() {
+        const storedPostIds = localStorage.getItem('postIds');
+        return storedPostIds ? JSON.parse(storedPostIds) : [];
+    }
+
+    function savePostIds(postIds) {
+        localStorage.setItem('postIds', JSON.stringify(postIds));
+        updateInputValue(postIds.length);
+    }
+    function updateInputValue(length) {
+    const inputElement = document.getElementById('postIdsLength');
+    inputElement.textContent = length;
+    }
+
+    function togglePostId(element) {
+        const postId = element.getAttribute('data-post-id');
+        let postIds = getStoredPostIds();
+
+        if (postIds.includes(postId)) {
+            postIds = postIds.filter(id => id !== postId);
+            element.classList.remove('bxs-star');
+            element.classList.add('bx-star');
+            console.log('Post ID removed:', postId);
+        } else {
+            postIds.push(postId);
+            element.classList.remove('bx-star');
+            element.classList.add('bxs-star');
+            console.log('Post ID stored:', postId);
+        }
+
+        savePostIds(postIds);
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+        const postIds = getStoredPostIds();
+        const elements = document.querySelectorAll('.detailPost-sectionOneOne i');
+
+        elements.forEach(element => {
+            const postId = element.getAttribute('data-post-id');
+            if (postIds.includes(postId)) {
+                element.classList.remove('bx-star');
+                element.classList.add('bxs-star');
+            }
+        });
+        updateInputValue(postIds.length);
+    });
+</script>
 </body>
 </html>
