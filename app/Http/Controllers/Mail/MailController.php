@@ -14,7 +14,7 @@ class MailController extends Controller
     public function mail(Request $request)
     {
         $request->validate([
-            'email' => 'required'
+            'email' => 'required|email|unique:password_resets|exists:admins',
         ]);
         $email = $request->email;
         $token = Str::random(64);

@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class VerifyPasswordResetToken
+class checkValidate
 {
     /**
      * Handle an incoming request.
@@ -15,11 +15,11 @@ class VerifyPasswordResetToken
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle($request, Closure $next)
+    public function handle(Request $request, Closure $next)
     {
-        $token = $request->route('token');
-        $tokenExists = DB::table('password_resets')
-                        ->where('token', $token)
+        $id = $request->route('id');
+        $tokenExists = DB::table('waitters')
+                        ->where('employe_id', $id)
                         ->exists();
 
         if (!$tokenExists) {

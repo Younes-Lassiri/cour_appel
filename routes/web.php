@@ -32,12 +32,8 @@ use App\Http\Controllers\FournitureDemandeController;
 |
 */
 
-
-
-
-
 Route::middleware('block.mobile')->group(function () {
-    Route::get('/chat-app', 'App\Http\Controllers\PusherController@index');
+Route::get('/chat-app', 'App\Http\Controllers\PusherController@index');
 Route::post('/broadcast', 'App\Http\Controllers\PusherController@broadcast');
 Route::post('/receive', 'App\Http\Controllers\PusherController@receive');
 Route::get('/', [AdminController::class, 'landing'])->name('home');
@@ -177,10 +173,10 @@ Route::post('reset-password', [AdminController::class, 'resetPassord'])->name('r
 Route::get('test', function(){
     return view('uploadFiles');
 });
-
 Route::get('assist', function(){
     return view('assist');
 });
+Route::get('تأكيد-الحساب/{id}', [employeController::class, 'validateAccount'])->name('validate-account')->middleware('validate.email');
 Route::any('/{any}', function () {
     return 'Not found';
 })->where('any', '.*');

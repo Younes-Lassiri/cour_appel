@@ -83,14 +83,19 @@ class AdminController extends Controller
 
     if ($user && Hash::check($request->password, $user->password)) {
         if ($user->status === 'approved') {
-            Auth::login($user);
-            return redirect()->route('dashboard')->with('success', 'تم تسجيل الدخول بنجاح');
+            if ($user->email_verified) {
+                Auth::login($user);
+                return redirect()->route('dashboard')->with('success', 'تم تسجيل الدخول بنجاح');
+            } else {
+                return redirect()->route('adminBlade')->with('validateFalse', 'لم يتم تأكيد البريد الإلكتروني بعد');
+            }
         } else {
             return redirect()->route('adminBlade')->with('login', 'لم يتم الموافقة على حسابك بعد');
         }
     } else {
         return redirect()->route('adminBlade')->with('login', 'البريد الإلكتروني أو كلمة المرور خاطئة');
     }
+    
 }
 
 

@@ -24,6 +24,18 @@
   </script>
 @endif
 
+@if (session()->has('validateSucess'))
+<script>
+    Swal.fire({
+        position: "center-center",
+        icon: "success",
+        title: "{{ session('validateSucess') }}",
+        showConfirmButton: false,
+        timer: 2000
+    });
+</script>
+@endif
+
 
 @if (session()->has('resetSuccess'))
 <script>

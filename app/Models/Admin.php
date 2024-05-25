@@ -21,7 +21,8 @@ class Admin extends Authenticatable
         'rental_number',
         'cadre',
         'address',
-        'observations'
+        'observations',
+        'email_verified'
     ];
 
     public function isAdmin()

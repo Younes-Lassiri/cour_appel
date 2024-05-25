@@ -88,65 +88,100 @@
     <x-foo_ter/>
 
     <script>
-        function getStoredPostIds() {
-            const storedPostIds = localStorage.getItem('postIds');
-            return storedPostIds ? JSON.parse(storedPostIds) : [];
-        }
-
-        function savePostIds(postIds) {
-            localStorage.setItem('postIds', JSON.stringify(postIds));
-            updateInputValue(postIds.length);
-            updateAllInput(postIds);
-        }
-        
-        function updateInputValue(length) {
-        const inputElement = document.getElementById('postIdsLength');
-        inputElement.textContent = length;
-        }
-        function togglePostId(element) {
-            const postId = element.getAttribute('data-post-id');
-            let postIds = getStoredPostIds();
-
-            if (postIds.includes(postId)) {
-                postIds = postIds.filter(id => id !== postId);
-                element.classList.remove('bxs-star');
-                element.classList.add('bx-star');
-                console.log('Post ID removed:', postId);
-            } else {
-                postIds.push(postId);
-                element.classList.remove('bx-star');
-                element.classList.add('bxs-star');
-                console.log('Post ID stored:', postId);
+            function getStoredPostIds() {
+                const storedPostIds = localStorage.getItem('postIds');
+                return storedPostIds ? JSON.parse(storedPostIds) : [];
             }
 
-            savePostIds(postIds);
-        }
-        function updateShowTitles() {
-        let allPostsTitles = document.querySelector('.employeDetailLikesTwo');
-        let postIds = getStoredPostIds();
-        postIds.forEach(postId => {
-        const post = posts.find(post => post.id === parseInt(postId));
-        if (post) {
-            allPostsTitles.innerHTML += post.title;
-        }
-    });
-    }
-        document.addEventListener('DOMContentLoaded', function() {
-            const postIds = getStoredPostIds();
-            var posts = <?php echo json_encode($posts); ?>;
-            const elements = document.querySelectorAll('.detailPost-sectionOneOne i');
-
-            elements.forEach(element => {
+            function savePostIds(postIds) {
+                localStorage.setItem('postIds', JSON.stringify(postIds));
+                updateShowTitles();
+                updateInputValue(postIds.length);
+                updateAllInput(postIds);
+            }
+            
+            function updateInputValue(length) {
+            const inputElement = document.getElementById('postIdsLength');
+            inputElement.textContent = length;
+            }
+            function togglePostId(element) {
                 const postId = element.getAttribute('data-post-id');
+                let postIds = getStoredPostIds();
+
                 if (postIds.includes(postId)) {
+                    postIds = postIds.filter(id => id !== postId);
+                    element.classList.remove('bxs-star');
+                    element.classList.add('bx-star');
+                    console.log('Post ID removed:', postId);
+                } else {
+                    postIds.push(postId);
                     element.classList.remove('bx-star');
                     element.classList.add('bxs-star');
+                    console.log('Post ID stored:', postId);
                 }
-            });
-            updateInputValue(postIds.length);
-            updateShowTitles();
+
+                savePostIds(postIds);
+            }
+            function updateShowTitles() {
+            let allPostsTitles = document.querySelector('.employeDetailLikesTwo');
+            let postIds = getStoredPostIds();
+            allPostsTitles.innerHTML = '';
+            postIds.forEach(postId => {
+                const post = posts.find(post => post.id === parseInt(postId));
+                if (post) {
+            const postDiv = document.createElement('div');
+            const postDivInsideOne = document.createElement('div');
+            const postDivInsideTwo = document.createElement('div');
+            postDiv.className = 'wishPost';
             
-        });
+            const postHref = document.createElement('a');
+            postHref.textContent = post.title;
+            postHref.setAttribute('target', '_blank');
+            postHref.setAttribute('href', `/${post.created_at.split(" ")[0]}/${post.id}/${post.title.replace(/ /g, '-')}`);
+            postHref.setAttribute('data-created-at', '{{ $post->created_at }}');
+            postHref.setAttribute('data-id', post.id);
+            postHref.setAttribute('data-title', post.title);
+            postDivInsideOne.appendChild(postHref);
+            postDivInsideTwo.innerHTML = `<i class="bx bx-plus" onclick="cutLike(${post.id})"></i>`;
+            postDivInsideOne.className = "wishPostOne";
+            postDivInsideTwo.className = 'wishPostTwo';
+            postDiv.appendChild(postDivInsideTwo);
+            postDiv.appendChild(postDivInsideOne);
+            allPostsTitles.appendChild(postDiv);
+        }
+
+            });
+        }
+
+            document.addEventListener('DOMContentLoaded', function() {
+                const postIds = getStoredPostIds();
+                var posts = <?php echo json_encode($posts); ?>;
+                const elements = document.querySelectorAll('.detailPost-sectionOneOne i');
+
+                elements.forEach(element => {
+                    const postId = element.getAttribute('data-post-id');
+                    if (postIds.includes(postId)) {
+                        element.classList.remove('bx-star');
+                        element.classList.add('bxs-star');
+                    }
+                });
+                updateInputValue(postIds.length);
+                updateShowTitles();
+                
+            });
+            function cutLike(postId) {
+            let elements = document.querySelectorAll('.detailPost-sectionOneOne i');
+            elements.forEach(ele => {
+                if (parseInt(ele.getAttribute('data-post-id')) === parseInt(postId)) {
+                    ele.classList.remove('bxs-star');
+                    ele.classList.add('bx-star');
+                }
+            })
+            let postIds = getStoredPostIds();
+            postIds = postIds.filter(id => parseInt(id) !== postId);
+            savePostIds(postIds);
+            }
+ 
     </script>
 
 

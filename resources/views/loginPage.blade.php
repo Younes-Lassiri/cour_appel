@@ -11,13 +11,25 @@
     
 </head>
 <body>
-
-    @if (session()->has('add'))
+    
+@if (session()->has('add'))
   <script>
       Swal.fire({
           position: "center-center",
           icon: "success",
           title: "{{ session('add') }}",
+          showConfirmButton: false,
+          timer: 2000
+      });
+  </script>
+@endif
+
+@if (session()->has('validateFalse'))
+  <script>
+      Swal.fire({
+          position: "center-center",
+          icon: "error",
+          title: "{{ session('validateFalse') }}",
           showConfirmButton: false,
           timer: 2000
       });
