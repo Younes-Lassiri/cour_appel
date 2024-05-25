@@ -78,11 +78,14 @@
 
     <script src="/js/main.js"></script>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            document.title = document.title + ' - ' + 'إظافة موظف';
-        });
-    </script>
+
+
+    
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.title = 'نافذة الحق' + ' - ' + 'إظافة موظف';
+    });
+  </script>
 </body>
 </html>
 

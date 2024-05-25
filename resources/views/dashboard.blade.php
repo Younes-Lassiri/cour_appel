@@ -18,6 +18,9 @@
 </head>
 
 <body>
+    @if (!session()->has('demandeAdded') && !session()->has('addedPost') && !session()->has('presenceRegister') && !session()->has('presenceTimeout') && !session()->has('addNewEmp') && !session()->has('status') && !session()->has('settings') && !session()->has('success') && !session()->has('delete'))
+    <x-loader />
+@endif
     
     @if (session()->has('demandeAdded'))
         <script>
@@ -41,10 +44,6 @@
             });
         </script>
     @endif
-    
-
-    
-
     @if (session()->has('presenceRegister'))
         <script>
             Swal.fire({
@@ -58,7 +57,7 @@
     @endif
 
 
-@if (session()->has('presenceTimeout'))
+    @if (session()->has('presenceTimeout'))
         <script>
             Swal.fire({
                 position: "center-center",
@@ -128,7 +127,6 @@
         </script>
     @endif
 
-    <x-loader />
 @if (auth()->user()->role === 'employe')
 <div class="messageInfos">
     <span class="suivie">لائحة الواردات و الصادرات</span>
@@ -220,9 +218,6 @@
     </tr>
 @endforeach
     </table>
-
-
-    
 </div>
 
 @else
@@ -483,12 +478,12 @@ function search2() {
     window.addEventListener('load', function() {
       document.body.classList.add('shadow-overlay');
       setTimeout(function() {
+        document.body.classList.remove('shadow-overlay');
         document.querySelector('.theLoader').style.display = 'none';
         document.querySelector('.preLoader').style.display = 'none';
-        document.body.classList.remove('shadow-overlay');
       }, 1500);
     });
-  </script>
+</script>
 
 
 </body>

@@ -117,11 +117,13 @@
         </div>
     </div>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            document.title = document.title + ' - ' + 'طلبات أدوات المكتب';
-        });
-    </script>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.title = 'نافذة الحق' + ' - ' + 'طلبات أدوات المكتب';
+    });
+  </script>
 
     <x-foo_ter/>
     

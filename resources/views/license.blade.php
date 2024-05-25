@@ -475,8 +475,8 @@
     </script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            document.title = document.title + ' - ' + 'ملئ-طلب-رخصة-إدارية';
+            document.title = 'نافذة الحق' + ' - ' + 'ملئ طلب رخصة إدارية';
         });
-    </script>
+      </script>
 </body>
 </html>

@@ -78,13 +78,12 @@ class AdminController extends Controller
     ]);
 
     $user = Admin::where('email', $request->email)->first();
-
-    
-
     if ($user && Hash::check($request->password, $user->password)) {
         if ($user->status === 'approved') {
             if ($user->email_verified) {
                 Auth::login($user);
+                $user->online = true;
+                $user->save();
                 return redirect()->route('dashboard')->with('success', 'تم تسجيل الدخول بنجاح');
             } else {
                 return redirect()->route('adminBlade')->with('validateFalse', 'لم يتم تأكيد البريد الإلكتروني بعد');
@@ -95,18 +94,19 @@ class AdminController extends Controller
     } else {
         return redirect()->route('adminBlade')->with('login', 'البريد الإلكتروني أو كلمة المرور خاطئة');
     }
-    
+}
+public function logout()
+{
+    $user = Auth::user();
+    if ($user) {
+        $user->online = false;
+        $user->save();
+    }
+    Auth::logout();
+    session()->flush();
+    return redirect()->route('home')->with('success', 'تم تسجيل الخروج بنجاح');
 }
 
-
-    public function logout(){
-        session()->flush();
-
-        Auth::logout();
-
-        return redirect()->route('home')->with('success', 'تم تسجيل الخروج بنجاح');
-
-}
 
     public function dashboard(){
         $messages = Message::get();

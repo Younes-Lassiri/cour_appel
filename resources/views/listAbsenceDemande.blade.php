@@ -147,11 +147,12 @@
    
 
     <x-foo_ter/>
+
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            document.title = document.title + ' - ' + 'طلبات الغياب';
+            document.title = 'نافذة الحق' + ' - ' + 'طلبات الغياب';
         });
-    </script>
+      </script>
     
 </body>
 </html>

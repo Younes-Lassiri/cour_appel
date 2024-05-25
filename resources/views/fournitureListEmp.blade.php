@@ -68,11 +68,12 @@
     </div>
 
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            document.title = document.title + ' - ' + 'قائمة طلبات أدوات المكتب';
-        });
-    </script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.title = 'نافذة الحق' + ' - ' + 'قائمة طلبات أدوات المكتب';
+    });
+  </script>
     <x-foo_ter/>
     
     

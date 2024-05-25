@@ -861,11 +861,12 @@
                     });
     </script>
 
+
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        document.title = document.title + ' - ' + 'ملئ-طلب-الولادة';
+        document.title = 'نافذة الحق' + ' - ' + 'ملئ طلب الولادة';
     });
-</script>
+  </script>
 
 </body>
 </html>

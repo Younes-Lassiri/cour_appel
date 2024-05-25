@@ -201,9 +201,10 @@
         });
       </script>
 
+
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        document.title = document.title + ' - ' + 'تدبير الواردات';
+        document.title = 'نافذة الحق' + ' - ' + 'تدبير الواردات';
     });
 </script>
 </body>

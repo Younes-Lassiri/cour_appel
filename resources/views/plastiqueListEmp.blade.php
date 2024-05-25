@@ -71,11 +71,12 @@
     </div>
 
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            document.title = document.title + ' - ' + 'قائمة-طلبات-الطوابع-المطاطية';
-        });
-    </script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.title = 'نافذة الحق' + ' - ' + 'قائمة طلبات الطوابع المطاطية';
+    });
+  </script>
     <x-foo_ter/>
     
     

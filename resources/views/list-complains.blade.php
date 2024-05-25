@@ -19,6 +19,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
+    <x-loader />
     <div class="listMessages-section">
         <x-landing-section_head />
         <x-admin_navbar/>
@@ -132,11 +133,13 @@
             </div>
         </div>
     </div>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            document.title = document.title + ' - ' + 'تدبير الشكايات';
-        });
-    </script>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.title = 'نافذة الحق' + ' - ' + 'تدبير الشكايات';
+    });
+  </script>
     <x-foo_ter/>
     
 
@@ -184,6 +187,17 @@
     }
 
 
+</script>
+
+<script>
+    window.addEventListener('load', function() {
+      document.body.classList.add('shadow-overlay');
+      setTimeout(function() {
+        document.querySelector('.theLoader').style.display = 'none';
+        document.querySelector('.preLoader').style.display = 'none';
+        document.body.classList.remove('shadow-overlay');
+      }, 1500);
+    });
 </script>
 </body>
 </html>

@@ -131,8 +131,8 @@
     
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            document.title = document.title + ' - ' + 'طلبات الولادة';
+            document.title = 'نافذة الحق' + ' - ' + 'طلبات الولادة';
         });
-    </script>
+      </script>
 </body>
 </html>

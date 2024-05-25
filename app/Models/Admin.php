@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
 class Admin extends Authenticatable
 {
@@ -22,7 +21,8 @@ class Admin extends Authenticatable
         'cadre',
         'address',
         'observations',
-        'email_verified'
+        'email_verified',
+        'online'
     ];
 
     public function isAdmin()

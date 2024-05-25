@@ -102,11 +102,12 @@
             </table>
         </div>
     </div>
-    <script>
+
+     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            document.title = document.title + ' - ' + 'طلبات التسجيل';
+            document.title = 'نافذة الحق' + ' - ' + 'طلبات التسجيل';
         });
-    </script>
+      </script>
     <x-foo_ter/>
     
     @include('index')

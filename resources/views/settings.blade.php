@@ -74,7 +74,7 @@
 </div>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        document.title = document.title + ' - ' + 'الإعدادات';
+        document.title = 'نافذة الحق' + ' - ' + 'الإعدادات';
     });
 </script>
 

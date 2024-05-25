@@ -66,11 +66,13 @@
             </table>
         </div>
     </div>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            document.title = document.title + ' - ' + 'قائمة طلبات المطبوعات';
-        });
-    </script>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.title = 'نافذة الحق' + ' - ' + 'قائمة طلبات المطبوعات';
+    });
+  </script>
     <x-foo_ter/>
     
     

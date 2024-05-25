@@ -15,73 +15,73 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <style>
-  .med{
-    width: 100%;
-    height: 100%;
-}
-.parent1{
+      .med{
+        width: 100%;
+        height: 100%;
+    }
+    .parent1{
+        display: grid;
+    grid-template-columns: 50% 50%;
+
+    }
+    .bigchild2{
+        display: grid;
+    grid-template-columns: 7fr  1fr;
+    padding: 50px 15px;
+
+    }
+
+    .child1{
+
+        display: grid;
+        grid-template-rows: 50px 50px ;
+        height: 100px;
+        ;
+    }
+    .son{
+      display: flex;
+      align-items: end;
+      justify-content: end;
+    }
+
+    .child2{
+
+      height: 100px;
+      width: 100px;
+      display: flex;
+    justify-content: start;
+    padding: 0 10px
+      ;
+    }
+    .mydiv{
     display: grid;
-grid-template-columns: 50% 50%;
-
-}
-.bigchild2{
-    display: grid;
-grid-template-columns: 7fr  1fr;
-padding: 50px 15px;
-
-}
-
-.child1{
-
-    display: grid;
-    grid-template-rows: 50px 50px ;
-    height: 100px;
-    ;
-}
-.son{
-  display: flex;
-  align-items: end;
-  justify-content: end;
-}
-
-.child2{
-
-  height: 100px;
-  width: 100px;
-  display: flex;
-justify-content: start;
-padding: 0 10px
-  ;
-}
-.mydiv{
-display: grid;
-grid-template-rows: 100px ; place-items: center;
-}
-.mysvg{
-width: 45px;
-height: 45px;  
-border-radius: 50%;
-background-color: #ffbc2b;
-display: flex;
-align-items: center;
-justify-content: center;
-font-size: 23px;
-color: #003566
-}
-.mytext{
-color:#666666;
-font-family: "Tajawal", sans-serif;
-font-family: "Tajawal", sans-serif;
-font-family: 'Noto Sans Arabic', sans-serif;
-}
-.myh1{
-font-size: 22px;
-line-height: 28px;
-float: right;
-font-family: "Tajawal", sans-serif;
-font-family: 'Noto Sans Arabic', sans-serif;
-font-family: "Tajawal", sans-serif;
-}
+    grid-template-rows: 100px ; place-items: center;
+    }
+    .mysvg{
+    width: 45px;
+    height: 45px;  
+    border-radius: 50%;
+    background-color: #ffbc2b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 23px;
+    color: #003566
+    }
+    .mytext{
+    color:#666666;
+    font-family: "Tajawal", sans-serif;
+    font-family: "Tajawal", sans-serif;
+    font-family: 'Noto Sans Arabic', sans-serif;
+    }
+    .myh1{
+    font-size: 22px;
+    line-height: 28px;
+    float: right;
+    font-family: "Tajawal", sans-serif;
+    font-family: 'Noto Sans Arabic', sans-serif;
+    font-family: "Tajawal", sans-serif;
+    }
 
 </style>
 <body>
@@ -89,7 +89,7 @@ font-family: "Tajawal", sans-serif;
   <div class="landing-section">
     <x-landing-section_head />
 
-    @if (!session()->has('logOut'))
+    @if (!session()->has('success'))
     <x-loader />
 @endif
 
@@ -225,7 +225,7 @@ font-family: "Tajawal", sans-serif;
     <div class="post-titlesTwo"><p>المستجدات</p></div>
   </div>
   <div class="posts-section" id="postsSection">
-    @foreach ($newsposts as $post)
+    @foreach ($newsposts->take(4) as $post)
       <div class="posts-sectionOne">
         <div class="posts-sectionOneOne"><img src="{{ asset($post->images[0]->image) }}" alt=""></div>
         <div class="posts-sectionOneTwo">
@@ -239,27 +239,11 @@ font-family: "Tajawal", sans-serif;
           </p>
         </div>
         <div class="posts-sectionOneThree"><a href="{{ route('detailPost', [explode(' ',$post->created_at)[0], $post->id, str_replace(' ', '-', $post->title)]) }}" style="text-decoration: none"><p>← عرض</p></a></div>
-      </div>  
-    @endforeach
-    @foreach ($reportposts->take(2) as $post)
-      <div class="posts-sectionOne">
-        <div class="posts-sectionOneOne"><img src="{{ asset($post->images[0]->image) }}" alt=""></div>
-        <div class="posts-sectionOneTwo">
-          <p>
-            <?php
-            $words = explode(' ', $post->description);
-            $limitedWords = implode(' ', array_slice($words, 0, 15));
-            print($limitedWords);
-          ?>
-          <span style="color: #ffbc2b">[</span>...<span style="color: #ffbc2b">]</span>
-          </p>
-        </div>
-        <div class="posts-sectionOneThree"><a href="{{ route('detailPost', [$post->created_at, $post->id, $post->title]) }}" style="text-decoration: none"><p><span style="color: #4D7294; font-weight: 600">←</span> عرض</p></a></div>
       </div>  
     @endforeach
   </div>
   <div class="posts-section" id="reportSection" style="display: none">
-    @foreach ($reportposts as $post)
+    @foreach ($reportposts->take(4) as $post)
       <div class="posts-sectionOne">
         <div class="posts-sectionOneOne"><img src="{{ asset($post->images[0]->image) }}" alt=""></div>
         <div class="posts-sectionOneTwo">
@@ -273,22 +257,6 @@ font-family: "Tajawal", sans-serif;
           </p>
         </div>
         <div class="posts-sectionOneThree"><a href="{{ route('detailPost', [$post->created_at, $post->id, $post->title]) }}" style="text-decoration: none"><p><span style="color: #4D7294; font-weight: 600">←</span> عرض</p></a></div>
-      </div>  
-    @endforeach
-    @foreach ($newsposts->take(1) as $post)
-      <div class="posts-sectionOne">
-        <div class="posts-sectionOneOne"><img src="{{ asset($post->images[0]->image) }}" alt=""></div>
-        <div class="posts-sectionOneTwo">
-          <p>
-            <?php
-            $words = explode(' ', $post->description);
-            $limitedWords = implode(' ', array_slice($words, 0, 15));
-            print($limitedWords);
-          ?>
-            <span style="color: #ffbc2b">[</span>...<span style="color: #ffbc2b">]</span>
-          </p>
-        </div>
-        <div class="posts-sectionOneThree"><a href="{{ route('detailPost', [explode(' ',$post->created_at)[0], $post->id, str_replace(' ', '-', $post->title)]) }}" style="text-decoration: none"><p>← عرض</p></a></div>
       </div>  
     @endforeach
   </div>

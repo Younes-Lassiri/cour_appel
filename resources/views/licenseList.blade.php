@@ -128,11 +128,13 @@
         </div>
     </div>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            document.title = document.title + ' - ' + 'طلبات رخصة إدارية';
-        });
-    </script>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.title = 'نافذة الحق' + ' - ' + 'طلبات رخصة إدارية';
+    });
+  </script>
 
     <x-foo_ter/>
     

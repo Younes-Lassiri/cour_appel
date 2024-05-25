@@ -167,7 +167,7 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        document.title = document.title + ' - ' + 'لائحة-الواردات';
+        document.title = 'نافذة الحق' + ' - ' + 'لائحة الواردات';
     });
 </script>
 </body>

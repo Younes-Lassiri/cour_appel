@@ -5,6 +5,7 @@
   <link rel="icon" href="https://assets.edlin.app/favicon/favicon.ico"/>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/howler@2.2.3/dist/howler.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
   <link rel="stylesheet" href="/css/second.css">
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
@@ -46,7 +47,7 @@
             </div>
             @else
             <div class="messInfosDiv">
-              <div class="messInfosDivOne">
+              <div class="messInfosDivOne @if($notice->admin->online) adminOnline @endif">
                 <img src="/img/maroc-logo.png" alt="">
               </div>
               <div class="messInfosDivTwo">
@@ -100,7 +101,7 @@
   }
   document.addEventListener("DOMContentLoaded", function() {
     checkMess();
-});
+  });
 </script>
 
 <script>
@@ -131,6 +132,19 @@
 
 
 <script>
+  function playSound() {
+        var sound = new Howl({
+            src: ['sound/notice-sound.mp3']
+        });
+        sound.play();
+    }
+
+    function sentSound() {
+        var sound = new Howl({
+            src: ['sound/sent.mp3']
+        });
+        sound.play();
+    }
   let currentTime = new Date();
   let hours = currentTime.getHours();
   let minutes = currentTime.getMinutes();
@@ -167,6 +181,7 @@
           color: "#003566"
         }
       }).showToast();
+      playSound();
     }
   });
 
@@ -191,6 +206,7 @@
         $("#message").val('');
         $("#sendButton").addClass('notFilled');
         $('.allMessagesDivMainOne').scrollTop($('.allMessagesDivMainOne')[0].scrollHeight);
+        sentSound();
         $("#hiddenContent").val($("#message").val());
         $.ajax({
           url: $("#hiddenForm").attr('action'),

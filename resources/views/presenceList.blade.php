@@ -120,11 +120,13 @@
 
 </script>
 
+
+
+
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        document.title = document.title + ' - ' + 'لائحة الحظور';
+        document.title = 'نافذة الحق' + ' - ' + 'لائحة الحظور';
     });
-</script>
-
+  </script>
 </body>
 </html>

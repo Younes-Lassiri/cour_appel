@@ -639,8 +639,8 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        document.title = document.title + ' - ' + 'ملئ-طلب-الغياب';
+        document.title = 'نافذة الحق' + ' - ' + 'ملئ طلب الغياب';
     });
-</script>
+  </script>
 </body>
 </html>

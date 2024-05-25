@@ -138,11 +138,12 @@
         }
         </script>
         
+   
         <script>
             document.addEventListener("DOMContentLoaded", function() {
-                document.title = document.title + ' - ' + 'تدبير الموظفين';
+                document.title = 'نافذة الحق' + ' - ' + 'تدبير الموظفين';
             });
-        </script>
+          </script>
 </body>
 </html>
 

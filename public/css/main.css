@@ -345,7 +345,7 @@ width: 100%;
 background-color: #003566;
 position: relative;
 display: grid;
-grid-template-columns: 1fr 3fr;
+grid-template-columns: 0.8fr 3fr;
 }
 .navbarDivOne{
 align-self: center;
@@ -463,7 +463,7 @@ background-clip: padding-box;
 border-radius: 0.25rem;
 }
 .navbar-ull li {
-padding: 0 9px;
+padding: 0 7px;
 cursor: pointer;
 }
 .navbar-ull{
@@ -533,19 +533,12 @@ text-decoration: none;
 white-space: nowrap;
 border: 0;
 }
-
-
-
 #theDrop ul li:hover{
 background-color: #f1f1f1;
 }
-
-
 #dropdonToggle{
 position: relative;
 }
-
-
 #dropdonToggle::after{
 content: "";
 width: 100%;
@@ -1417,7 +1410,7 @@ padding: 5px 40px;
 background-color: #ffbc2b;
 color: white;
 border-radius: 10px;
-padding: 5px 40px;
+padding: 5px 48px;
 }
 .dropdown-menu-end{
 background-color: #003566;

@@ -120,9 +120,9 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            document.title = document.title + ' - ' + 'طلبات جهاز الحاسوب و الطابعات';
+            document.title = 'نافذة الحق' + ' - ' + 'طلبات جهاز الحاسوب و الطابعات';
         });
-    </script>
+      </script>
 
     <x-foo_ter/>
     
