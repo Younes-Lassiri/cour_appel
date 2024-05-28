@@ -75,6 +75,7 @@
             <div class="tableDivChikayaOne">
                 <table border="1" class="messages-tableChikaya">
                     <tr>
+                        <th>مراجعة</th>
                         <th>المرفقات</th>
                         <th>الوقت التقريبي</th>
                         <th>تاريخ الإعتداء</th>
@@ -93,9 +94,11 @@
                     </tr>
                     @foreach ($complains as $complain)
                         <tr class="messageRow">
-                            <td style="text-align: center"><i class='bx bx-show' style='color:#003566; font-size: 20px; cursor: pointer' onclick="showAttach(
+                            <td>jjj</td>
+                            <td style="text-align: center"><i class='bx bx-show myI' style='color:#003566; font-size: 20px; cursor: pointer' onclick="showAttach(
                                 '<?php echo $complain->cinImage ?>',
-                                '<?php echo $complain->cinImageBack ?>'
+                                '<?php echo $complain->cinImageBack ?>',
+                                this
                             )"></i></td>
                             <td>{{ $complain->time }}</td>
                             <td>{{ $complain->date }}</td>
@@ -139,21 +142,32 @@
     document.addEventListener("DOMContentLoaded", function() {
         document.title = 'نافذة الحق' + ' - ' + 'تدبير الشكايات';
     });
-  </script>
+</script>
     <x-foo_ter/>
     
 
     <script>
-        function showAttach(imageOne, imageTwo) {
+        function showAttach(imageOne, imageTwo, element) {
             let attach = document.querySelector('.attachmentImages');
             let attachOne = document.querySelector('.attachmentImagesOne');
             let attachTwo = document.querySelector('.attachmentImagesTwo');
-    
-            if (attach.style.display === 'none') {
+            let allI = document.querySelectorAll('.myI');
+            console.log(allI);
+            if (attach.style.display === 'none' || attach.style.display === '') {
+                allI.forEach(ele => {
+                    ele.classList.remove('bx-hide');
+                    ele.classList.add('bx-show');
+                })
+                document.body.classList.add('shadow-overlay');
+                element.classList.remove('bx-show');
+                element.classList.add('bx-hide');
                 attachOne.innerHTML = `<img src="{{ asset('images/' . '${imageOne}') }}" alt="Image One">`;
                 attachTwo.innerHTML = `<img src="{{ asset('images/' . '${imageTwo}') }}" alt="Image Two">`;
                 attach.style.display = 'grid';
             } else {
+                document.body.classList.remove('shadow-overlay');
+                element.classList.remove('bx-hide');
+                element.classList.add('bx-show');
                 attach.style.display = 'none';
             }
         }

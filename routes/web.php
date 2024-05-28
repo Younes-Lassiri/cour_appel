@@ -176,6 +176,8 @@ Route::get('test', function(){
 Route::get('assist', function(){
     return view('assist');
 });
+
+
 Route::get('تأكيد-الحساب/{id}', [employeController::class, 'validateAccount'])->name('validate-account')->middleware('validate.email');
 Route::any('/{any}', function () {
     return 'Not found';
