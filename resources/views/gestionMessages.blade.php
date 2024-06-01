@@ -36,8 +36,10 @@
             });
         </script>
     @endif
+    @if (!session()->has('response'))
+    <x-loader />
+@endif
     <div class="listMessages-section">
-        <x-loader />
         <x-landing-section_head />
 
         <x-admin_navbar :count="count($waitingEmploye)" />

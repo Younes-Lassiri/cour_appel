@@ -674,10 +674,10 @@
         <div class="b">
                 <div class="bNav">
                     <ul class="bUnOne">
-                        <li><a href="#" style="text-decoration: none">متحف الذاكرة</a></li>
-                        <li><a href="#" style="text-decoration: none">نصوص قانونية</a></li>
-                        <li><a href="#" style="text-decoration: none">الإتفاقيات القضائية</a></li>
-                        <li><a href="#" style="text-decoration: none">الهيكلة القضائية</a></li>
+                        <li><a href="{{ route('website') }}" style="text-decoration: none">تقديم الموقع</a></li>
+                        <li><a href="{{ route('histoire') }}" style="text-decoration: none">لمحة تاريخية</a></li>
+                        <li><a href="{{ route('lows') }}" style="text-decoration: none">القوانين والتشريعات</a></li>
+                        <li><a href="{{ route('contact') }}" style="text-decoration: none">إتصل بنا</a></li>
                       </ul>
                 </div>
 
@@ -764,7 +764,7 @@
             
         </div>
 
-<a href="https://justice.gov.ma/" target="_blank">
+<a href="">
 <div class="haha">
     <div class="hahaImg"><img src="https://www.mahakim.ma/assets/images/logo/ministere_white.svg" alt=""></div>
     <div></div>

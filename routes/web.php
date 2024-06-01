@@ -148,6 +148,8 @@ Route::post('/الخطوات/2', [ComplainController::class, 'try'])->name('try'
 Route::post('/الخطوات/3', [ComplainController::class, 'tryy'])->name('tryy');
 Route::post('/الخطوات/4', [ComplainController::class, 'step4'])->name('step4');
 Route::post('/الخطوات/5', [ComplainController::class, 'step5'])->name('step5');
+Route::post('/update-complain/{id}', [ComplainController::class, 'accept'])->name('accept');
+Route::post('/مراجعة-الشكاية/{id}', [ComplainController::class, 'reject'])->name('reject');
 Route::get('/الخطوات/5', function(){
     return view('complainLast');
 });
@@ -173,14 +175,11 @@ Route::post('reset-password', [AdminController::class, 'resetPassord'])->name('r
 Route::get('test', function(){
     return view('uploadFiles');
 });
-Route::get('assist', function(){
-    return view('assist');
-});
-
-
+Route::view('مشاريع-قوانين', 'lows')->name('lows');
+Route::view('التشريعات-الصادرة-حديثاً', 'lowsnew')->name('lowsnew');
 Route::get('تأكيد-الحساب/{id}', [employeController::class, 'validateAccount'])->name('validate-account')->middleware('validate.email');
 Route::any('/{any}', function () {
-    return 'Not found';
+    return view('notFound');
 })->where('any', '.*');
 
 });

@@ -32,7 +32,7 @@ class empSignup extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Validate account',
+            subject: 'تفعيل الحساب',
         );
     }
 

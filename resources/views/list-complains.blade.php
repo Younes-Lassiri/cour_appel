@@ -16,10 +16,37 @@
     <script src="https://cdn.lordicon.com/lordicon.js"></script>
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
+    
+    @if (session()->has('complain-accept'))
+        <script>
+            Swal.fire({
+                position: "center-center",
+                icon: "success",
+                title: "{{ session('complain-accept') }}",
+                showConfirmButton: false,
+                timer: 2000
+            });
+        </script>
+    @endif
+    @if (session()->has('complain-reject'))
+        <script>
+            Swal.fire({
+                position: "center-center",
+                icon: "success",
+                title: "{{ session('complain-reject') }}",
+                showConfirmButton: false,
+                timer: 2000
+            });
+        </script>
+    @endif
+    @if (!session()->has('complain-reject') && !session()->has('complain-accept'))
     <x-loader />
+    @endif
+    
     <div class="listMessages-section">
         <x-landing-section_head />
         <x-admin_navbar/>
@@ -75,7 +102,8 @@
             <div class="tableDivChikayaOne">
                 <table border="1" class="messages-tableChikaya">
                     <tr>
-                        <th>مراجعة</th>
+                        <th>الموافقة على الطلب</th>
+                        <th>رفض الطلب</th>
                         <th>المرفقات</th>
                         <th>الوقت التقريبي</th>
                         <th>تاريخ الإعتداء</th>
@@ -94,7 +122,26 @@
                     </tr>
                     @foreach ($complains as $complain)
                         <tr class="messageRow">
-                            <td>jjj</td>
+                            @if ($complain->status === 'under review')
+                            <td>
+                                <form action="{{ route('accept', $complain->id) }}" method="post">
+                                @csrf
+                                <button type="submit" class="acceptDemande">✓</button>
+                                </form>
+                            </td>
+                            @else
+                            <td><span style="color: #088772">تمت المراجعة</span></td>
+                            @endif
+                            @if ($complain->status === 'under review')
+                            <td>
+                                <form action="{{ route('reject', $complain->id) }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="cancelDemande"><i class='bx bx-x'></i></button>
+                                </form>
+                            </td>
+                            @else
+                                <td></td>
+                            @endif
                             <td style="text-align: center"><i class='bx bx-show myI' style='color:#003566; font-size: 20px; cursor: pointer' onclick="showAttach(
                                 '<?php echo $complain->cinImage ?>',
                                 '<?php echo $complain->cinImageBack ?>',
@@ -173,45 +220,46 @@
         }
     </script>
     
-
     
-<script>
+    <script>
         
-    function search() {
-        var senderName = document.getElementById('senderName').value.trim().toLowerCase();
-        var senderCin = document.getElementById('senderCin').value.trim().toLowerCase()
-        var complainType = document.getElementById('complainType').value.trim().toLowerCase()
-        var suiviNum = document.getElementById('suiviNum').value.trim().toLowerCase()
-        
-        
-        var rows = document.getElementsByClassName('messageRow');
-
-        for (var i = 0; i < rows.length; i++) {
-            var row = rows[i];
-            var senderNameCell = row.getElementsByTagName('td')[13];
-            var senderCinCell = row.getElementsByTagName('td')[7];
-            var suiviNumCell = row.getElementsByTagName('td')[14];
-            var complainTypeCell = row.getElementsByTagName('td')[5];
-            if (senderNameCell.textContent.trim().toLowerCase().includes(senderName) && senderCinCell.textContent.trim().toLowerCase().includes(senderCin) && complainTypeCell.textContent.trim().toLowerCase().includes(complainType) && suiviNumCell.textContent.trim().toLowerCase().includes(suiviNum)) {
-                row.style.display = '';
-            } else {
-                row.style.display = 'none';
+        function search() {
+            var senderName = document.getElementById('senderName').value.trim().toLowerCase();
+            var senderCin = document.getElementById('senderCin').value.trim().toLowerCase()
+            var complainType = document.getElementById('complainType').value.trim().toLowerCase()
+            var suiviNum = document.getElementById('suiviNum').value.trim().toLowerCase()
+            
+            
+            var rows = document.getElementsByClassName('messageRow');
+    
+            for (var i = 0; i < rows.length; i++) {
+                var row = rows[i];
+                var senderNameCell = row.getElementsByTagName('td')[15];
+                var senderCinCell = row.getElementsByTagName('td')[9];
+                var suiviNumCell = row.getElementsByTagName('td')[16];
+                var complainTypeCell = row.getElementsByTagName('td')[7];
+                if (senderNameCell.textContent.trim().toLowerCase().includes(senderName) && senderCinCell.textContent.trim().toLowerCase().includes(senderCin) && complainTypeCell.textContent.trim().toLowerCase().includes(complainType) && suiviNumCell.textContent.trim().toLowerCase().includes(suiviNum)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
             }
         }
-    }
-
-
-</script>
+    
+    
+    </script>
+    
 
 <script>
     window.addEventListener('load', function() {
       document.body.classList.add('shadow-overlay');
       setTimeout(function() {
+        document.body.classList.remove('shadow-overlay');
         document.querySelector('.theLoader').style.display = 'none';
         document.querySelector('.preLoader').style.display = 'none';
-        document.body.classList.remove('shadow-overlay');
       }, 1500);
     });
 </script>
+
 </body>
 </html>

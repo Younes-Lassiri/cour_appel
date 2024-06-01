@@ -22,12 +22,7 @@
 </head>
 <body>
     <div class="addMessage">
-
-
-        
-        
         <x-landing-section_head />
-
         <x-admin_navbar/>
         <div class="formSection">
             <h1>إضافة صادرة</h1>
@@ -81,11 +76,11 @@
     <x-foo_ter/>
     </div>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            document.title = document.title + ' - ' + 'إضافة صادرة';
-        });
-    </script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.title = 'نافذة الحق' + ' - ' + 'إضافة صادرة';
+    });
+  </script>
 
     <script src="/js/main.js"></script>
 </body>

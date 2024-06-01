@@ -1,100 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <title>Document</title>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    .reset-email-div{
-        display: grid;
-        grid-auto-columns: 1fr;
-        grid-auto-rows: 1fr 1fr 1fr 1fr 1fr;
-        width: 45%;
-        height: 70vh;
-        margin: 0 auto;
-    }
-    .reset-email-divOne{
-        text-align: center;
-        height: 100px;
-    }
-    .reset-email-divOne img{
-        width: 29%;
-        height: 115%
-    }
-    .reset-email-divTwo{
-        text-align: center;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 15px;
-        position: relative;
-    }
-
-    .reset-email-divTwo span{
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%)
-    }
-    
-    .slogan{
-        width: 20px;
-        height: 20px;
-        background: #24b4fb;
-        border-radius: 50%;
-        color: #fff;
-        font-weight: 600
-
-    }
-    .reset-email-divThree{
-        text-align: right;
-        direction: rtl;
-        font-size: 18px;
-        color: #000009;
-        font-weight: 400;
-        padding: 30px
-    }
-    .reset-email-divFour{
-        text-align: center;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-    }
-    .theA{
-        padding: 15px 25px;
-        border-radius: 4px;
-        background: #24b4fb;
-        text-decoration: none;
-        color: #fff;
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-    .reset-email-divFive{
-        text-align: right;
-        direction: rtl;
-        font-size: 15px;
-        color: #f44336;
-        font-weight: 400;
-        padding: 25px
-    }
-  </style>
+    <title>إعادة تعيين كلمة المرور</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+        .email-container {
+            background-color: #ffffff;
+            padding: 20px;
+            max-width: 600px;
+            margin: 50px auto;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            text-align: right;
+        }
+        .email-container h2 {
+            color: #333333;
+            text-align: center;
+        }
+        .email-container p {
+            color: #666666;
+        }
+        .reset-link {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            padding: 10px;
+            background-color: #003566;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: .7s
+        }
+        .reset-link:hover {
+            background-color: #00284d;
+        }
+        .logo {
+            display: block;
+            margin: 0 auto 20px;
+            max-width: 150px;
+        }
+    </style>
 </head>
 <body>
-    <div class="reset-email-div">
-        <div class="reset-email-divOne"><img src="https://imagetolink.com/ib/EoneAzZbpa.png" alt=""></div>
-        <div class="reset-email-divTwo"><span class="slogan">Y</span><span>{{ $email }}</span></div>
-        <div class="reset-email-divThree">تم طلب اعادة تغيير كلمة المرور باستعمال بريدك الاكتروني
-            اذا كنت انت من قام بالطلب المرجو الظغط على الزر واتباع خطوات تغيير كلمة المرور</div>
-        <div class="reset-email-divFour">
-            <a href="{{ route('reset.email', $token) }}" class="theA">تعديل كلمة المرور</a>
-        </div>
-        <div class="reset-email-divFive">
-            إذا لم تقم بطلب إعادة تعيين كلمة المرور، فلا حاجة لاتخاذ أي إجراء إضافي. يرجى تجاهل هذا البريد الإلكتروني. <br>شكرًا لك!
-        </div>
+    <div class="email-container" style="background-color: #ffffff;padding: 20px;max-width: 600px;margin: 50px auto;border-radius: 5px;box-shadow: 0 0 10px rgba(0,0,0,0.1);text-align: right;">
+        <img src="https://imagetolink.com/ib/EoneAzZbpa.png" alt="شعار الموقع" class="logo">
+        <h2>إعادة تعيين كلمة المرور</h2>
+        <p>مرحباً،</p>
+        <p>لقد طلبت إعادة تعيين كلمة المرور الخاصة بك. الرجاء الضغط على الرابط أدناه لإعادة تعيين كلمة المرور الخاصة بك:</p>
+        <a href="{{ route('reset.email', $token) }}" class="reset-link" style="color: white">إعادة تعيين كلمة المرور</a>
+        <p>إذا لم تطلب إعادة تعيين كلمة المرور، يرجى تجاهل هذا البريد الإلكتروني.</p>
+        <p>شكراً،<br>فريق الدعم</p>
     </div>
 </body>
 </html>

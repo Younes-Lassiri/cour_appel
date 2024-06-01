@@ -44,7 +44,7 @@
                 <input type="email" id="w" class="input-field @if($errors->has('email')) errorInput @endif" name="email" onchange="handleCheck('w', 'x')" style="padding: 12px 5px">
                 <label for="" class="input-label" id="x"><span>*  </span>البريد الإلكتروني</label>
             </div>
-            <div class="div-login-link"><a href="{{ route('adminBlade') }}" class="login-link">تسجيل الدخول؟</a></div>
+            <div class="div-login-link"><a href="{{ route('employeLoginBlade') }}" class="login-link">تسجيل الدخول؟</a></div>
             <div>
                 <button type="submit">إرسال رابط إعادة تعيين كلمة المرور</button>
             </div>

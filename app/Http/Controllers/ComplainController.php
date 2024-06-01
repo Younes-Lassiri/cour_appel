@@ -96,12 +96,15 @@ class ComplainController extends Controller
     if ($theComplain) {
         if ($theComplain->status === 'under review') {
             return redirect()->route('complainSuivi')->with(['status' => 'الشكوى قيد المراجعة', 'sn' => $request->sn]);
-        } else {
+        } elseif ($theComplain->status === 'approved') {
             return redirect()->route('complainSuivi')->with(['status' => 'تمت مراجعة الشكوى من طرف محكمة الإستئناف بالعيون، يرجى الحضور قريبا', 'sn' => $request->sn]);
+        } else {
+            return redirect()->route('complainSuivi')->with(['status' => 'لم تتم الموافقة على طلب الشكاية، المرجو مراجعة المعلومات', 'sn' => $request->sn]);
         }
     } else {
         return redirect()->route('complainSuivi')->with(['status' => 'لا توجد شكوى تحت هذا الرقم، يرجى مراجعة رقم الطلب', 'sn' => $request->sn]);
     }
+    
 }
 
 public function listChikaya()
@@ -109,5 +112,20 @@ public function listChikaya()
     $complains = Complain::get();
     return view('list-complains', compact('complains'));
 }
-
+public function accept(Request $request)
+{
+    $complain = Complain::findOrFail($request->id);
+    $complain->update([
+        'status' => 'approved'
+    ]);
+    return redirect()->back()->with('complain-accept', 'تمت المصادقة على الشكاية');
+}
+public function reject(Request $request)
+{
+    $complain = Complain::findOrFail($request->id);
+    $complain->update([
+        'status' => 'not approved'
+    ]);
+    return redirect()->back()->with('complain-reject', 'تمت رفض الشكاية');
+}
 }

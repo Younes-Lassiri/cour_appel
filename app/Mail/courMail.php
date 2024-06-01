@@ -34,7 +34,7 @@ class courMail extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Cour Mail',
+            subject: 'إعادة تعيين كلمة المرور',
         );
     }
 

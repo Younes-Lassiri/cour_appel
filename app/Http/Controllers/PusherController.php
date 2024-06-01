@@ -17,7 +17,7 @@ class PusherController extends Controller
         $notices = Notice::get();
         return view('index', compact('notices'));
     }
-
+    
     public function broadcast(Request $request)
     {
         $senderNameAuth = auth()->user()->admin_name;

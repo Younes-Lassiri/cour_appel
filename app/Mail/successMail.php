@@ -31,7 +31,7 @@ class successMail extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Success password reset',
+            subject: 'تم إعادة تعيين كلمة المرور الخاصة بك بنجاح',
         );
     }
 

@@ -27,9 +27,9 @@
             <li><a href="{{ route('contact') }}" style="text-decoration: none">إتصل بنا</a></li>
             @guest
               <li><a href="{{ route('employeLoginBlade') }}" style="text-decoration: none">فضاء الموظفين</a></li>
-              <li><a href="{{ route('adminBlade') }}" style="text-decoration: none">فضاء الرؤساء</a></li>
             @endguest
-            <li><a href="#" style="text-decoration: none">نصوص قانونية</a></li>
+            <li><a href="{{ route('lows') }}" style="text-decoration: none">
+              القوانين والتشريعات</a></li>
             <div style="display: flex; align-items: center">
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-togglee" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="display: flex; align-items: center; gap: 5px" id="dropdonToggle">المؤسسة

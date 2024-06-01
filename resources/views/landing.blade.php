@@ -130,7 +130,6 @@
   <div class="p2"></div>
   <div class="p3"></div>
 </div>
-
 <div class="searchInput">
   <div class="searchInputTwo"><button class="theSearchButton" onclick="serviceSearch()"><i class='bx bx-search' style="font-size: 20px"></i>بحث</button></div>
   <div class="searchInputOne"><input type="text" name="" id="searchValue" placeholder="...بحث سريع عن الخدمات الإلكترونية"></div>
@@ -141,23 +140,6 @@
 
 
 <div class="services">
-  <a href="{{ route('send') }}" style="text-decoration: none" id="serviceLink" data-value='إرسال طلب شكاية'>
-    <div class="service">
-  
-  
-      <div class="serviceOne">
-       <div class="serviceImg"><img src="https://www.mahakim.ma/assets/images/register-commercial.svg" alt=""></div>
-       <div class="serviceTitle">طلب إستفسار</div>
-       <div class="servicePara">هذه الخدمة تسمح لكم بتقديم طلب شكوى عن طريق الأنترنيت، وتتم العملية في بضع خطوات، تأكدوا من اتباع جميع مراحل الإجراء و تأكدوا من أن المعلومات التي تم تضمينها بالطلب صحيحة قبل تأكيد طلبكم.</div>
-      </div>
-   
-       <div class="serviceButton"><button>← عرض الخدمة</button></div>
-   
-   
-     </div>
-   
-  </a>
-   
   
   <a href="{{ route('categorie', 'news') }}" style="text-decoration: none" id="serviceLink" data-value='تتبع طلب شكاية'>
     <div class="service">
@@ -166,12 +148,11 @@
       <div class="serviceOne">
        <div class="serviceImg"><img src="https://www.mahakim.ma/assets/images/6.svg" alt=""></div>
        <div class="serviceTitle">مستجدات المحكمة</div>
-       <div class="servicePara">هذه الخدمة تسمح لكم بتتبع طلب شكاية عن طريق الأنترنيت، وتتم العملية في بضع خطوات، تأكدوا من اتباع جميع مراحل الإجراء و تأكدوا من أن المعلومات التي تم تضمينها بالطلب صحيحة قبل تأكيد طلبكم.</div>
+       <div class="servicePara"> 
+        نقدم خدمة مميزة لعرض آخر الأخبار والمستجدات الخاصة بمحكمة الاستئناف، بما في ذلك القرارات القضائية والجلسات القادمة وأهم القضايا. تابعونا للحصول على معلومات موثوقة ومحدثة باستمرار.
+       </div>
       </div>
-   
        <div class="serviceButton"><button>← عرض الخدمة</button></div>
-   
-   
      </div>
   </a>
     
@@ -465,9 +446,9 @@
   window.addEventListener('load', function() {
     document.body.classList.add('shadow-overlay');
     setTimeout(function() {
-      document.querySelector('.landing-section .theLoader').style.display = 'none';
-      document.querySelector('.landing-section .preLoader').style.display = 'none';
       document.body.classList.remove('shadow-overlay');
+      document.querySelector('.theLoader').style.display = 'none';
+      document.querySelector('.preLoader').style.display = 'none';
     }, 1500);
   });
 </script>
